@@ -1,14 +1,14 @@
 # Summary
 
 * [Prerequisites](prerequisites.md)
-* [Schedule](schedule.md)
 * [Workshop Overview](overview/README.md)
   * [What we're going to learn](overview/learn.md)
-  * Organisations & Teams
-  * Get the Code
-* KnockoutJS (required?)
-  * Ex. Understanding KnockoutJS
-* Features/Blades
+  * [What we're going to build](overview/build.md)
+  * [Organisations & Teams](overview/teams.md)
+  * [Get the Code](overview/code.md)
+* [KnockoutJS](knockout/README.md) (if required)
+  * [Ex. Understanding KnockoutJS](knockout/exercises.md)
+* [Features/Blades](blades/README.md)
   * Demo: Create & Test a Blade
   * Ex. Create a Feature & Test Initial State
     * Messages: (`_addMessage`)
