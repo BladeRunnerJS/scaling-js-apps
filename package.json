@@ -1,0 +1,31 @@
+{
+  "name": "scaling-js-apps",
+  "version": "0.0.0",
+  "description": "How to Build Front-End Web Apps that Scale workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BladeRunnerJS/scaling-js-apps.git"
+  },
+  "keywords": [
+    "gitbook",
+    "bladerunnerjs",
+    "javascript",
+    "workshop"
+  ],
+  "author": "Phil Leggetter <phil@leggetter.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BladeRunnerJS/scaling-js-apps/issues"
+  },
+  "homepage": "https://github.com/BladeRunnerJS/scaling-js-apps",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-shell-spawn": "0.3.0",
+    "grunt-gitbook": "~0.2.0"
+  }
+}
