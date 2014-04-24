@@ -1,15 +1,17 @@
 # Summary
 
-* [Prerequisites](prerequisites.md)
 * [Workshop Overview](overview/README.md)
   * [What we're going to learn](overview/learn.md)
   * [What we're going to build](overview/build.md)
+  * [Prerequisites](overview/prerequisites.md)
   * [Organisations & Teams](overview/teams.md)
   * [Get the Code](overview/code.md)
+  * [Dev Setup](overview/dev_setup.md)
 * [KnockoutJS](knockout/README.md) (if required)
   * [Ex. Understanding KnockoutJS](knockout/exercises.md)
 * [Features/Blades](blades/README.md)
-  * Demo: Create & Test a Blade
+  * [Input](blades/input_blade.md)
+  * [Messages](blades/messages_blade.md)
   * Ex. Create a Feature & Test Initial State
     * Messages: (`_addMessage`)
 * Apps & Aspects
@@ -20,4 +22,6 @@
   * Ex. Testing a Feature
 * Apps & Aspects (again)
   * Ex. Inter-Blade/Service communication
-* Exploring Services
+* Extras
+  * Theming / CSS
+  * i18n

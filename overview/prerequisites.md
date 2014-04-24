@@ -6,3 +6,7 @@ Before getting started you need the following in place:
 2. A git client
 3. Java 7 installed
 4. The latest BladeRunnerJS release
+
+## Before we begin
+
+* Who has experience of KnockoutJS?

@@ -1,27 +1,13 @@
-# Knockout Exercises
+# Knockout Exercises (15 mins)
 
----
+The [KnockoutJS website](http://knockoutjs.com/) is the best learning resource. We suggest doing the
+following two tutorials:
 
-Define a variable `x` equal to 100.
+1. [Basic Introduction](http://learn.knockoutjs.com/#/?tutorial=intro)
+2. [Working with Lists & Collections](http://learn.knockoutjs.com/#/?tutorial=collections)
 
-```js
-var x =
-```
+Once you've completed these you'll have enough knowledge for the rest of this
+workshop.
 
-```js
-var x = 10;
-```
-
-```js
-assert(x == 10);
-```
-
-```js
-// This is context code available everywhere
-// The user will be able to call magicFunc in his code
-function magicFunc() {
-    return 3;
-}
-```
-
----
+**If you get stuck at any point - during this exercies or any future ones - please
+just ask for help. It's what we're here for.**
