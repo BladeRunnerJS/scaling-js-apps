@@ -11,3 +11,8 @@ workshop.
 
 **If you get stuck at any point - during this exercies or any future ones - please
 just ask for help. It's what we're here for.**
+
+## As you work...
+
+We'll be heading around and getting your GitHub usernames so we can give you
+permission to the repository for the application you'll be working on.

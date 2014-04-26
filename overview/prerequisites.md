@@ -4,8 +4,9 @@ Before getting started you need the following in place:
 
 1. Laptop
 2. A git client
-3. Java 7 installed
-4. The latest BladeRunnerJS release
+3. A GitHub account
+4. Java 7 or 8 installed
+5. The latest BladeRunnerJS release
 
 ## Before we begin
 
