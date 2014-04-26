@@ -1,6 +1,6 @@
 # Input Blade
 
-Your team has chosen to build the Blade. Without it nobody can enter
+Your team has chosen to build the Input Blade. Without it nobody can enter
 any information into the application.
 
 The Input Blade should have the following functionality:
@@ -104,7 +104,7 @@ How does the Blade look in the Workbench now?
 
 ## The InputViewModel
 
-Since you're now familar with Knockout you'll know all about View Models; they
+Since you're now familiar with Knockout you'll know all about View Models; they
 are a logical representation of the view. A purist view would also be that there
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
@@ -213,7 +213,6 @@ BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
 
 Server already running, not bothering to start a new instance...
 
-
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
@@ -255,7 +254,6 @@ BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
 
 Server already running, not bothering to start a new instance...
 
-
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
@@ -263,7 +261,6 @@ Chrome: Reset
 Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
   Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
 Tests Passed.
-
 
 - Time Taken: 2secs
 ```

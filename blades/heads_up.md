@@ -16,6 +16,7 @@ As a heads-up, you should be aware of the following:
 
 * The **directory structure** is too deep and complicated. We want to change this.
 * The **testing experience** is sub-optimal. So, we're not going to focus too heavily on tests.
+* The Workbench code should be simplified to make it easier to **take advantage of Workbenches**.
 
 If you come across a problem then please *shout at us*. We're here to help. If you
 can't grab us, or would like to check if it's a known issue or a listed *Gotcha* then
