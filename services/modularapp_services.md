@@ -74,6 +74,7 @@ It allows you to:
 * getCurrentUser( listener )
 * getUsers( listener )
 * getUser( userId, listener )
+* .on( 'new-message', function() { } )
 
 You can find the definition of the User Service in:
 `modularapp/libs/chatservice/src/ChatService.js`.
@@ -210,6 +211,27 @@ userService.getUser( {
 ```
 
 ### Chat Service
+
+#### Event `new-message`
+
+##### Data Payload
+
+```js
+{
+  userId: string, // the unique ID of the user generating the message
+  text: string    // the textual data of the message
+  timestamp: Date // the timestamp when the message originated
+}
+```
+
+##### Example
+
+```js
+var chatService = ServiceRegistry.getService( 'chat.service' );
+chatService.on( 'new-message', function( msg ) {
+  // do something with the message
+} );
+```
 
 #### sendMessage( { userId: string, text: string, timestamp: Date } );
 
