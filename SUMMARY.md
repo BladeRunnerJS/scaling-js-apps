@@ -20,6 +20,7 @@
   * [Composing Blades into Aspects](aspects/exercise.md)
   * [Retrospective](aspects/retrospective.md)
 * [Services & the ServiceRegistry](services/README.md)
+  * [Configuring Services](services/configuring_services.md)
   * [ModularApp Services](services/modularapp_services.md)
   * [Exercises Overview](services/exercises_overview.md)
   * [Exercise: Input Blade & Services](services/input_services.md)

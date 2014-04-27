@@ -38,4 +38,4 @@ In the upcoming exercises we'll see how to use some pre-defined ModularApp servi
 As before, the real services aren't available yet. So, we'll need to use some
 fake service implementations to aid development that another team has kindly provided.
 
-## Next: An overview of the ModularApp Services
+## Next: Configuring Services
