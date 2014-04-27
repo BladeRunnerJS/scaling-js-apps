@@ -14,9 +14,11 @@
   * [Heads Up!](blades/heads_up.md)
   * [Exercise: Input](blades/input_blade.md)
   * [Exercise: Messages](blades/messages_blade.md)
-  * [What have we built?](blades/built.md)
-* Apps & Aspects
-  * Ex. Adding a Feature to an App
+  * [Exercise: User Card](blades/usercard_blade.md)
+  * [Retrospective](blades/retrospective.md)
+* [Apps & Aspects](aspects/README.md)
+  * [Composing Blades into Aspects](aspects/exercise.md)
+  * [Retrospective](aspects/retrospective.md)
 * Services & the ServiceRegistry
   * Ex. Using Services (use `_addMessage`)
 * End-to-End Feature Testing

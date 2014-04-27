@@ -1,4 +1,4 @@
-# Messages Blade
+# Messages Blade Exercise (30 mins)
 
 Your team is building the Messages Blade. Sweet!
 
@@ -360,7 +360,7 @@ Congratulations! The basic functionality for this Blade is complete. It's time t
 commit your changes locally and push them to github.
 
 * `git add chat-bladeset/blades/messages`
-* `git commit -m 'basic input blade functionality'
+* `git commit -m 'basic input blade functionality'`
 * `git pull origin master`
 * Fix any merge conflicts - *there shouldn't be any*
 * `git push origin master`

@@ -1,5 +1,10 @@
 # What are Features/Blades?
 
+*At Caplin we use the term Blade to represent an application feature. This is
+because it represents a full slice of application functionality containing everything
+required to fullfil a business requirements. So, "Feature" and "Blade" are generally
+inter-changable.*
+
 ## Concepts & Demo
 
 * Scaffolding
@@ -11,18 +16,3 @@
 * A note on CSS
 
 **TODO: show app split into blades**
-
-## ModularApp Features
-
-The purpose of this exercise is to build the basics of a single application feature.
-*You won't be interacting with databases or services*, just add fake data
-to your code to help you build your feature the the UI.
-
-The modularapp has the following Features:
-
-* **Input** for entering text and sending a message
-* **Messages** display showing all the previous chat messages
-* **User Card** display more information about a user
-
-Each team within a company should choose the feature that they are creating
-and following the instructions for that exercise.

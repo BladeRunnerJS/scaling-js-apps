@@ -10,4 +10,4 @@ Before getting started you need the following in place:
 
 ## Before we begin
 
-* Who has experience of KnockoutJS?
+* Who has experience of [KnockoutJS](http://knockoutjs.com/)?

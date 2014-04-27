@@ -1,4 +1,4 @@
-# Knockout Exercises (15 mins)
+# Knockout Exercise (15 mins)
 
 The [KnockoutJS website](http://knockoutjs.com/) is the best learning resource. We suggest doing the
 following two tutorials:

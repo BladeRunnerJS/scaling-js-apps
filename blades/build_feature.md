@@ -1,11 +1,10 @@
-# ModularApps Features/Blades
+## ModularApp Blades Exercises
 
-**Note: At Caplin we use the term Blade to represent an application feature. This is
-because it represents a full slice of application functionality containing everything
-required to fullfil a business requirements. So, "Feature" and "Blade" are generally
-inter-changable.**
+The purpose of this exercise is to build the basics of a single application feature.
+*You won't be interacting with databases or services* because they're not ready yet.
+All you can do is add fake data to your code to help you build your feature the the UI.
 
-Within your company decide which team is going to build a feature and each team
+Within your company *decide which team is going to build a Blade* and each team
 should do one of the following exercises:
 
 * [Input](input_blade.html) for entering text and sending a message
