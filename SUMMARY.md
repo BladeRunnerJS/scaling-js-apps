@@ -19,8 +19,13 @@
 * [Apps & Aspects](aspects/README.md)
   * [Composing Blades into Aspects](aspects/exercise.md)
   * [Retrospective](aspects/retrospective.md)
-* Services & the ServiceRegistry
-  * Ex. Using Services (use `_addMessage`)
+* [Services & the ServiceRegistry](services/README.md)
+  * [ModularApp Services](services/modularapp_services.md)
+  * [Exercises Overview](services/exercises_overview.md)
+  * [Exercise: Input Blade & Services](services/input_services.md)
+  * [Exercise: Messages Blade & Services](services/messages_services.md)
+  * [Exercise: User Card Blade & Services](services/usercard_services.md)
+  * [Retrospective](services/retrospective.md)
 * End-to-End Feature Testing
   * Ex. Testing a Feature
 * Apps & Aspects (again)
