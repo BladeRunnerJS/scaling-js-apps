@@ -26,10 +26,7 @@
   * [Exercise: Messages Blade & Services](services/messages_services.md)
   * [Exercise: User Card Blade & Services](services/usercard_services.md)
   * [Retrospective](services/retrospective.md)
-* End-to-End Feature Testing
-  * Ex. Testing a Feature
-* Apps & Aspects (again)
-  * Ex. Inter-Blade/Service communication
+* [Apps & Aspects (again)](aspects_services/README.md)
 * Extras
   * Theming / CSS
   * i18n
