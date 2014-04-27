@@ -1,7 +1,7 @@
 # Input & Services Exercise
 
 The following doesn't give you a step-by-step guide of what to do. It gives you
-a number of individual pieces and you need to put them together in order to meeting
+a number of individual pieces and you need to put them together in order to meet
 the main feature requirement of the Input Blade:
 
 > When the user has entered text and clicks the send button it should be sent to the
@@ -189,7 +189,7 @@ For example, we can test service interactions by:
 * Add functionality to our `FakeUserService` that lets us check interactions
 * Replace the User Service in the `ServiceRegistry` with a Mock object
 
-Since we're using Jasmine, we'll use Spies, but we'll also demonstrate how the
+Since we're using Jasmine, we'll use [Spies](http://j.mp/PITNqK), but we'll also demonstrate how the
 `FakeUserService`, that was developed really to help our development within the
 Workbench, is also really useful.
 
