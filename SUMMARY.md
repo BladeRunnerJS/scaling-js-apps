@@ -1,0 +1,36 @@
+# Summary
+
+* [Workshop Overview](overview/README.md)
+  * [Background](overview/background.md)
+  * [What we're going to learn](overview/learn.md)
+  * [What we're going to build](overview/build.md)
+  * [Organisations & Teams](overview/teams.md)
+  * [Prerequisites](overview/prerequisites.md)
+* [KnockoutJS](knockout/README.md) (if required)
+  * [Ex. Understanding KnockoutJS](knockout/exercises.md)
+* [Features/Blades](blades/README.md)
+  * [Get the application code](blades/code.md)
+  * [Choose a Feature](blades/build_feature.md)
+  * [Heads Up!](blades/heads_up.md)
+  * [Exercise: Input](blades/input_blade.md)
+  * [Exercise: Messages](blades/messages_blade.md)
+  * [Exercise: User Card](blades/usercard_blade.md)
+  * [Retrospective](blades/retrospective.md)
+* [Apps & Aspects](aspects/README.md)
+  * [Composing Blades into Aspects](aspects/exercise.md)
+  * [Retrospective](aspects/retrospective.md)
+* [Services & the ServiceRegistry](services/README.md)
+  * [Configuring Services](services/configuring_services.md)
+  * [ModularApp Services](services/modularapp_services.md)
+  * [Exercises Overview](services/exercises_overview.md)
+  * [Exercise: Input Blade & Services](services/input_services.md)
+  * [Exercise: Messages Blade & Services](services/messages_services.md)
+  * [Exercise: User Card Blade & Services](services/usercard_services.md)
+  * [Retrospective](services/retrospective.md)
+* [Apps & Aspects (again)](aspects_services/README.md)
+* Extras
+  * Theming / CSS
+  * i18n
+* Reference
+  * [Suggested Dev Setup](reference/dev_setup.md)
+  * [FAQ & Gotchas](reference/faq_gotchas.md)

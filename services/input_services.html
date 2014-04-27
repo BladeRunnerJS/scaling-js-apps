@@ -1,0 +1,714 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>Exercise: Input Blade &amp; Services | How to Build Front-End Web Apps that Scale</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="BladeRunnerJS">
+        <meta name="description" content="The purpose of this workshop is to learn how to build a maintainable and extensible
+front-end applications that offer highly complex functionality, consists of
+thousands of assets and thousands of lines of JavaScript.">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../services/messages_services.html" />
+        
+        
+        <link rel="prev" href="../services/exercises_overview.html" />
+        
+
+        <meta property="og:title" content="Exercise: Input Blade &amp; Services | How to Build Front-End Web Apps that Scale">
+        <meta property="og:site_name" content="How to Build Front-End Web Apps that Scale">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/BladeRunnerJS">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.4" data-basepath=".." data-revision="1398636818226">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/BladeRunnerJS/scaling-js-apps" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    
+    <a href="https://github.com/BladeRunnerJS/scaling-js-apps/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/BladeRunnerJS/scaling-js-apps/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1><a href="../" >How to Build Front-End Web Apps that Scale</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/BladeRunnerJS" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/BladeRunnerJS/scaling-js-apps/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/BladeRunnerJS/scaling-js-apps/edit/master/services/input_services.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="overview/README.html">
+                
+                <a href="../overview/README.html">
+                    <i class="fa fa-check"></i> <b>1.</b> Workshop Overview
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="overview/background.html">
+                            
+                            <a href="../overview/background.html">
+                                <i class="fa fa-check"></i> <b>1.1.</b> Background
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="overview/learn.html">
+                            
+                            <a href="../overview/learn.html">
+                                <i class="fa fa-check"></i> <b>1.2.</b> What we&#39;re going to learn
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="overview/build.html">
+                            
+                            <a href="../overview/build.html">
+                                <i class="fa fa-check"></i> <b>1.3.</b> What we&#39;re going to build
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="overview/teams.html">
+                            
+                            <a href="../overview/teams.html">
+                                <i class="fa fa-check"></i> <b>1.4.</b> Organisations &amp; Teams
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.5" data-path="overview/prerequisites.html">
+                            
+                            <a href="../overview/prerequisites.html">
+                                <i class="fa fa-check"></i> <b>1.5.</b> Prerequisites
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="knockout/README.html">
+                
+                <a href="../knockout/README.html">
+                    <i class="fa fa-check"></i> <b>2.</b> KnockoutJS
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="knockout/exercises.html">
+                            
+                            <a href="../knockout/exercises.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> Ex. Understanding KnockoutJS
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="blades/README.html">
+                
+                <a href="../blades/README.html">
+                    <i class="fa fa-check"></i> <b>3.</b> Features/Blades
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="3.1" data-path="blades/code.html">
+                            
+                            <a href="../blades/code.html">
+                                <i class="fa fa-check"></i> <b>3.1.</b> Get the application code
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.2" data-path="blades/build_feature.html">
+                            
+                            <a href="../blades/build_feature.html">
+                                <i class="fa fa-check"></i> <b>3.2.</b> Choose a Feature
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.3" data-path="blades/heads_up.html">
+                            
+                            <a href="../blades/heads_up.html">
+                                <i class="fa fa-check"></i> <b>3.3.</b> Heads Up!
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.4" data-path="blades/input_blade.html">
+                            
+                            <a href="../blades/input_blade.html">
+                                <i class="fa fa-check"></i> <b>3.4.</b> Exercise: Input
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.5" data-path="blades/messages_blade.html">
+                            
+                            <a href="../blades/messages_blade.html">
+                                <i class="fa fa-check"></i> <b>3.5.</b> Exercise: Messages
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.6" data-path="blades/usercard_blade.html">
+                            
+                            <a href="../blades/usercard_blade.html">
+                                <i class="fa fa-check"></i> <b>3.6.</b> Exercise: User Card
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.7" data-path="blades/retrospective.html">
+                            
+                            <a href="../blades/retrospective.html">
+                                <i class="fa fa-check"></i> <b>3.7.</b> Retrospective
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="4" data-path="aspects/README.html">
+                
+                <a href="../aspects/README.html">
+                    <i class="fa fa-check"></i> <b>4.</b> Apps &amp; Aspects
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="4.1" data-path="aspects/exercise.html">
+                            
+                            <a href="../aspects/exercise.html">
+                                <i class="fa fa-check"></i> <b>4.1.</b> Composing Blades into Aspects
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.2" data-path="aspects/retrospective.html">
+                            
+                            <a href="../aspects/retrospective.html">
+                                <i class="fa fa-check"></i> <b>4.2.</b> Retrospective
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="5" data-path="services/README.html">
+                
+                <a href="../services/README.html">
+                    <i class="fa fa-check"></i> <b>5.</b> Services &amp; the ServiceRegistry
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="5.1" data-path="services/configuring_services.html">
+                            
+                            <a href="../services/configuring_services.html">
+                                <i class="fa fa-check"></i> <b>5.1.</b> Configuring Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.2" data-path="services/modularapp_services.html">
+                            
+                            <a href="../services/modularapp_services.html">
+                                <i class="fa fa-check"></i> <b>5.2.</b> ModularApp Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.3" data-path="services/exercises_overview.html">
+                            
+                            <a href="../services/exercises_overview.html">
+                                <i class="fa fa-check"></i> <b>5.3.</b> Exercises Overview
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.4" data-path="services/input_services.html">
+                            
+                            <a href="../services/input_services.html">
+                                <i class="fa fa-check"></i> <b>5.4.</b> Exercise: Input Blade &amp; Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.5" data-path="services/messages_services.html">
+                            
+                            <a href="../services/messages_services.html">
+                                <i class="fa fa-check"></i> <b>5.5.</b> Exercise: Messages Blade &amp; Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.6" data-path="services/usercard_services.html">
+                            
+                            <a href="../services/usercard_services.html">
+                                <i class="fa fa-check"></i> <b>5.6.</b> Exercise: User Card Blade &amp; Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.7" data-path="services/retrospective.html">
+                            
+                            <a href="../services/retrospective.html">
+                                <i class="fa fa-check"></i> <b>5.7.</b> Retrospective
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="6" data-path="aspects_services/README.html">
+                
+                <a href="../aspects_services/README.html">
+                    <i class="fa fa-check"></i> <b>6.</b> Apps &amp; Aspects (again)
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" >
+                
+                <span><b>7.</b> Extras</span>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="7.1" >
+                            
+                            <span><b>7.1.</b> Theming / CSS</span>
+                            
+                        </li>
+                    
+                        <li  data-level="7.2" >
+                            
+                            <span><b>7.2.</b> i18n</span>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="8" >
+                
+                <span><b>8.</b> Reference</span>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="8.1" data-path="reference/dev_setup.html">
+                            
+                            <a href="../reference/dev_setup.html">
+                                <i class="fa fa-check"></i> <b>8.1.</b> Suggested Dev Setup
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.2" data-path="reference/faq_gotchas.html">
+                            
+                            <a href="../reference/faq_gotchas.html">
+                                <i class="fa fa-check"></i> <b>8.2.</b> FAQ &amp; Gotchas
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 85.71428571428571%;min-width: 82.14285714285714%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../overview/README.html" title="Workshop Overview" class="chapter done new-chapter" data-progress="1" style="left: 3.5714285714285716%;"></a>
+    
+        <a href="../overview/background.html" title="Background" class="chapter done " data-progress="1.1" style="left: 7.142857142857143%;"></a>
+    
+        <a href="../overview/learn.html" title="What we&#39;re going to learn" class="chapter done " data-progress="1.2" style="left: 10.714285714285714%;"></a>
+    
+        <a href="../overview/build.html" title="What we&#39;re going to build" class="chapter done " data-progress="1.3" style="left: 14.285714285714286%;"></a>
+    
+        <a href="../overview/teams.html" title="Organisations &amp; Teams" class="chapter done " data-progress="1.4" style="left: 17.857142857142858%;"></a>
+    
+        <a href="../overview/prerequisites.html" title="Prerequisites" class="chapter done " data-progress="1.5" style="left: 21.428571428571427%;"></a>
+    
+        <a href="../knockout/README.html" title="KnockoutJS" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
+    
+        <a href="../knockout/exercises.html" title="Ex. Understanding KnockoutJS" class="chapter done " data-progress="2.1" style="left: 28.571428571428573%;"></a>
+    
+        <a href="../blades/README.html" title="Features/Blades" class="chapter done new-chapter" data-progress="3" style="left: 32.142857142857146%;"></a>
+    
+        <a href="../blades/code.html" title="Get the application code" class="chapter done " data-progress="3.1" style="left: 35.714285714285715%;"></a>
+    
+        <a href="../blades/build_feature.html" title="Choose a Feature" class="chapter done " data-progress="3.2" style="left: 39.285714285714285%;"></a>
+    
+        <a href="../blades/heads_up.html" title="Heads Up!" class="chapter done " data-progress="3.3" style="left: 42.857142857142854%;"></a>
+    
+        <a href="../blades/input_blade.html" title="Exercise: Input" class="chapter done " data-progress="3.4" style="left: 46.42857142857143%;"></a>
+    
+        <a href="../blades/messages_blade.html" title="Exercise: Messages" class="chapter done " data-progress="3.5" style="left: 50%;"></a>
+    
+        <a href="../blades/usercard_blade.html" title="Exercise: User Card" class="chapter done " data-progress="3.6" style="left: 53.57142857142857%;"></a>
+    
+        <a href="../blades/retrospective.html" title="Retrospective" class="chapter done " data-progress="3.7" style="left: 57.142857142857146%;"></a>
+    
+        <a href="../aspects/README.html" title="Apps &amp; Aspects" class="chapter done new-chapter" data-progress="4" style="left: 60.714285714285715%;"></a>
+    
+        <a href="../aspects/exercise.html" title="Composing Blades into Aspects" class="chapter done " data-progress="4.1" style="left: 64.28571428571429%;"></a>
+    
+        <a href="../aspects/retrospective.html" title="Retrospective" class="chapter done " data-progress="4.2" style="left: 67.85714285714286%;"></a>
+    
+        <a href="../services/README.html" title="Services &amp; the ServiceRegistry" class="chapter done new-chapter" data-progress="5" style="left: 71.42857142857143%;"></a>
+    
+        <a href="../services/configuring_services.html" title="Configuring Services" class="chapter done " data-progress="5.1" style="left: 75%;"></a>
+    
+        <a href="../services/modularapp_services.html" title="ModularApp Services" class="chapter done " data-progress="5.2" style="left: 78.57142857142857%;"></a>
+    
+        <a href="../services/exercises_overview.html" title="Exercises Overview" class="chapter done " data-progress="5.3" style="left: 82.14285714285714%;"></a>
+    
+        <a href="../services/input_services.html" title="Exercise: Input Blade &amp; Services" class="chapter done " data-progress="5.4" style="left: 85.71428571428571%;"></a>
+    
+        <a href="../services/messages_services.html" title="Exercise: Messages Blade &amp; Services" class="chapter  " data-progress="5.5" style="left: 89.28571428571429%;"></a>
+    
+        <a href="../services/usercard_services.html" title="Exercise: User Card Blade &amp; Services" class="chapter  " data-progress="5.6" style="left: 92.85714285714286%;"></a>
+    
+        <a href="../services/retrospective.html" title="Retrospective" class="chapter  " data-progress="5.7" style="left: 96.42857142857143%;"></a>
+    
+        <a href="../aspects_services/README.html" title="Apps &amp; Aspects (again)" class="chapter  new-chapter" data-progress="6" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_25">
+                    
+                        <h1 id="input-services-exercise">Input &amp; Services Exercise</h1>
+<p>The following doesn&#39;t give you a step-by-step guide of what to do. It gives you
+a number of individual pieces and you need to put them together in order to meeting
+the main feature requirement of the Input Blade:</p>
+<blockquote>
+<p>When the user has entered text and clicks the send button it should be sent to the
+other users.</p>
+</blockquote>
+<p>The Input Blade uses two services which will enable you to achieve this functionality:</p>
+<ul>
+<li>The User Service to know who is sending messages</li>
+<li>The Chat Service in order to send messages to the other users</li>
+</ul>
+<p>We&#39;re nearly ready to start coding. But before we do let&#39;s do a little bit of setup.</p>
+<h2 id="service-configuration">Service Configuration</h2>
+<p>As we said, a nice team have put together some fake services to help us develop
+our Blade&#39;s functionality. In order to configure the services you need to know
+the require path to these implementations. Of course, we do. So, open up the configuration
+file for the Workbench, which you&#39;ll find here:
+<code>chat-bladeset/blades/input/workbench/resources/aliases.xml</code>, and update it as
+follows:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">aliases</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schema.caplin.com/CaplinTrader/aliases"</span> <span class="hljs-attribute">useScenario</span>=<span class="hljs-value">"dev"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chat.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chatservice.FakeChatService"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"userservice.FakeUserService"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">aliases</span>&gt;</span>
+</code></pre>
+<p><em>Yes, it&#39;s XML</em>. What can we say! Anyway, we&#39;ve now actually configured:</p>
+<ul>
+<li><code>chat.service</code> to use a fake chat service implementation</li>
+<li><code>user.service</code> to use a fake user service implementation</li>
+</ul>
+<p>Now that the helper services are in place we can get to work.</p>
+<h2 id="get-the-current-user-from-the-user-service">Get the Current User from the User Service</h2>
+<p>If you remember back to the overview of the services, the <code>ChatService.sendMessage</code>
+function takes an object that should have three properties:</p>
+<ul>
+<li><code>userId</code> - the ID of the current user</li>
+<li><code>text</code> - the text entered into the <code>textarea</code></li>
+<li><code>timestamp</code> - the time the message is being sent</li>
+</ul>
+<p>So, we need to get access to the the current user from the User Service.</p>
+<p>In order to get the User Service we first need to get the <code>ServiceRegistry</code>.
+Update your <code>InputViewModel</code> to get a reference:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
+</code></pre>
+<p>Next, we want to get the User Service instance that&#39;s been set up:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+</code></pre>
+<p>Finally, we need to get hold of the current user:</p>
+<pre><code class="lang-js">userService.getCurrentUser( listener );
+</code></pre>
+<p>The fact that there&#39;s a <code>listener</code> object being passed in tells you that this is
+an asynchronous call. In JavaScript there are a number of ways to listen for callbacks.
+We&#39;ve found that although passing in listeners that have to implement contracts
+(in the same way as services) can be a bit more effort, it can result in
+a much more robust solution. There are of course times where passing in a <code>function</code>
+will be fine.</p>
+<p>Anyway, in this case we need to pass in an object that implements
+two functions:</p>
+<ul>
+<li><code>userRetrieved( user )</code> called when the user is successfully retrieved</li>
+<li><code>userRetrievalFailed( code, message )</code> called if there is a problem - we don&#39;t expect this</li>
+</ul>
+<p>One way of achieving this is by <code>InputViewModel</code> a listener by implementing these functions
+and passing a reference to <code>this</code> in as the <code>listener</code>.</p>
+<pre><code class="lang-js">InputViewModel.prototype.userRetrieved = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( user )</span> {</span>
+  <span class="hljs-comment">// store the current user</span>
+};
+
+InputViewModel.prototype.userRetrievalFailed = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( code, message )</span> {</span>
+  <span class="hljs-comment">// Something has gone wrong. How do we feed this back to the user?</span>
+};
+</code></pre>
+<h5 id="hints-">Hints:</h5>
+<ul>
+<li>The <code>FakeUserService</code> has a <code>setCurrentUser</code> implementation that you can use within
+the Workbench to make sure that you have a user set during your development.</li>
+<li>There&#39;s lots to do here. You can add more tests if you like but we&#39;d recommend
+that you just make sure your existing tests still pass, or update them if required.</li>
+</ul>
+<h2 id="disable-the-input-controls-until-user-is-retrieved">Disable the Input Controls until User is Retrieved</h2>
+<p>Until a reference to the current user has been retrieved it shouldn&#39;t be possible
+to enter text into the <code>textarea</code> or click the <code>button</code>.</p>
+<p>Add an <code>enabled</code> Knockout Observable that has a value of either <code>true</code> or <code>false</code> and where
+the <code>textarea</code> and <code>button</code> elements will be disabled if the <code>enabled</code> property
+is set to <code>false</code>.</p>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>KnockoutJS has an <a href="http://knockoutjs.com/documentation/enable-binding.html" target="_blank">enable binding</a></li>
+</ul>
+<h2 id="if-an-error-occurs-provide-feedback-to-the-user">If an Error Occurs Provide Feedback to the User</h2>
+<p>Somethings things go wrong. If that happens then the user will be left with an Input
+feature that won&#39;t let them input anything. In case of error add an area to the
+Input Blade that can give the user feedback.</p>
+<p>Create a Knockout Observable called <code>feedbackMessage</code> in case of error (<code>userRetrievalFailed</code>)
+set the contents of this so the user knows something has gone wrong.</p>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>There&#39;s a <a href="http://knockoutjs.com/documentation/visible-binding.html" target="_blank">visible binding</a>
+that can ensure an element is only shown based on a condition e.g. if the <code>feedbackMessage</code>
+is not empty.</li>
+</ul>
+<h2 id="sending-a-message-using-the-chat-service">Sending a Message using the Chat Service</h2>
+<p>The <code>buttonClicked</code> function gets the text from the UI so it makes sense to
+interact with the Chat Service at this point. In this exercise you need to:</p>
+<ul>
+<li>Get the Chat Service from the <code>ServiceRegistry</code></li>
+<li>Construct an object with the following properties: <code>userId</code>, <code>text</code> and <code>timestamp</code></li>
+<li>Use the <code>sendMessage</code> chat service function to send the message object that has just been constructed</li>
+<li>Clear down the <code>message</code> property so that the <code>textarea</code> is cleared</li>
+</ul>
+<h2 id="testing-features">Testing Features</h2>
+<p><em>Before we start, you need to copy the contents of <code>aliases.xml</code> from the Workbench
+into <code>input/tests/test-unit/js-test-driver/resources/aliases.xml</code>.</em></p>
+<p>In the services overview we talked about how using MVVM and Services allows us to
+test full features in isolation. In this part of the exercise we&#39;re going to do
+exactly that.</p>
+<p>Create a new file called <code>InputFeatureTest.js</code> in <code>input/tests/test-unit/js-test-driver/tests/</code>
+and update it to look as follows:</p>
+<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-built_in">require</span>( <span class="hljs-string">'jasmine'</span> );
+
+<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span>);
+<span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
+<span class="hljs-keyword">var</span> userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+
+describe( <span class="hljs-string">'The Input'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+
+} );
+</code></pre>
+<p><em>Note: You could call this file InputSpecTest.js</em>.</p>
+<p>The first thing to notice is that we&#39;re using Jasmine, and specifcially we&#39;re using
+<a href="http://jasmine.github.io/1.3/introduction.html" target="_blank">Jasmine 1.3</a> as it ships with BRJS.</p>
+<p>From there, you&#39;ll see we&#39;ve required the <code>InputViewModel</code> and we have a reference to
+the User Service via <code>userService</code>. Now we need to write at least two tests:</p>
+<ol>
+<li>Create an instance of the <code>InputViewModel</code>, interact with it, and ensure that
+it results in the expected service interactions.</li>
+<li>Force the User Service to interact with the View Model and then verify the View Model state.</li>
+</ol>
+<p>This way we&#39;re testing how UI interacts result in service interactions and how
+service events are reflected in UI state.</p>
+<h3 id="testing-service-interactions">Testing Service Interactions</h3>
+<p>As with anything in software it&#39;s possible to achieve the same thing in multiple ways.
+For example, we can test service interactions by:</p>
+<ul>
+<li>Spying on interactions with the User Service that is already registered with the ServiceRegistry</li>
+<li>Add functionality to our <code>FakeUserService</code> that lets us check interactions</li>
+<li>Replace the User Service in the <code>ServiceRegistry</code> with a Mock object</li>
+</ul>
+<p>Since we&#39;re using Jasmine, we&#39;ll use Spies, but we&#39;ll also demonstrate how the
+<code>FakeUserService</code>, that was developed really to help our development within the
+Workbench, is also really useful.</p>
+<h3 id="testing-feature-service-interactions-using-spies">Testing Feature Service Interactions using Spies</h3>
+<p>Exactly how you put this test together depends on your <code>InputViewModel</code> implementation.
+For this test we&#39;re going to assume that the current application user is requested
+from the User Service in the <code>InputViewModel</code> constructor.</p>
+<p>Add the following spec to the <code>The Input</code> suite:</p>
+<pre><code>describe( <span class="hljs-string">'The Input'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+
+    it( <span class="hljs-string">'Requests a user from the UserService'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+        spyOn( userService, <span class="hljs-string">'getCurrentUser'</span> );
+        <span class="hljs-keyword">var</span> inputViewModel = <span class="hljs-keyword">new</span> InputViewModel();
+        expect( userService.getCurrentUser ).toHaveBeenCalled();
+    } );
+
+} );
+</code></pre><p>A better test is to interact with the View Model and then verify that a service
+interaction has occurred. So, over to you:</p>
+<p>Verify that when valid text has been entered into <code>message</code> and the send button
+is clicked that the <code>sendMessage</code> function is called with an appropriately formed
+message object.</p>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>You&#39;ll need to get the Chat Service from the ServiceRegistry</li>
+<li>In order to get a user from the User Service is must first have one set. Our handy
+<code>FakeUserService</code> has a <code>setCurrentUser</code> function.</li>
+<li><code>getCurrentUser</code> is asynchronous - you have two options:<ul>
+<li>Call <code>InputViewModel.userRetrieved</code> with the user <em>this is probably the easiest</em></li>
+<li>Use Jasmine&#39;s <a href="http://jasmine.github.io/1.3/introduction.html?spec=A%20spec%20(with%20setup%20and%20tear-down" target="_blank">asynchronous support</a>#section-Asynchronous_Support)</li>
+</ul>
+</li>
+<li>You can use <code>expect( someFunction ).toHaveBeenCalledWith( args... )</code> to verify what parameters were passed</li>
+<li>If you want to verify the <code>timestamp</code> of the message you can use the <code>jasmine.any( Date )</code> to at least
+check a <code>Date</code> object was passed</li>
+</ul>
+<h3 id="testing-feature-viewmodel-state-using-a-fake-service">Testing Feature ViewModel State using a Fake Service</h3>
+<p>The next thing we want to do is see how services can impact the state of the View Model.
+The only time that the Input View Model is affected by a service is if the call to
+<code>getCurrentUser</code> fails and the <code>userRetrievalFailed</code> callback is executed.</p>
+<p>You could call <code>userRetrievalFailed</code> on the <code>InputViewModel</code> and check that the
+<code>enabled</code> property is false. However, this is much more of a class unit test
+and doesn&#39;t test the service interaction. Instead, we can use the <code>FakeUserService</code>
+and set it up to act as if the user retrieval failed. We do this by using a helper.
+By calling the following we tell the service to fail and ultimately call
+<code>userRetrievalFailed</code> on the <code>InputViewModel</code>:</p>
+<pre><code class="lang-javascript">userService.setUserDataFetcher( <span class="hljs-string">'failing'</span>, { count: <span class="hljs-number">1</span> } );
+</code></pre>
+<p>The second parameter tells the service to only fail with user retrieval once.</p>
+<p>Now we know how to set up the fake service it should be easy to test that if the
+user retrieval fails:</p>
+<ul>
+<li>the UI is not enabled</li>
+<li>a feedback messages is provided</li>
+</ul>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>The <code>userService.setUserDataFetcher</code> makes an instant call to <code>userRetrievalFailed</code>
+so you don&#39;t need to worry about creating an asynchronous test.</li>
+</ul>
+<h2 id="congrats-service-interaction-complete-">Congrats - Service Interaction Complete!</h2>
+<p>Our Blade is now interacting with two services and we&#39;ve tested both UI through
+to Services and Services through to the UI; full feature testing.</p>
+<p>It&#39;s time to commit those changes and push them to github:</p>
+<ul>
+<li><code>git add chat-bladeset/blades/input</code></li>
+<li><code>git commit -m &#39;integrating input blade with services&#39;</code></li>
+<li><code>git pull origin master</code></li>
+<li>Fix any merges - there shouldn&#39;t be any</li>
+<li><code>git push origin master</code></li>
+</ul>
+<h2 id="where-next-">Where Next?</h2>
+<p>See how the other teams in your company are getting on. Can you help them out?</p>
+<p>Then, we&#39;ll see how our application looks.</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../services/exercises_overview.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../services/messages_services.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+    </body>
+</html>

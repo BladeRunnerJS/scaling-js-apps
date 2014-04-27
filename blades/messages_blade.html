@@ -1,0 +1,772 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>Exercise: Messages | How to Build Front-End Web Apps that Scale</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="BladeRunnerJS">
+        <meta name="description" content="The purpose of this workshop is to learn how to build a maintainable and extensible
+front-end applications that offer highly complex functionality, consists of
+thousands of assets and thousands of lines of JavaScript.">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../blades/usercard_blade.html" />
+        
+        
+        <link rel="prev" href="../blades/input_blade.html" />
+        
+
+        <meta property="og:title" content="Exercise: Messages | How to Build Front-End Web Apps that Scale">
+        <meta property="og:site_name" content="How to Build Front-End Web Apps that Scale">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/BladeRunnerJS">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.5" data-basepath=".." data-revision="1398636818226">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/BladeRunnerJS/scaling-js-apps" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    
+    <a href="https://github.com/BladeRunnerJS/scaling-js-apps/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/BladeRunnerJS/scaling-js-apps/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1><a href="../" >How to Build Front-End Web Apps that Scale</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/BladeRunnerJS" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/BladeRunnerJS/scaling-js-apps/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/BladeRunnerJS/scaling-js-apps/edit/master/blades/messages_blade.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="overview/README.html">
+                
+                <a href="../overview/README.html">
+                    <i class="fa fa-check"></i> <b>1.</b> Workshop Overview
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="overview/background.html">
+                            
+                            <a href="../overview/background.html">
+                                <i class="fa fa-check"></i> <b>1.1.</b> Background
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="overview/learn.html">
+                            
+                            <a href="../overview/learn.html">
+                                <i class="fa fa-check"></i> <b>1.2.</b> What we&#39;re going to learn
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="overview/build.html">
+                            
+                            <a href="../overview/build.html">
+                                <i class="fa fa-check"></i> <b>1.3.</b> What we&#39;re going to build
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="overview/teams.html">
+                            
+                            <a href="../overview/teams.html">
+                                <i class="fa fa-check"></i> <b>1.4.</b> Organisations &amp; Teams
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.5" data-path="overview/prerequisites.html">
+                            
+                            <a href="../overview/prerequisites.html">
+                                <i class="fa fa-check"></i> <b>1.5.</b> Prerequisites
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="knockout/README.html">
+                
+                <a href="../knockout/README.html">
+                    <i class="fa fa-check"></i> <b>2.</b> KnockoutJS
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="knockout/exercises.html">
+                            
+                            <a href="../knockout/exercises.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> Ex. Understanding KnockoutJS
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="blades/README.html">
+                
+                <a href="../blades/README.html">
+                    <i class="fa fa-check"></i> <b>3.</b> Features/Blades
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="3.1" data-path="blades/code.html">
+                            
+                            <a href="../blades/code.html">
+                                <i class="fa fa-check"></i> <b>3.1.</b> Get the application code
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.2" data-path="blades/build_feature.html">
+                            
+                            <a href="../blades/build_feature.html">
+                                <i class="fa fa-check"></i> <b>3.2.</b> Choose a Feature
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.3" data-path="blades/heads_up.html">
+                            
+                            <a href="../blades/heads_up.html">
+                                <i class="fa fa-check"></i> <b>3.3.</b> Heads Up!
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.4" data-path="blades/input_blade.html">
+                            
+                            <a href="../blades/input_blade.html">
+                                <i class="fa fa-check"></i> <b>3.4.</b> Exercise: Input
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.5" data-path="blades/messages_blade.html">
+                            
+                            <a href="../blades/messages_blade.html">
+                                <i class="fa fa-check"></i> <b>3.5.</b> Exercise: Messages
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.6" data-path="blades/usercard_blade.html">
+                            
+                            <a href="../blades/usercard_blade.html">
+                                <i class="fa fa-check"></i> <b>3.6.</b> Exercise: User Card
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.7" data-path="blades/retrospective.html">
+                            
+                            <a href="../blades/retrospective.html">
+                                <i class="fa fa-check"></i> <b>3.7.</b> Retrospective
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="4" data-path="aspects/README.html">
+                
+                <a href="../aspects/README.html">
+                    <i class="fa fa-check"></i> <b>4.</b> Apps &amp; Aspects
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="4.1" data-path="aspects/exercise.html">
+                            
+                            <a href="../aspects/exercise.html">
+                                <i class="fa fa-check"></i> <b>4.1.</b> Composing Blades into Aspects
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.2" data-path="aspects/retrospective.html">
+                            
+                            <a href="../aspects/retrospective.html">
+                                <i class="fa fa-check"></i> <b>4.2.</b> Retrospective
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="5" data-path="services/README.html">
+                
+                <a href="../services/README.html">
+                    <i class="fa fa-check"></i> <b>5.</b> Services &amp; the ServiceRegistry
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="5.1" data-path="services/configuring_services.html">
+                            
+                            <a href="../services/configuring_services.html">
+                                <i class="fa fa-check"></i> <b>5.1.</b> Configuring Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.2" data-path="services/modularapp_services.html">
+                            
+                            <a href="../services/modularapp_services.html">
+                                <i class="fa fa-check"></i> <b>5.2.</b> ModularApp Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.3" data-path="services/exercises_overview.html">
+                            
+                            <a href="../services/exercises_overview.html">
+                                <i class="fa fa-check"></i> <b>5.3.</b> Exercises Overview
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.4" data-path="services/input_services.html">
+                            
+                            <a href="../services/input_services.html">
+                                <i class="fa fa-check"></i> <b>5.4.</b> Exercise: Input Blade &amp; Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.5" data-path="services/messages_services.html">
+                            
+                            <a href="../services/messages_services.html">
+                                <i class="fa fa-check"></i> <b>5.5.</b> Exercise: Messages Blade &amp; Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.6" data-path="services/usercard_services.html">
+                            
+                            <a href="../services/usercard_services.html">
+                                <i class="fa fa-check"></i> <b>5.6.</b> Exercise: User Card Blade &amp; Services
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.7" data-path="services/retrospective.html">
+                            
+                            <a href="../services/retrospective.html">
+                                <i class="fa fa-check"></i> <b>5.7.</b> Retrospective
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="6" data-path="aspects_services/README.html">
+                
+                <a href="../aspects_services/README.html">
+                    <i class="fa fa-check"></i> <b>6.</b> Apps &amp; Aspects (again)
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" >
+                
+                <span><b>7.</b> Extras</span>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="7.1" >
+                            
+                            <span><b>7.1.</b> Theming / CSS</span>
+                            
+                        </li>
+                    
+                        <li  data-level="7.2" >
+                            
+                            <span><b>7.2.</b> i18n</span>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="8" >
+                
+                <span><b>8.</b> Reference</span>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="8.1" data-path="reference/dev_setup.html">
+                            
+                            <a href="../reference/dev_setup.html">
+                                <i class="fa fa-check"></i> <b>8.1.</b> Suggested Dev Setup
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.2" data-path="reference/faq_gotchas.html">
+                            
+                            <a href="../reference/faq_gotchas.html">
+                                <i class="fa fa-check"></i> <b>8.2.</b> FAQ &amp; Gotchas
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 50%;min-width: 46.42857142857143%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../overview/README.html" title="Workshop Overview" class="chapter done new-chapter" data-progress="1" style="left: 3.5714285714285716%;"></a>
+    
+        <a href="../overview/background.html" title="Background" class="chapter done " data-progress="1.1" style="left: 7.142857142857143%;"></a>
+    
+        <a href="../overview/learn.html" title="What we&#39;re going to learn" class="chapter done " data-progress="1.2" style="left: 10.714285714285714%;"></a>
+    
+        <a href="../overview/build.html" title="What we&#39;re going to build" class="chapter done " data-progress="1.3" style="left: 14.285714285714286%;"></a>
+    
+        <a href="../overview/teams.html" title="Organisations &amp; Teams" class="chapter done " data-progress="1.4" style="left: 17.857142857142858%;"></a>
+    
+        <a href="../overview/prerequisites.html" title="Prerequisites" class="chapter done " data-progress="1.5" style="left: 21.428571428571427%;"></a>
+    
+        <a href="../knockout/README.html" title="KnockoutJS" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
+    
+        <a href="../knockout/exercises.html" title="Ex. Understanding KnockoutJS" class="chapter done " data-progress="2.1" style="left: 28.571428571428573%;"></a>
+    
+        <a href="../blades/README.html" title="Features/Blades" class="chapter done new-chapter" data-progress="3" style="left: 32.142857142857146%;"></a>
+    
+        <a href="../blades/code.html" title="Get the application code" class="chapter done " data-progress="3.1" style="left: 35.714285714285715%;"></a>
+    
+        <a href="../blades/build_feature.html" title="Choose a Feature" class="chapter done " data-progress="3.2" style="left: 39.285714285714285%;"></a>
+    
+        <a href="../blades/heads_up.html" title="Heads Up!" class="chapter done " data-progress="3.3" style="left: 42.857142857142854%;"></a>
+    
+        <a href="../blades/input_blade.html" title="Exercise: Input" class="chapter done " data-progress="3.4" style="left: 46.42857142857143%;"></a>
+    
+        <a href="../blades/messages_blade.html" title="Exercise: Messages" class="chapter done " data-progress="3.5" style="left: 50%;"></a>
+    
+        <a href="../blades/usercard_blade.html" title="Exercise: User Card" class="chapter  " data-progress="3.6" style="left: 53.57142857142857%;"></a>
+    
+        <a href="../blades/retrospective.html" title="Retrospective" class="chapter  " data-progress="3.7" style="left: 57.142857142857146%;"></a>
+    
+        <a href="../aspects/README.html" title="Apps &amp; Aspects" class="chapter  new-chapter" data-progress="4" style="left: 60.714285714285715%;"></a>
+    
+        <a href="../aspects/exercise.html" title="Composing Blades into Aspects" class="chapter  " data-progress="4.1" style="left: 64.28571428571429%;"></a>
+    
+        <a href="../aspects/retrospective.html" title="Retrospective" class="chapter  " data-progress="4.2" style="left: 67.85714285714286%;"></a>
+    
+        <a href="../services/README.html" title="Services &amp; the ServiceRegistry" class="chapter  new-chapter" data-progress="5" style="left: 71.42857142857143%;"></a>
+    
+        <a href="../services/configuring_services.html" title="Configuring Services" class="chapter  " data-progress="5.1" style="left: 75%;"></a>
+    
+        <a href="../services/modularapp_services.html" title="ModularApp Services" class="chapter  " data-progress="5.2" style="left: 78.57142857142857%;"></a>
+    
+        <a href="../services/exercises_overview.html" title="Exercises Overview" class="chapter  " data-progress="5.3" style="left: 82.14285714285714%;"></a>
+    
+        <a href="../services/input_services.html" title="Exercise: Input Blade &amp; Services" class="chapter  " data-progress="5.4" style="left: 85.71428571428571%;"></a>
+    
+        <a href="../services/messages_services.html" title="Exercise: Messages Blade &amp; Services" class="chapter  " data-progress="5.5" style="left: 89.28571428571429%;"></a>
+    
+        <a href="../services/usercard_services.html" title="Exercise: User Card Blade &amp; Services" class="chapter  " data-progress="5.6" style="left: 92.85714285714286%;"></a>
+    
+        <a href="../services/retrospective.html" title="Retrospective" class="chapter  " data-progress="5.7" style="left: 96.42857142857143%;"></a>
+    
+        <a href="../aspects_services/README.html" title="Apps &amp; Aspects (again)" class="chapter  new-chapter" data-progress="6" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_6">
+                    
+                        <h1 id="messages-blade-exercise-30-mins-">Messages Blade Exercise (30 mins)</h1>
+<p>Your team is building the Messages Blade. Sweet!</p>
+<p>The Message Blade should have the following functionality:</p>
+<ul>
+<li>Display a list of chat messages</li>
+<li>Display the user who sent a message</li>
+<li>Display the timestamp of a message</li>
+</ul>
+<h2 id="create-the-blade">Create the Blade</h2>
+<p>You already have the application within the BladeRunnerJS installation. You&#39;ll
+also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
+BladeSets, we won&#39;t be using them, but out Blades will be located under this folder.</p>
+<p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
+<pre><code>./brjs <span class="hljs-operator"><span class="hljs-keyword">create</span>-blade modularapp chat messages</span>
+</code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
+<code>apps/modularapp/chat-bladeset/blades/messages</code>.</p>
+<p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
+<h2 id="view-the-blade-a-workbench">View the Blade a Workbench</h2>
+<p>Start the BRJS development server by running the following command from the <code>sdk</code>
+directory:</p>
+<pre><code>./brjs serve
+</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/chat-bladeset/blades/messages/workbench/" target="_blank">http://localhost:7070/modularapp/chat-bladeset/blades/messages/workbench/</a>
+to see your <em>amazing</em> Blade.</p>
+<p>Feel free to take a look around the Blade assets to see how the code is structured
+and familiarise yourself with where things are.</p>
+<h2 id="build-the-view">Build the View</h2>
+<p>Let&#39;s update the view to have the elements we need for our required functionality.</p>
+<p>Open up the <code>messages/resources/html/view.html</code> file and make it look as follows:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.messages.view-template"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages-container"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-user-id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-timestamp"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p>Reload the Workbench to make sure this looks okay... <em>Err, I can&#39;t see anything!</em>.</p>
+<p>Good point. What do you do when you don&#39;t have any data? Well, you need to add
+some fake data. So, let&#39;s take a look at the code.</p>
+<h2 id="the-messagesviewmodel">The MessagesViewModel</h2>
+<p>Since you&#39;re now familiar with Knockout you&#39;ll know all about View Models; they
+are a logical representation of the view. A purist view would also be that there
+should be no business logic in a View Model, but we&#39;re building a reasonably simple
+Blade (but feel free to refactor afterwards).</p>
+<p>You can find the class definition for the Messages View Model in <code>src/modularapp/chat/messages/MessagesViewModel.js</code>;
+yeah, sorry about the folder structure!</p>
+<p>Update the <code>MessagesViewModel</code> definition to look as follows:</p>
+<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-keyword">var</span> ko = <span class="hljs-built_in">require</span>( <span class="hljs-string">'ko'</span> );
+
+<span class="hljs-keyword">var</span> MessageItemViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./MessageItemViewModel'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MessagesViewModel</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">this</span>.messages = ko.observableArray( [] );
+}
+
+MessagesViewModel.prototype.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( message )</span> {</span>
+  <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> MessageItemViewModel( message );
+  <span class="hljs-keyword">this</span>.messages.push( model );
+};
+
+module.exports = MessagesViewModel;
+</code></pre>
+<p><strong>You&#39;ll noticed that the tooling supports Node.js-style <code>require( &#39;module&#39; )</code> calls
+and the functionality that the file exposes is determined via assignment to <code>module.exports</code>.</strong></p>
+<p>You&#39;ll also see that a class called <code>MessageItemViewModel</code> is being required. This
+View Model represents individual messages. So, create a <code>MessageItemViewModel.js</code> file
+in <code>src/modularapp/chat/messages/</code> and set the content as follows:</p>
+<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MessageItemViewModel</span><span class="hljs-params">( message )</span> {</span>
+  <span class="hljs-keyword">this</span>.text = ko.observable( message.text );
+  <span class="hljs-keyword">this</span>.timestamp = ko.observable( message.timestamp );
+  <span class="hljs-keyword">this</span>.userId = ko.observable( message.userId );
+}
+
+module.exports = MessageItemViewModel;
+</code></pre>
+<p>Back in the <code>MessagesViewModel</code> there is an <code>addMessage</code> function that takes a
+data structure that is passed into the <code>MessageItemViewModel</code> constructure. The
+new instance is then pushed onto the <code>messages</code> Array. Let&#39;s use that function
+to add some fake data.</p>
+<p>Open up <code>workbench/index.html</code> and after the <code>var model = new MessagesViewModel();</code>
+line add the following:</p>
+<pre><code class="lang-js">model.addMessage( { userId: <span class="hljs-string">'leggetter'</span>, text: <span class="hljs-string">'hello'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
+model.addMessage( { userId: <span class="hljs-string">'andyberry88'</span>, text: <span class="hljs-string">'Yo!'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
+</code></pre>
+<h2 id="back-to-the-view-ture-sorry-">Back to the View(ture - sorry!)</h2>
+<p>Okay, let&#39;s reload the messages Workbench. We now have some UI to work with!</p>
+<p>Next, let&#39;s add some styling. Update <code>messages/themes/standard/style.css</code> as follows:</p>
+<pre><code class="lang-css"><span class="hljs-comment">/* Message Blade container element */</span>
+<span class="hljs-class">.messages</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">400</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-comment">/* individual message */</span>
+<span class="hljs-class">.message</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">margin-bottom</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.message-user-id</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">150</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin-right</span>:<span class="hljs-value"> <span class="hljs-number">5</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> right</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">cursor</span>:<span class="hljs-value"> pointer</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.message-user-id</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"><span class="hljs-string">': '</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.message-text</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline-block</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">-moz-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+
+  <span class="hljs-comment">/* space for userId */</span>
+  <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">160</span>px</span></span>;
+  <span class="hljs-comment">/* space for timestamp */</span>
+  <span class="hljs-rule"><span class="hljs-attribute">padding-right</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100</span>%</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px
+</span></span></span>}
+
+<span class="hljs-class">.message-timestamp</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> right</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-style</span>:<span class="hljs-value"> italic</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> small</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>How does the Blade look in the Workbench now?</p>
+<p>Enough hand-holding! Time for some real exercises:</p>
+<h3 id="loop-over-the-messages-array">Loop over the messages Array</h3>
+<p>In order to do this you&#39;ll need to update the view definition (<code>view.html</code>) with an
+appropriate <code>data-bind=&quot;for-each:&quot;</code> property and value (<em>note: that value isn&#39;t complete</em>). Do this on the element with the class
+of <code>messages-container</code>.</p>
+<h3 id="show-the-values-of-each-of-the-messageitemviewmodel-in-their-respective-spans">Show the values of each of the MessageItemViewModel in their respective spans</h3>
+<p>You&#39;ll also need to use <code>data-bind</code> for this.</p>
+<h3 id="change-the-timestamp-to-a-nicely-formatted-value">Change the timestamp to a nicely formatted value</h3>
+<p>That timestamp isn&#39;t human readable. Update the <code>MessageItemViewModel</code> so that
+it sets the <code>timestamp</code> property to something that&#39;s much more human-readable.</p>
+<p>BRJS comes with the <a href="http://momentjs.com/" target="_blank">momentjs</a> library so you can do the following
+within <code>MessageItemViewModel.js</code> to use it:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> moment = <span class="hljs-built_in">require</span>( <span class="hljs-string">'momentjs'</span> );
+</code></pre>
+<h2 id="test-the-messagesviewmodel">Test the MessagesViewModel</h2>
+<p>A key part of building a quality maintainable application is that it&#39;s tested. So,
+let&#39;s write a test that checks the default message should be blank.</p>
+<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and update <code>MessagesViewModelTest.js</code>
+as follows:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
+
+<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span> );
+
+MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> MessagesViewModel();
+  <span class="hljs-keyword">var</span> expectedMessageCount = <span class="hljs-number">0</span>;
+
+  model.addMessage( { userId: <span class="hljs-string">'test'</span>, text: <span class="hljs-string">'test text'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
+  assertEquals( expectedMessageCount, model.messages().length );
+};
+</code></pre>
+<h3 id="running-tests">Running Tests</h3>
+<p>There are lots of testing tools available. BladeRunnerJS comes with <a href="https://code.google.com/p/js-test-driver/" target="_blank">js-test-driver</a>
+built-in.</p>
+<p>In order to run the tests you first need to start the test server. From the <code>sdk</code>
+directory run:</p>
+<pre><code><span class="hljs-built_in">.</span>/brjs test<span class="hljs-attribute">-server</span> <span class="hljs-subst">--</span>no<span class="hljs-attribute">-browser</span>
+</code></pre><p>In your browser navigate to <a href="http://localhost:4224/capture" target="_blank">http://localhost:4224/capture</a>. This is the browser window/tab
+that the test server will instruct to execute your tests.</p>
+<p>Now that the test server is running open another terminal/command prompt and execute
+the following from the <code>sdk</code> directory:</p>
+<pre><code><span class="hljs-built_in">.</span>/brjs test <span class="hljs-built_in">..</span>/apps/modularapp/chat<span class="hljs-attribute">-bladeset</span>/blades/messages
+</code></pre><p>This will execute all the tests it finds within that directory. For now, this
+is just the single test that we&#39;ve written.</p>
+<p>You should see output similar to the following:</p>
+<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+Java HotSpot(TM) <span class="hljs-number">64</span>-Bit Server VM warning: ignoring option MaxPermSize=<span class="hljs-number">128</span>M; support was removed <span class="hljs-operator">in</span> <span class="hljs-number">8.0</span>
+creating plugins
+performing node discovery
+making plugins available via model
+BladeRunnerJS <span class="hljs-built_in">version</span>: v0<span class="hljs-number">.7</span>-<span class="hljs-number">0</span>-gff6e9cb, built: <span class="hljs-number">14</span> April <span class="hljs-number">2014</span> <span class="hljs-number">15</span>:<span class="hljs-number">53</span> BST
+
+Server already running, <span class="hljs-operator">not</span> bothering <span class="hljs-built_in">to</span> start <span class="hljs-operator">a</span> <span class="hljs-built_in">new</span> instance...
+
+Testing tests (UTs):
+Chrome: Reset
+Chrome: Reset
+...F
+Total <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">0</span>; Fails: <span class="hljs-number">1</span>; Errors: <span class="hljs-number">0</span>) (<span class="hljs-number">180.00</span> ms)
+  Chrome <span class="hljs-number">34.0</span><span class="hljs-number">.1847</span><span class="hljs-number">.131</span> Mac OS: Run <span class="hljs-number">4</span> tests (Passed: <span class="hljs-number">0</span>; Fails: <span class="hljs-number">1</span>; Errors <span class="hljs-number">0</span>) (<span class="hljs-number">180.00</span> ms)
+    MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne failed (<span class="hljs-number">1.00</span> ms): AssertError: expected <span class="hljs-number">0</span> but was <span class="hljs-number">1</span>
+      Error: expected <span class="hljs-number">0</span> but was <span class="hljs-number">1</span>
+          <span class="hljs-keyword">at</span> MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne (<span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">4224</span>/test/tests/MessagesViewModelTest.js:<span class="hljs-number">10</span>:<span class="hljs-number">55</span>)
+
+Tests failed: Tests failed. See <span class="hljs-built_in">log</span> <span class="hljs-keyword">for</span> details.
+Tests Failed.
+
+- Time Taken: <span class="hljs-number">2</span><span class="hljs-built_in">secs</span>
+Error:
+  Test failure <span class="hljs-operator">or</span> error <span class="hljs-keyword">while</span> running tests.
+</code></pre><p>Let&#39;s fix that error by updating the test to check for an empty string:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
+
+<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span> );
+
+MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> MessagesViewModel();
+  <span class="hljs-keyword">var</span> expectedMessageCount = <span class="hljs-number">1</span>;
+
+  model.addMessage( { userId: <span class="hljs-string">'test'</span>, text: <span class="hljs-string">'test text'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
+  assertEquals( expectedMessageCount, model.messages().length );
+};
+</code></pre>
+<p>If you run the <code>brjs test</code> command the test will now pass:</p>
+<pre><code>› <span class="hljs-built_in">.</span>/brjs test <span class="hljs-built_in">..</span>/apps/modularapp/chat<span class="hljs-attribute">-bladeset</span>/blades/messages
+Java HotSpot(TM) <span class="hljs-number">64</span><span class="hljs-attribute">-Bit</span> Server VM warning: ignoring option MaxPermSize<span class="hljs-subst">=</span><span class="hljs-number">128</span>M; support was removed <span class="hljs-keyword">in</span> <span class="hljs-number">8.0</span>
+creating plugins
+performing node discovery
+making plugins available via model
+BladeRunnerJS version: v0<span class="hljs-number">.7</span><span class="hljs-subst">-</span><span class="hljs-number">0</span><span class="hljs-attribute">-gff6e9cb</span>, built: <span class="hljs-number">14</span> April <span class="hljs-number">2014</span> <span class="hljs-number">15</span>:<span class="hljs-number">53</span> BST
+
+Server already running, <span class="hljs-literal">not</span> bothering <span class="hljs-keyword">to</span> start a <span class="hljs-literal">new</span> instance<span class="hljs-attribute">...</span>
+
+Testing tests (UTs):
+Chrome: Reset
+Chrome: Reset
+<span class="hljs-attribute">...</span><span class="hljs-built_in">.</span>
+Total <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">1</span>; Fails: <span class="hljs-number">0</span>; Errors: <span class="hljs-number">0</span>) (<span class="hljs-number">779.00</span> ms)
+  Chrome <span class="hljs-number">34.0</span><span class="hljs-number">.1847</span><span class="hljs-number">.131</span> Mac OS: Run <span class="hljs-number">4</span> tests (Passed: <span class="hljs-number">1</span>; Fails: <span class="hljs-number">0</span>; Errors <span class="hljs-number">0</span>) (<span class="hljs-number">779.00</span> ms)
+Tests Passed<span class="hljs-built_in">.</span>
+
+<span class="hljs-subst">-</span> Time Taken: <span class="hljs-number">5</span>secs
+</code></pre><p>We&#39;ve now written our first test and made it pass.</p>
+<p>For full details see the <a href="http://bladerunnerjs.org/docs/use/running_tests/" target="_blank">Running Test documentation</a>.</p>
+<h3 id="additional-tests">Additional Tests</h3>
+<p>Now that you know how to write and run tests you can also write test that assert
+the functionality the Blade is to provide:</p>
+<ul>
+<li>Check the <code>MessageItemViewModel</code> properties are initialised as expected from data structure that&#39;s passed to its constructor</li>
+<li>Ensure the <code>timestamp</code> is formatted as expected in the <code>MessageItemViewModel</code></li>
+</ul>
+<h2 id="basic-blade-functionality-complete-push-to-github">Basic Blade Functionality Complete - push to github</h2>
+<p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
+commit your changes locally and push them to github.</p>
+<ul>
+<li><code>git add chat-bladeset/blades/messages</code></li>
+<li><code>git commit -m &#39;basic input blade functionality&#39;</code></li>
+<li><code>git pull origin master</code></li>
+<li>Fix any merge conflicts - <em>there shouldn&#39;t be any</em></li>
+<li><code>git push origin master</code></li>
+</ul>
+<h2 id="where-next-">Where next?</h2>
+<p>If you&#39;ve completed this really quickly you can always try creating another Blade.</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../blades/input_blade.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../blades/usercard_blade.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+    </body>
+</html>
