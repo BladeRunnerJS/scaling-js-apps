@@ -1,1 +1,0 @@
-# Services & Service Registry Retrospective
