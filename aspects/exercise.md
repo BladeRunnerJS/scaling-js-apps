@@ -79,13 +79,13 @@ To add a Blade to an Aspect you need to:
 
 1. `require` the Blade View Model definition
 2. Create an instance of that View Model
-3. Bind the instance to the HTML view template (using a `KnockoutComponent` helper class)
+3. Bind the instance to the HTML view template (using a `KnockoutComponent` helper class included at the top of `App.js`)
 4. Create an element (again using the helper class) and add it to the DOM
 
-Here's how to do it for the Messages Blade.
+Here's how to do it for the Messages Blade:
 
 ```js
-var InputViewModel = require( 'modularapp/chat/messages/MessagesViewModel' );
+var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel' );
 
 App.prototype.handleUserLogin = function( user ) {
 
