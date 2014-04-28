@@ -52,13 +52,13 @@ var ServiceRegistry = require( 'br/ServiceRegistry' );
 Next, we want to get the User Service instance that's been set up:
 
 ```js
-var userService = ServiceRegistry.getService( 'user.service' );
+this._userService = ServiceRegistry.getService( 'user.service' );
 ```
 
 Finally, we need to get hold of the current user:
 
 ```js
-userService.getCurrentUser( listener );
+this._userService.getCurrentUser( listener );
 ```
 
 The fact that there's a `listener` object being passed in tells you that this is
