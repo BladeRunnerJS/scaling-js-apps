@@ -12,7 +12,7 @@ The Message Blade should have the following functionality:
 
 You already have the application within the BladeRunnerJS installation. You'll
 also notice that it has a folder called `chat-bladeset`. Don't worry about
-BladeSets, we won't be using them, but out Blades will be located under this folder.
+BladeSets, we won't be using them, but our Blades will be located under this folder.
 
 From the BladeRunnerJS `sdk` directory run the following command to create a Blade:
 
@@ -49,13 +49,13 @@ Open up the `messages/resources/html/view.html` file and make it look as follows
 ```html
 <div id="modularapp.chat.messages.view-template">
 
-	<section class="messages">
+	<section class="chat-messages">
 
-		<div class="messages-container">
-			<div class="message">
-				<span class="message-user-id">Some UserId</span>
-				<span class="message-text">Some Test</span>
-				<span class="message-timestamp">Some Timestamp</span>
+		<div class="chat-messages-container">
+			<div class="chat-message">
+				<span class="chat-message-user-id">Some UserId</span>
+				<span class="chat-message-text">Some Test</span>
+				<span class="chat-message-timestamp">Some Timestamp</span>
 			</div>
   	</div>
 
@@ -70,21 +70,21 @@ Next, let's add some styling. Update `messages/themes/standard/style.css` as fol
 
 ```css
 /* Message Blade container element */
-.messages {
+.chat-messages {
 	min-width: 400px;
 	height: 200px;
 	overflow: auto;
 }
 
 /* individual message */
-.message {
+.chat-message {
 	position: relative;
 	overflow: auto;
 
 	margin-bottom: 10px;
 }
 
-.message-user-id {
+.chat-message-user-id {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -97,11 +97,11 @@ Next, let's add some styling. Update `messages/themes/standard/style.css` as fol
 	cursor: pointer;
 }
 
-.message-user-id:after {
+.chat-message-user-id:after {
 	content:': ';
 }
 
-.message-text {
+.chat-message-text {
 	display: inline-block;
 
 	-webkit-box-sizing: border-box;
@@ -117,7 +117,7 @@ Next, let's add some styling. Update `messages/themes/standard/style.css` as fol
 	min-width: 200px
 }
 
-.message-timestamp {
+.chat-message-timestamp {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -191,7 +191,7 @@ for this new file to be picked up. So, kill the existing server process and rest
 
 In order to do this you'll need to remove the fake data and update the view definition (`view.html`) with an
 appropriate `data-bind="foreach:..."` property and value. Do this on the element with the class
-of `messages-container`.
+of `chat-messages-container`.
 
 Once you've done that, show the values of each of the MessageItemViewModel in their respective spans.
 You don't need any help on this one, just use `data-bind` for this.

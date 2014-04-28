@@ -13,7 +13,7 @@ The Input Blade should have the following functionality:
 
 You already have the application within the BladeRunnerJS installation. You'll
 also notice that it has a folder called `chat-bladeset`. Don't worry about
-BladeSets, we won't be using them, but out Blades will be located under this folder.
+BladeSets, we won't be using them, but our Blades will be located under this folder.
 
 From the BladeRunnerJS `sdk` directory run the following command to create a Blade:
 
