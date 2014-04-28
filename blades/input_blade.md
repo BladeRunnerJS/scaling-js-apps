@@ -141,6 +141,12 @@ Enough hand-holding! Time for some real exercises:
 In order to do this you'll need to update the view definition (`view.html`) with an
 appropriate `data-bind` property.
 
+##### Hint:
+
+* The *Visualise Knockout View Model* Workbench tool can be handy here. In order to see
+the model update after you have entered text into the `textarea` you'll need to click
+the button or click out of the element.
+
 ### Bind the buttonClicked function to the button
 
 You'll also need to use `data-bind` for this.
@@ -149,13 +155,12 @@ Also, when the button is clicked take the value from the `message` property and 
 to the console using `Log.info( <your-log-message> )`. This will let you check that
 the data binding is working as you expect it.
 
-*Hint: The Workbench "Visualise Knockout View Model" can also help with this*
-
-### Check message validity
+### Check Message Validity
 
 You'll remember that one of the requirements was to only send the message to other
 users if there was some text. So, check that the users has actually entered something.
-The return value from the `buttonClicked` function should then reflect that validity.
+The return value from the `buttonClicked` function should then reflect that validity;
+do this by returning `true` if the message is valid and `false if it's invalid.
 
 *We'll be testing this shortly.*
 
@@ -164,11 +169,13 @@ The return value from the `buttonClicked` function should then reflect that vali
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the default message should be blank.
 
-Navigate to `test/test-unit/js-test-drive/tests` and update `InputViewModelTest.js`
-as follows:
+Navigate to `test/test-unit/js-test-drive/tests` and open `InputViewModelTest.js`.
+It should look as follows:
 
 ```js
 var InputViewModelTest = TestCase( 'InputViewModelTest' );
+
+var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
   var model = new InputViewModel();
@@ -276,6 +283,8 @@ the functionality the Blade is to provide:
 
 * If the user enters empty text then the `buttonClicked` should return `false`
 * Valid text will result in the `buttonClicked` returning `true`.
+
+*Heads Up! test functions must have a name with the `test` prefix*
 
 ## Basic Blade Functionality Complete - push to github
 

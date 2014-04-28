@@ -354,6 +354,8 @@ the functionality the Blade is to provide:
 * Check the `MessageItemViewModel` properties are initialised as expected from data structure that's passed to its constructor
 * Ensure the `timestamp` is formatted as expected in the `MessageItemViewModel`
 
+*Heads Up! test functions must have a name with the `test` prefix*
+
 ## Basic Blade Functionality Complete - push to github
 
 Congratulations! The basic functionality for this Blade is complete. It's time to
