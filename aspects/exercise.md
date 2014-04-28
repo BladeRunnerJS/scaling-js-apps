@@ -59,8 +59,8 @@ these are reasonably common CSS classes, so I'm being very careful.
 As with Workbenches, an Aspect is served using the development server. The
 default aspect URL for ModularApp is http://localhost:7070/modularapp/
 
-Loading that up will show you a default message that the Aspect has successfully
-loaded.
+Loading that up will show you a "ModularApp" heading and will prompt you for a
+GitHub login.
 
 ## Adding a Blade to an Aspect
 
