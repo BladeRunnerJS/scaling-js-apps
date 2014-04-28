@@ -32,17 +32,150 @@ follows:
 
 * `chat.service` to use a fake chat service implementation
 
-Now that the helper services are in place we can get to work.
+Now that the helper services are in place, we can get to work.
 
 ## Get the Existing Messages from the Chat Service
 
+In order to get the Chat Service we first need to get the `ServiceRegistry`.
+Update your `MessagesViewModel` accordingly e.g.
+
+```js
+var ServiceRegistry = require( 'br/ServiceRegistry' );
+```
+
+To get the list of existing messages we need to retrieve the Chat Service
+from the `ServiceRegistry`.
+
+```js
+var chatService = ServiceRegistry.getService( 'chat.service' );
+```
+
+The Chat Service exposes a `getMessages` function that takes a `listener`.
+
+```js
+chatService.getMessages( listener );
+```
+
+The listener should implement two callback functions; `messagesRetrieved` and
+`messageRetrievalFailed`. This can be achieved by passing in an object literal that defines these functions,
+or by making the `MessagesViewModel` implement them and passing in `this` as the listener.
+
+We've found that although passing in listeners that have to implement contracts
+(in the same way as services do) can be a bit more effort, it can result in
+a much more robust solution. There are of course times where passing in a `function`
+will be fine.
+
+Here's how you make the `MessagesViewModel` fulfil the listener contract:
+
+```js
+MessagesViewModel.prototype.messagesRetrieved = function( messages ) {
+  // add the messages to the `messages` View Model Array
+};
+
+MessagesViewModel.prototype.messageRetrievalFailed = function() {
+  // Something has gone wrong.
+};
+```
+
+From there you need to add the messages to the `messages` ObservableArray.
+
+Once this is complete you should see a full list of existing messages in the
+Workbench UI.
+
 ##### Hints:
+
+You'll remember that when we were focusing on just building the `MessagesViewModel`
+we added calls to `viewModel.addMessage` in the Workbench. Now we want to make
+sure that the View Model is interacting with the Chat Service. So, in the Workbench
+you can replace the calls to `viewModel.addMessage` with cod that fetches
+the Chat Service and calls `sendMessage` on it; this will store the messages so that
+calls to `getMessages` return those messages.
+
+The code looks something like this:
+
+```js
+var chatService = ServiceRegistry.getService( 'chat.service' );
+chatService.sendMessage( { userId: 'testUser', text: 'Word Up!', timestamp: new Date()  } );
+```
 
 ## Display New Messages from the Chat Service
 
+The Chat Service emits a `new-message` event whenever a new message becomes available.
+So, in order to be informed when that happens you need to bind to that event `on`
+the Chat Service.
+
+An example of doing this, calling a function on the `MessagesViewModel` and maintaining
+the `this` context is:
+
+```js
+var ServiceRegistry = require( 'br/ServiceRegistry' );
+
+function MessagesViewModel() {
+  var chatService = ServiceRegistry.getService( 'chat.service' );
+  chatService.on( 'new-message', this.handleNewMessage, this );
+}
+
+MessagesViewModel.prototype.handleNewMessage = function( message ) {
+  // Update the messages Array
+};
+```
+
 #### Hints
 
-## Broadcast that the User of a Message has been Selected
+The `FakeChatService` is an [emitr](https://github.com/BladeRunnerJS/emitr) so
+you can add code to the workbench to trigger messages to ensure your `new-message`
+functionality is working.
+
+You could also try the following from the console:
+
+```js
+ServiceRegistry.getService( 'chat.service' ).trigger( 'new-message',
+  { userId: 'testUser', text: 'hello from the console', timestamp: new Date() } );
+```
+
+You could also use the `sendMessage` function we used earlier e.g.
+
+```js
+var chatService = ServiceRegistry.getService( 'chat.service' );
+chatService.sendMessage(
+  { userId: 'testUser', text: 'Awesome console message!', timestamp: new Date()  }
+);
+```
+
+## Broadcast that the User ID in a Message has been Selected
+
+The team that is building the User Card Blade rely on being informed if a user
+is selected. This is achieved by other components within ModularApp broadcasting
+`user-selected` events on a `user` channel.
+
+For the Messages Blade this means:
+
+* Adding a click handler to the element in the Messages View with `class="message-user-id"`
+* Add a click handler function to the `MessagesViewModel`
+* Creating event data object with a `userId` property that identifies the user that was selected
+* Triggering a `user-selected` event on a `user` channel on the `EventHub`
+
+The EventHub can be retrieved from the `ServiceRegistry` as follows:
+
+```js
+var ServiceRegistry = require( 'br/ServiceRegistry' );
+var eventHub = ServiceRegistry.getService( 'br.event-hub' );
+```
+
+We've seen using the Knockout `data-bind` property to handle clicks before. What
+you'll also need to do is make sure the function that handles the click
+
+Channels can be retrieved from the EventHub:
+
+```js
+var channel = eventHub.channel( 'user' );
+```
+
+Events are triggered on the Channel:
+
+```js
+channel.trigger( 'user-selected', { userId} );
+```
 
 #### Hints
 

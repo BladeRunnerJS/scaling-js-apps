@@ -15,11 +15,11 @@ The following people are either running this workshop or have contributed to it.
 
 ### Phil Leggetter
 
-A Developer Evangelist at Caplin Systems and Realtime Web Evangelist.
+Developer Evangelist at Caplin Systems and Realtime Web Evangelist.
 
 ### Andy Berry
 
-A Polygot Software Engineer at Caplin Systems.
+Polygot Software Engineer at Caplin Systems.
 
 ### James Turner
 

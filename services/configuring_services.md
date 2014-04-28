@@ -1,6 +1,6 @@
 # Configuring Services
 
-Services can be configured in two ways; via code or via configuration files. In
+Services can be configured in two ways; *via code* or *via configuration files*. In
 the exercises we're doing to use the configuration file option for development.
 We'll look at the code-based solution in the Feature Testing section.
 

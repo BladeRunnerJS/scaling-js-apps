@@ -35,7 +35,7 @@ follows:
 * `chat.service` to use a fake chat service implementation
 * `user.service` to use a fake user service implementation
 
-Now that the helper services are in place we can get to work.
+Now that the helper services are in place, we can get to work.
 
 ## Get the Current User from the User Service
 
@@ -49,7 +49,7 @@ function takes an object that should have three properties:
 So, we need to get access to the the current user from the User Service.
 
 In order to get the User Service we first need to get the `ServiceRegistry`.
-Update your `InputViewModel` to get a reference:
+Update your `InputViewModel` accordingly e.g.:
 
 ```js
 var ServiceRegistry = require( 'br/ServiceRegistry' );
@@ -70,7 +70,7 @@ userService.getCurrentUser( listener );
 The fact that there's a `listener` object being passed in tells you that this is
 an asynchronous call. In JavaScript there are a number of ways to listen for callbacks.
 We've found that although passing in listeners that have to implement contracts
-(in the same way as services) can be a bit more effort, it can result in
+(in the same way as services do) can be a bit more effort, it can result in
 a much more robust solution. There are of course times where passing in a `function`
 will be fine.
 
