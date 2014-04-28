@@ -95,13 +95,13 @@ You can fix this by setting the user in your Workbench. This is achieved as foll
 
 ```js
 var userService = ServiceRegistry.getService( 'user.service' );
-userService.setCurrentUserUser( { userId: 'some-user-id'} );
+userService.setCurrentUser( { userId: 'some-user-id' } );
 ```
 
 ##### Hints:
 
-* The `FakeUserService` has a `setCurrentUser` implementation that you can use within
-the Workbench to make sure that you have a user set during your development.
+* Ensure you call `getCurrentUser` after your View Model has been instantiated
+(in the constructor or an instance method)
 * There's lots to do here. You can add more tests if you like but we'd recommend
 that you just make sure your existing tests still pass, or update them if required.
 
