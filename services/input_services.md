@@ -87,9 +87,20 @@ InputViewModel.prototype.userRetrievalFailed = function( code, message ) {
 };
 ```
 
-The first time you call `getCurrentUser` you are highly likely to see an error message.
-This is because the `UserService`  contract states that it will do so if it doesn't
-know who the current user is.
+Once your code is making this call you're ready to move on to the next part of
+the exercise.
+
+##### Hints:
+
+Ensure you call `getCurrentUser` after your View Model has been instantiated
+(in the constructor or an instance method)
+
+There's lots to do here. You can add more tests if you like but we'd recommend
+that you just make sure your existing tests still pass, or update them if required.
+
+The first time you call `getCurrentUser` the `userRetrievalFailed` callback is likely
+to trigger because the `FakeUserService` (set up in `aliases.xml`) hasn't had a
+user set on it via `setCurrentUser.
 
 You can fix this by setting the user in your Workbench. This is achieved as follows:
 
@@ -97,13 +108,6 @@ You can fix this by setting the user in your Workbench. This is achieved as foll
 var userService = ServiceRegistry.getService( 'user.service' );
 userService.setCurrentUser( { userId: 'some-user-id' } );
 ```
-
-##### Hints:
-
-* Ensure you call `getCurrentUser` after your View Model has been instantiated
-(in the constructor or an instance method)
-* There's lots to do here. You can add more tests if you like but we'd recommend
-that you just make sure your existing tests still pass, or update them if required.
 
 ## Disable the Input Controls until User is Retrieved
 
@@ -120,7 +124,7 @@ is set to `false`.
 
 ## If an Error Occurs Provide Feedback to the User
 
-Somethings things go wrong. If that happens then the user will be left with an Input
+Sometimes things go wrong. If that happens then the user will be left with an Input
 feature that won't let them input anything. In case of error add an area to the
 Input Blade that can give the user feedback.
 

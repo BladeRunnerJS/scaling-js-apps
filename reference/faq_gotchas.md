@@ -15,3 +15,9 @@ reset is the best bet:
 * Restart the test-server
 * Open up another test runner tab at http://localhost:4224/capture
 * Run the tests
+
+## Error message "Alias data has not been set"
+
+If you are absolutely sure that your `aliases.xml` is correct you should make
+sure that you are trying to access services (e.g. `ServiceRegistry.getService`)
+from either your object's constructor or a method.
