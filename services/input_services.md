@@ -1,4 +1,4 @@
-# Input & Services Exercise
+# Exercise: Input & Services
 
 The following doesn't give you a step-by-step guide of what to do. It gives you
 a number of individual pieces and you need to put them together in order to meet

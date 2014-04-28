@@ -1,1 +1,1 @@
-# User Card Blade Exercise (30 mins)
+# Exercise: User Card Blade (30 mins)

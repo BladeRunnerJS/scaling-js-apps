@@ -1,4 +1,4 @@
-# Messages Blade Exercise (30 mins)
+# Exercise: Messages Blade (30 mins)
 
 Your team is building the Messages Blade. Sweet!
 

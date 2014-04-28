@@ -1,4 +1,4 @@
-# Input Blade Exercise (30 mins)
+# Exercise: Input Blade (30 mins)
 
 Your team has chosen to build the Input Blade. Without it nobody can enter
 any information into the application.
