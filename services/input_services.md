@@ -87,6 +87,17 @@ InputViewModel.prototype.userRetrievalFailed = function( code, message ) {
 };
 ```
 
+The first time you call `getCurrentUser` you are highly likely to see an error message.
+This is because the `UserService`  contract states that it will do so if it doesn't
+know who the current user is.
+
+You can fix this by setting the user in your Workbench. This is achieved as follows:
+
+```js
+var userService = ServiceRegistry.getService( 'user.service' );
+userService.setCurrentUserUser( { userId: 'some-user-id'} );
+```
+
 ##### Hints:
 
 * The `FakeUserService` has a `setCurrentUser` implementation that you can use within
