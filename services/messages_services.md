@@ -87,7 +87,7 @@ Workbench UI.
 You'll remember that when we were focusing on just building the `MessagesViewModel`
 we added calls to `viewModel.addMessage` in the Workbench. Now we want to make
 sure that the View Model is interacting with the Chat Service. So, in the Workbench
-you can replace the calls to `viewModel.addMessage` with cod that fetches
+you can replace the calls to `viewModel.addMessage` with code that fetches
 the Chat Service and calls `sendMessage` on it; this will store the messages so that
 calls to `getMessages` return those messages.
 
