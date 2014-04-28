@@ -154,10 +154,17 @@ into `input/tests/test-unit/js-test-driver/resources/aliases.xml`.*
 
 In the services overview we talked about how using MVVM and Services allows us to
 test full features in isolation. In this part of the exercise we're going to do
-exactly that.
+exactly that. We'll demonstrate how to achieve two types of test:
 
-Create a new file called `InputFeatureTest.js` in `input/tests/test-unit/js-test-driver/tests/`
-and update it to look as follows:
+1. Create an instance of the View Model, interact with it, and ensure that
+it results in the expected service interactions.
+2. Force the Service to interact with the View Model and then verify the View Model state.
+
+This way we're testing how UI interactions result in service interactions and how
+service events are reflected in UI state.
+
+Let's start by creating a new file called `InputFeatureTest.js` in `input/tests/test-unit/js-test-driver/tests/`
+and update it to look as follows to add the Test Suite:
 
 ```js
 'use strict';
@@ -179,15 +186,9 @@ describe( 'The Input', function() {
 The first thing to notice is that we're using Jasmine, and specifcially we're using
 [Jasmine 1.3](http://jasmine.github.io/1.3/introduction.html) as it ships with BRJS.
 
-From there, you'll see we've required the `InputViewModel` and we have a reference to
-the User Service via `userService`. Now we need to write at least two tests:
-
-1. Create an instance of the `InputViewModel`, interact with it, and ensure that
-it results in the expected service interactions.
-2. Force the User Service to interact with the View Model and then verify the View Model state.
-
-This way we're testing how UI interacts result in service interactions and how
-service events are reflected in UI state.
+You'll see we've required the `InputViewModel` and we have a reference to
+the User Service via `userService`. Now we need to write one of each of the two types
+of test.
 
 ### Testing Service Interactions
 

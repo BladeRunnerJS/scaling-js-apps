@@ -47,13 +47,13 @@ To get the list of existing messages we need to retrieve the Chat Service
 from the `ServiceRegistry`.
 
 ```js
-var chatService = ServiceRegistry.getService( 'chat.service' );
+this._chatService = ServiceRegistry.getService( 'chat.service' );
 ```
 
 The Chat Service exposes a `getMessages` function that takes a `listener`.
 
 ```js
-chatService.getMessages( listener );
+this._chatService.getMessages( listener );
 ```
 
 The listener should implement two callback functions; `messagesRetrieved` and
@@ -94,8 +94,8 @@ calls to `getMessages` return those messages.
 The code looks something like this:
 
 ```js
-var chatService = ServiceRegistry.getService( 'chat.service' );
-chatService.sendMessage( { userId: 'testUser', text: 'Word Up!', timestamp: new Date()  } );
+this._chatService = ServiceRegistry.getService( 'chat.service' );
+this._chatService.sendMessage( { userId: 'testUser', text: 'Word Up!', timestamp: new Date()  } );
 ```
 
 ## Display New Messages from the Chat Service
@@ -113,12 +113,37 @@ the `this` context is:
 
 ```js
 // do this within an instance function
-chatService.on( 'new-message', this.handleNewMessage, this );
+this._chatService.on( 'new-message', this.handleNewMessage, this );
 ```
 
 #### Hints
 
-You could also use the `sendMessage` function we used earlier to test sending messages
+##### A Chat Workbench Tool
+
+As part of developing the Chat Service one of the teams added a Chat Workbench Tool.
+This can be added to the Workbench really easily. Just add the following to the end
+of `chat-bladeset/blades/messages/index.html`:
+
+```js
+function addChatTool(workbench ) {
+	var ChatWorkbenchTool = require( 'chatservice/ChatWorkbenchTool' );
+	var tool = new ChatWorkbenchTool();
+	workbench.addToLeftWing( tool, "Chatting", false);
+}
+
+addChatTool( workbench );
+```
+
+You can see the code required for this in `libs/chatservice/`...:
+
+* `src/chatservice/ChatWorkbenchTool.js` - Creates a UI component and adds to the Workbench
+* `resources/workbench-chat-tool.html` - The HTML template
+
+Due to the Services architecture it really is that simple to add these developer tools.
+
+##### Sending Messages from the Console
+
+You can use the `sendMessage` function we used earlier to test sending messages
 from the JavaScript console e.g.
 
 ```js
@@ -127,8 +152,6 @@ chatService.sendMessage(
   { userId: 'testUser', text: 'Awesome console message!', timestamp: new Date()  }
 );
 ```
-
-**TODO: use the Chat Workbench Tool**
 
 ## Broadcast that the User ID in a Message has been Selected
 
@@ -139,7 +162,8 @@ is selected. This is achieved by other components within ModularApp broadcasting
 For the Messages Blade this means:
 
 * Adding a click handler to the element in the Messages View with `class="message-user-id"`
-* Add a click handler function to the `MessagesViewModel`
+* Add a click handler function to the `MessagesViewModel` or the `MessageItemViewMode` -
+see [KnockoutJS binding context](http://knockoutjs.com/documentation/binding-context.html)
 * Creating event data object with a `userId` property that identifies the user that was selected
 * Triggering a `user-selected` event on a `user` channel on the `EventHub`
 
@@ -147,26 +171,22 @@ The EventHub can be retrieved from the `ServiceRegistry` as follows:
 
 ```js
 var ServiceRegistry = require( 'br/ServiceRegistry' );
-var eventHub = ServiceRegistry.getService( 'br.event-hub' );
+this._eventHub = ServiceRegistry.getService( 'br.event-hub' );
 ```
-
-We've seen using the Knockout `data-bind` property to handle clicks before. What
-you'll also need to do is make sure the function that handles the click
-//TODO: this doesnt make sense, is part of the sentance missing?
 
 Channels can be retrieved from the EventHub:
 
 ```js
-var channel = eventHub.channel( 'user' );
+var channel = this._eventHub.channel( 'user' );
 ```
-//TODO: should this be `this.eventHub` so it suggests it should be inside of the class definition?
 
 Events are triggered on the Channel:
 
 ```js
-channel.trigger( 'user-selected', { userId} );
+channel.trigger( 'user-selected', { userId: 'testUser' } );
 ```
-//TODO: should this be `{ userId: "userId" }`?
+
+Over to you.
 
 #### Hints
 
@@ -179,10 +199,17 @@ into `messages/tests/test-unit/js-test-driver/resources/aliases.xml`.*
 
 In the services overview we talked about how using MVVM and Services allows us to
 test full features in isolation. In this part of the exercise we're going to do
-exactly that.
+exactly that. We'll demonstrate how to achieve two types of test:
 
-Create a new file called `MessagesFeatureTest.js` in `messages/tests/test-unit/js-test-driver/tests/`
-and update it to look as follows:
+1. Create an instance of the View Model, interact with it, and ensure that
+it results in the expected service interactions.
+2. Force the Service to interact with the View Model and then verify the View Model state.
+
+This way we're testing how UI interactions result in service interactions and how
+service events are reflected in UI state.
+
+Let's start by creating a new file called `MessagesFeatureTest.js` in `messages/tests/test-unit/js-test-driver/tests/`
+and update it to look as follows to add the Test Suite:
 
 ```js
 'use strict';
@@ -198,24 +225,15 @@ describe( 'The Messages', function() {
 } );
 
 ```
-//TODO: an example test would be useful here (like with the input blade tests tutorial)
 
 *Note: You could call this file MessagesSpecTest.js*.
 
 The first thing to notice is that we're using Jasmine, and specifcially we're using
 [Jasmine 1.3](http://jasmine.github.io/1.3/introduction.html) as it ships with BRJS.
 
-From there, you'll see we've required the `MessagesViewModel` and we have a reference to
-the Chat Service via `chatService`. Now we need to write at least two tests:
-
-//TODO: this isnt obvious whether it is something I should continue on my own or continue reading and follow. I started writing it myself and upon reading it again it looks like I should follow and copy/paste
-
-1. Create an instance of the `MessagesViewModel`, interact with it, and ensure that
-it results in the expected service interactions.
-2. Force the Chat Service to interact with the View Model and then verify the View Model state.
-
-This way we're testing how UI interacts result in service interactions and how
-service events are reflected in UI state.
+You'll see we've required the `MessagesViewModel` and we have a reference to
+the Chat Service via `chatService`. Now we need to write one of each of the two types
+of test.
 
 ### Testing Service Interactions
 
@@ -273,10 +291,40 @@ it's also used when creating the `expectedEventData` object used in the assertio
 ### Testing Feature ViewModel State using a Fake Service
 
 The next thing we want to do is see how services can impact the state of the View Model.
+To do this we'll use the chat service - we've seen that our `FakeChatService`
+implementation triggers a `new-message` event when the `sendMessage` function is
+called. We can use this knowledge to do the test.
+
+Before we start, we need to remember that our implementation doesn't bind to the
+`new-message` event until it's recieved the `getMessages` callback which is an
+asynchronous call. Luckily our `FakeService` has a setting `FakeService.fakeAsync`
+so that it doesn't make this callback truly asynchronously. This means we can ensure
+that the `getMessages` response has been made before we call `sendMessage`.
+
+Here's the test template - just fill in the blanks:
+
+```js
+it( 'Should display new messages that are send via the Chat Service', function() {
+  // Setup
+  var chatService = ServiceRegistry.getService( 'chat.service' );
+  chatService.fakeAsync = false;
+  var messagesViewModel = new MessagesViewModel();
+  var message = { userId: 'testUserId', text: 'testUserText', timestamp: new Date() };
+
+  // Execute
+
+  // Assert
+  var firstMessage = messagesViewModel.messages()[ 0 ];
+  // expect( ... );
+} );
+```
 
 #### Hints
 
-No hints here. Any questions, please ask.
+* An alternative to using `FakeChatService.fakeAsync = false;` is to use the very
+handy [jasmine.Clock](http://j.mp/1nWvotX).
+* You should probably clear down the `FakeChatService.fakeAsync` after the test.
+Otherwise future tests may be affected by this unexpected synchronous behaviour.
 
 ## Congrats - Service Interaction Complete!
 
