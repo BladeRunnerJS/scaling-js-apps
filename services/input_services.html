@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.4" data-basepath=".." data-revision="1398691817904">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.4" data-basepath=".." data-revision="1398697074587">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -528,13 +528,20 @@ InputViewModel.prototype.userRetrievalFailed = <span class="hljs-function"><span
   <span class="hljs-comment">// Something has gone wrong. How do we feed this back to the user?</span>
 };
 </code></pre>
+<p>Once your code is making this call you&#39;re ready to move on to the next part of
+the exercise.</p>
 <h5 id="hints-">Hints:</h5>
-<ul>
-<li>The <code>FakeUserService</code> has a <code>setCurrentUser</code> implementation that you can use within
-the Workbench to make sure that you have a user set during your development.</li>
-<li>There&#39;s lots to do here. You can add more tests if you like but we&#39;d recommend
-that you just make sure your existing tests still pass, or update them if required.</li>
-</ul>
+<p>Ensure you call <code>getCurrentUser</code> after your View Model has been instantiated
+(in the constructor or an instance method)</p>
+<p>There&#39;s lots to do here. You can add more tests if you like but we&#39;d recommend
+that you just make sure your existing tests still pass, or update them if required.</p>
+<p>The first time you call <code>getCurrentUser</code> the <code>userRetrievalFailed</code> callback is likely
+to trigger because the <code>FakeUserService</code> (set up in <code>aliases.xml</code>) hasn&#39;t had a
+user set on it via `setCurrentUser.</p>
+<p>You can fix this by setting the user in your Workbench. This is achieved as follows:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+userService.setCurrentUser( { userId: <span class="hljs-string">'some-user-id'</span> } );
+</code></pre>
 <h2 id="disable-the-input-controls-until-user-is-retrieved">Disable the Input Controls until User is Retrieved</h2>
 <p>Until a reference to the current user has been retrieved it shouldn&#39;t be possible
 to enter text into the <code>textarea</code> or click the <code>button</code>.</p>
@@ -546,7 +553,7 @@ is set to <code>false</code>.</p>
 <li>KnockoutJS has an <a href="http://knockoutjs.com/documentation/enable-binding.html" target="_blank">enable binding</a></li>
 </ul>
 <h2 id="if-an-error-occurs-provide-feedback-to-the-user">If an Error Occurs Provide Feedback to the User</h2>
-<p>Somethings things go wrong. If that happens then the user will be left with an Input
+<p>Sometimes things go wrong. If that happens then the user will be left with an Input
 feature that won&#39;t let them input anything. In case of error add an area to the
 Input Blade that can give the user feedback.</p>
 <p>Create a Knockout Observable called <code>feedbackMessage</code> in case of error (<code>userRetrievalFailed</code>)
