@@ -32,7 +32,7 @@ follows:
 
 * `chat.service` to use a fake chat service implementation
 
-Now that the helper services are in place, we can get to work.
+Now that the helper service is in place, we can get to work.
 
 ## Get the Existing Messages from the Chat Service
 
