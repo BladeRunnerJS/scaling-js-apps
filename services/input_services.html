@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.4" data-basepath=".." data-revision="1398679813251">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.4" data-basepath=".." data-revision="1398691817904">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -494,15 +494,9 @@ follows:</p>
 </ul>
 <p>Now that the helper services are in place, we can get to work.</p>
 <h2 id="get-the-current-user-from-the-user-service">Get the Current User from the User Service</h2>
-<p>If you remember back to the overview of the services, the <code>ChatService.sendMessage</code>
-function takes an object that should have three properties:</p>
-<ul>
-<li><code>userId</code> - the ID of the current user</li>
-<li><code>text</code> - the text entered into the <code>textarea</code></li>
-<li><code>timestamp</code> - the time the message is being sent</li>
-</ul>
-<p>So, we need to get access to the the current user from the User Service.</p>
-<p>In order to get the User Service we first need to get the <code>ServiceRegistry</code>.
+<p>In order to send a message you need to know who is sending the message. You do this
+by getting the current user from the User Service.</p>
+<p>To get the User Service we first need to get the <code>ServiceRegistry</code>.
 Update your <code>InputViewModel</code> accordingly e.g.:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
 </code></pre>
@@ -584,7 +578,7 @@ and update it to look as follows:</p>
 
 <span class="hljs-built_in">require</span>( <span class="hljs-string">'jasmine'</span> );
 
-<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span>);
+<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span> );
 <span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
 <span class="hljs-keyword">var</span> userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
 
@@ -614,13 +608,13 @@ For example, we can test service interactions by:</p>
 </ul>
 <p>Since we&#39;re using Jasmine, we&#39;ll use <a href="http://j.mp/PITNqK" target="_blank">Spies</a>, but we&#39;ll also demonstrate how the
 <code>FakeUserService</code>, that was developed really to help our development within the
-Workbench, is also really useful.</p>
+Workbench, is also useful here.</p>
 <h3 id="testing-feature-service-interactions-using-spies">Testing Feature Service Interactions using Spies</h3>
 <p>Exactly how you put this test together depends on your <code>InputViewModel</code> implementation.
 For this test we&#39;re going to assume that the current application user is requested
 from the User Service in the <code>InputViewModel</code> constructor.</p>
 <p>Add the following spec to the <code>The Input</code> suite:</p>
-<pre><code>describe( <span class="hljs-string">'The Input'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+<pre><code class="lang-js">describe( <span class="hljs-string">'The Input'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
 
     it( <span class="hljs-string">'Requests a user from the UserService'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
         spyOn( userService, <span class="hljs-string">'getCurrentUser'</span> );
@@ -629,7 +623,8 @@ from the User Service in the <code>InputViewModel</code> constructor.</p>
     } );
 
 } );
-</code></pre><p>A better test is to interact with the View Model and then verify that a service
+</code></pre>
+<p>A better test is to interact with the View Model and then verify that a service
 interaction has occurred. So, over to you:</p>
 <p>Verify that when valid text has been entered into <code>message</code> and the send button
 is clicked that the <code>sendMessage</code> function is called with an appropriately formed

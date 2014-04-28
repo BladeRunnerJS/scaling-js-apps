@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.4" data-basepath=".." data-revision="1398679813251">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.4" data-basepath=".." data-revision="1398691817904">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -567,23 +567,31 @@ and the functionality that the file exposes is determined via assignment to <cod
 <h3 id="bind-to-the-message-property">Bind to the message property</h3>
 <p>In order to do this you&#39;ll need to update the view definition (<code>view.html</code>) with an
 appropriate <code>data-bind</code> property.</p>
+<h5 id="hint-">Hint:</h5>
+<ul>
+<li>The <em>Visualise Knockout View Model</em> Workbench tool can be handy here. In order to see
+the model update after you have entered text into the <code>textarea</code> you&#39;ll need to click
+the button or click out of the element.</li>
+</ul>
 <h3 id="bind-the-buttonclicked-function-to-the-button">Bind the buttonClicked function to the button</h3>
 <p>You&#39;ll also need to use <code>data-bind</code> for this.</p>
 <p>Also, when the button is clicked take the value from the <code>message</code> property and log it
 to the console using <code>Log.info( &lt;your-log-message&gt; )</code>. This will let you check that
 the data binding is working as you expect it.</p>
-<p><em>Hint: The Workbench &quot;Visualise Knockout View Model&quot; can also help with this</em></p>
-<h3 id="check-message-validity">Check message validity</h3>
+<h3 id="check-message-validity">Check Message Validity</h3>
 <p>You&#39;ll remember that one of the requirements was to only send the message to other
 users if there was some text. So, check that the users has actually entered something.
-The return value from the <code>buttonClicked</code> function should then reflect that validity.</p>
+The return value from the <code>buttonClicked</code> function should then reflect that validity;
+do this by returning <code>true</code> if the message is valid and `false if it&#39;s invalid.</p>
 <p><em>We&#39;ll be testing this shortly.</em></p>
 <h2 id="test-the-inputviewmodel">Test the InputViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the default message should be blank.</p>
-<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and update <code>InputViewModelTest.js</code>
-as follows:</p>
+<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and open <code>InputViewModelTest.js</code>.
+It should look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> InputViewModelTest = TestCase( <span class="hljs-string">'InputViewModelTest'</span> );
+
+<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span> );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> InputViewModel();
@@ -665,6 +673,7 @@ the functionality the Blade is to provide:</p>
 <li>If the user enters empty text then the <code>buttonClicked</code> should return <code>false</code></li>
 <li>Valid text will result in the <code>buttonClicked</code> returning <code>true</code>.</li>
 </ul>
+<p><em>Heads Up! test functions must have a name with the <code>test</code> prefix e.g. <code>testThisThing</code></em></p>
 <h2 id="basic-blade-functionality-complete-push-to-github">Basic Blade Functionality Complete - push to github</h2>
 <p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
 commit your changes locally and push them to github.</p>

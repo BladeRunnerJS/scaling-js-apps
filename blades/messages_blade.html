@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.5" data-basepath=".." data-revision="1398679813251">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.5" data-basepath=".." data-revision="1398691817904">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -495,9 +495,9 @@ and familiarise yourself with where things are.</p>
 
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages-container"</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message"</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-user-id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-timestamp"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-user-id"</span>&gt;</span>Some UserId<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-text"</span>&gt;</span>Some Test<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-timestamp"</span>&gt;</span>Some Timestamp<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
@@ -505,9 +505,70 @@ and familiarise yourself with where things are.</p>
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
-<p>Reload the Workbench to make sure this looks okay... <em>Err, I can&#39;t see anything!</em>.</p>
-<p>Good point. What do you do when you don&#39;t have any data? Well, you need to add
-some fake data. So, let&#39;s take a look at the code.</p>
+<p>Reload the Workbench to make sure this you see the fake data. We&#39;ll add the data bindings later.</p>
+<p>Next, let&#39;s add some styling. Update <code>messages/themes/standard/style.css</code> as follows:</p>
+<pre><code class="lang-css"><span class="hljs-comment">/* Message Blade container element */</span>
+<span class="hljs-class">.messages</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">400</span>px</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-comment">/* individual message */</span>
+<span class="hljs-class">.message</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">margin-bottom</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.message-user-id</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">150</span>px</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">margin-right</span>:<span class="hljs-value"> <span class="hljs-number">5</span>px</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> right</span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">cursor</span>:<span class="hljs-value"> pointer</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.message-user-id</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"><span class="hljs-string">': '</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.message-text</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline-block</span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">-moz-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+
+    <span class="hljs-comment">/* space for userId */</span>
+    <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">160</span>px</span></span>;
+    <span class="hljs-comment">/* space for timestamp */</span>
+    <span class="hljs-rule"><span class="hljs-attribute">padding-right</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100</span>%</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px
+</span></span></span>}
+
+<span class="hljs-class">.message-timestamp</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
+
+    <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> right</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-style</span>:<span class="hljs-value"> italic</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> small</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>How does the Blade look in the Workbench now?</p>
+<p>Time to look at the View Model.</p>
 <h2 id="the-messagesviewmodel">The MessagesViewModel</h2>
 <p>Since you&#39;re now familiar with Knockout you&#39;ll know all about View Models; they
 are a logical representation of the view. A purist view would also be that there
@@ -548,8 +609,28 @@ in <code>src/modularapp/chat/messages/</code> and set the content as follows:</p
 
 module.exports = MessageItemViewModel;
 </code></pre>
+<p><em>Heads Up! There&#39;s a bug in BRJS here which means you need to restart the development server.
+for this new file to be picked up. So, kill the existing server process and restart using <code>./brjs serve</code></em></p>
+<h3 id="loop-over-the-messages-array-and-show-the-message-data">Loop over the messages Array and Show the Message Data</h3>
+<p>In order to do this you&#39;ll need to remove the fake data and update the view definition (<code>view.html</code>) with an
+appropriate <code>data-bind=&quot;foreach:...&quot;</code> property and value. Do this on the element with the class
+of <code>messages-container</code>.</p>
+<p>Once you&#39;ve done that, show the values of each of the MessageItemViewModel in their respective spans.
+You don&#39;t need any help on this one, just use <code>data-bind</code> for this.</p>
+<h3 id="check-your-work-in-the-workbench">Check your Work in the Workbench</h3>
+<p>Once you&#39;ve done this reload the Workbench to see the result of your fine work...
+<em>Err, I can&#39;t see anything!</em>.</p>
+<p>Good point. What do you do when you don&#39;t have any data? Well, before we look into that
+we need to consider <em>what&#39;s shown when there are no messages?</em>.</p>
+<h3 id="tell-the-user-when-there-are-no-messages">Tell the User when there are No Messages</h3>
+<p>Add a new element that tells the user there are no messages and is only show
+when there are no messages.</p>
+<h3 id="add-fake-data-via-the-workbench">Add Fake Data via the Workbench</h3>
+<p>Okay, back to the fact we don&#39;t have any data to help us develop our Blade when it&#39;s
+in a state where there is data.</p>
+<p>The solution is to add some fake data. So, let&#39;s take a look at the code.</p>
 <p>Back in the <code>MessagesViewModel</code> there is an <code>addMessage</code> function that takes a
-data structure that is passed into the <code>MessageItemViewModel</code> constructure. The
+data structure that is passed into the <code>MessageItemViewModel</code> constructor. The
 new instance is then pushed onto the <code>messages</code> Array. Let&#39;s use that function
 to add some fake data.</p>
 <p>Open up <code>workbench/index.html</code> and after the <code>var model = new MessagesViewModel();</code>
@@ -557,80 +638,11 @@ line add the following:</p>
 <pre><code class="lang-js">model.addMessage( { userId: <span class="hljs-string">'leggetter'</span>, text: <span class="hljs-string">'hello'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
 model.addMessage( { userId: <span class="hljs-string">'andyberry88'</span>, text: <span class="hljs-string">'Yo!'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
 </code></pre>
-<h2 id="back-to-the-view-ture-sorry-">Back to the View(ture - sorry!)</h2>
-<p>Okay, let&#39;s reload the messages Workbench. We now have some UI to work with!</p>
-<p>Next, let&#39;s add some styling. Update <code>messages/themes/standard/style.css</code> as follows:</p>
-<pre><code class="lang-css"><span class="hljs-comment">/* Message Blade container element */</span>
-<span class="hljs-class">.messages</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">400</span>px</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
-<span class="hljs-rule">}</span></span>
-
-<span class="hljs-comment">/* individual message */</span>
-<span class="hljs-class">.message</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">margin-bottom</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
-<span class="hljs-rule">}</span></span>
-
-<span class="hljs-class">.message-user-id</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">150</span>px</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">margin-right</span>:<span class="hljs-value"> <span class="hljs-number">5</span>px</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> right</span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">cursor</span>:<span class="hljs-value"> pointer</span></span>;
-<span class="hljs-rule">}</span></span>
-
-<span class="hljs-class">.message-user-id</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"><span class="hljs-string">': '</span></span></span>;
-<span class="hljs-rule">}</span></span>
-
-<span class="hljs-class">.message-text</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline-block</span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">-moz-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
-
-  <span class="hljs-comment">/* space for userId */</span>
-  <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">160</span>px</span></span>;
-  <span class="hljs-comment">/* space for timestamp */</span>
-  <span class="hljs-rule"><span class="hljs-attribute">padding-right</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100</span>%</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px
-</span></span></span>}
-
-<span class="hljs-class">.message-timestamp</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
-
-  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> right</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">font-style</span>:<span class="hljs-value"> italic</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> small</span></span>;
-<span class="hljs-rule">}</span></span>
-</code></pre>
-<p>How does the Blade look in the Workbench now?</p>
-<p>Enough hand-holding! Time for some real exercises:</p>
-<h3 id="loop-over-the-messages-array">Loop over the messages Array</h3>
-<p>In order to do this you&#39;ll need to update the view definition (<code>view.html</code>) with an
-appropriate <code>data-bind=&quot;for-each:&quot;</code> property and value (<em>note: that value isn&#39;t complete</em>). Do this on the element with the class
-of <code>messages-container</code>.</p>
-<h3 id="show-the-values-of-each-of-the-messageitemviewmodel-in-their-respective-spans">Show the values of each of the MessageItemViewModel in their respective spans</h3>
-<p>You&#39;ll also need to use <code>data-bind</code> for this.</p>
+<p>Reload the workbench and you&#39;ll now see some fake data so that you can develop
+your workbench in the required state.</p>
 <h3 id="change-the-timestamp-to-a-nicely-formatted-value">Change the timestamp to a nicely formatted value</h3>
-<p>That timestamp isn&#39;t human readable. Update the <code>MessageItemViewModel</code> so that
-it sets the <code>timestamp</code> property to something that&#39;s much more human-readable.</p>
+<p>We don&#39;t like the default timestamp formatting. Update the <code>MessageItemViewModel</code> so that
+it sets the <code>timestamp</code> property to something that&#39;s nicer.</p>
 <p>BRJS comes with the <a href="http://momentjs.com/" target="_blank">momentjs</a> library so you can do the following
 within <code>MessageItemViewModel.js</code> to use it:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> moment = <span class="hljs-built_in">require</span>( <span class="hljs-string">'momentjs'</span> );
@@ -691,7 +703,7 @@ Tests Failed.
 - Time Taken: <span class="hljs-number">2</span><span class="hljs-built_in">secs</span>
 Error:
   Test failure <span class="hljs-operator">or</span> error <span class="hljs-keyword">while</span> running tests.
-</code></pre><p>Let&#39;s fix that error by updating the test to check for an empty string:</p>
+</code></pre><p>Let&#39;s fix that error by updating the test to correctly check the number of messages:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
 
 <span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span> );
@@ -729,9 +741,13 @@ Tests Passed<span class="hljs-built_in">.</span>
 <p>Now that you know how to write and run tests you can also write test that assert
 the functionality the Blade is to provide:</p>
 <ul>
-<li>Check the <code>MessageItemViewModel</code> properties are initialised as expected from data structure that&#39;s passed to its constructor</li>
-<li>Ensure the <code>timestamp</code> is formatted as expected in the <code>MessageItemViewModel</code></li>
+<li>Check the <code>MessageItemViewModel</code> properties are initialised as expected from the
+data structure that&#39;s passed to its constructor</li>
+<li>Add a message to the <code>MessagesViewModel</code> using <code>addMessages</code> function and ensure the added message
+has the correct <code>userId</code>, <code>text</code> and <code>timestamp</code> values.</li>
+<li>If you&#39;ve time, ensure the <code>timestamp</code> is formatted as expected in the <code>MessageItemViewModel</code></li>
 </ul>
+<p><em>Heads Up! test functions must have a name with the <code>test</code> prefix e.g. <code>testThisThing</code></em></p>
 <h2 id="basic-blade-functionality-complete-push-to-github">Basic Blade Functionality Complete - push to github</h2>
 <p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
 commit your changes locally and push them to github.</p>

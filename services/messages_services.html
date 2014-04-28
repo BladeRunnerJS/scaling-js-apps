@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.5" data-basepath=".." data-revision="1398679813251">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.5" data-basepath=".." data-revision="1398691817904">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -587,6 +587,7 @@ you&#39;ll also need to do is make sure the function that handles the click</p>
 <pre><code class="lang-js">channel.trigger( <span class="hljs-string">'user-selected'</span>, { userId} );
 </code></pre>
 <h4 id="hints">Hints</h4>
+<p>No hints here. Any questions, please ask.</p>
 <h2 id="testing-features">Testing Features</h2>
 <p><em>Before we start, you need to copy the contents of <code>aliases.xml</code> from the Workbench
 into <code>messages/tests/test-unit/js-test-driver/resources/aliases.xml</code>.</em></p>
@@ -629,12 +630,45 @@ For example, we can test service interactions by:</p>
 </ul>
 <p>Since we&#39;re using Jasmine, we&#39;ll use <a href="http://j.mp/PITNqK" target="_blank">Spies</a>, but we&#39;ll also demonstrate how the
 <code>FakeChatService</code>, that was developed really to help our development within the
-Workbench, is also really useful.</p>
+Workbench, is also useful here.</p>
 <h3 id="testing-feature-service-interactions-using-spies">Testing Feature Service Interactions using Spies</h3>
+<p>The only user interaction that takes place in the Messages Blade is the user
+clicking on the User ID in a message. This results in an interaction with the
+<code>EventHub</code> service.</p>
+<p>Add the following spec to the <code>The Input</code> suite:</p>
+<pre><code class="lang-js">describe( <span class="hljs-string">'The Messages'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+
+  it( <span class="hljs-string">'When a user is selected triggers a "user-selected" event on a user channel on the EventHub'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+
+    spyOn( eventHub, <span class="hljs-string">'channel'</span> ).andCallThrough();
+    spyOn( userChannel, <span class="hljs-string">'trigger'</span> );
+
+    <span class="hljs-keyword">var</span> testUserId = <span class="hljs-string">'testUser'</span>;
+
+    <span class="hljs-comment">// TODO: Interact with View Model as if the user has selected a User Id</span>
+
+    <span class="hljs-keyword">var</span> expectedEventData = {
+      userId: testUserId
+    };
+    expect( eventHub.channel ).toHaveBeenCalledWith( <span class="hljs-string">'user'</span> );
+    expect( userChannel.trigger ).toHaveBeenCalled( <span class="hljs-string">'user-selected'</span>, expectedEventData );
+
+  } );
+
+} );
+</code></pre>
+<p>The test above is nearly complete. You just need to interact with the <code>MessagesViewModel</code>
+and simulate the user clicking the User Id. You&#39;ll need to make sure that the appropriate
+data (the User Id) is passed to the click handler.</p>
 <h4 id="hints">Hints</h4>
+<ul>
+<li>Use the <code>testUserId</code> value in the data that&#39;s passed to the click handler as
+it&#39;s also used when creating the <code>expectedEventData</code> object used in the assertion</li>
+</ul>
 <h3 id="testing-feature-viewmodel-state-using-a-fake-service">Testing Feature ViewModel State using a Fake Service</h3>
 <p>The next thing we want to do is see how services can impact the state of the View Model.</p>
 <h4 id="hints">Hints</h4>
+<p>No hints here. Any questions, please ask.</p>
 <h2 id="congrats-service-interaction-complete-">Congrats - Service Interaction Complete!</h2>
 <p>Our Blade is now interacting with two services and we&#39;ve tested both UI through
 to Services and Services through to the UI; full feature testing.</p>
