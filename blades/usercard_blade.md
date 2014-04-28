@@ -148,7 +148,7 @@ function pixelify( pos ) {
 			newPos[ prop ] = value + 'px';
 		}
 		else {
-			newPos[ prop ] = value
+			newPos[ prop ] = value;
 		}
 	}
 	return newPos;
@@ -171,14 +171,31 @@ the UI element that has been clicked on when selecting a user.
 
 Enough hand-holding! Time for some real exercises:
 
-##### Hint
+## Ensure the User Card can be Hidden via the Close Button
 
-* To test that the bindings are working
+Bind the `button` element to a click event which calls a `closeClicked` function
+on the View Model. It should also set the `cardShown` property to `false`.
+
+```js
+UsercardViewModel.prototype.closeClicked = function( data, event ) {
+  // TODO: hide card
+};
+```
+
+Over to you to to implement the click handler and add the appropriate data-bindings
+to the view (`view.html`).
+
+##### Hints
+
+* Use the [click binding]() to set up the click event
+* Use the [visible binding](http://knockoutjs.com/documentation/visible-binding.html) to
+bind to this property to the element with the class of `chat-usercard`
+* Use the Workbench to check the close button works and the User Card is hidden
 
 ### Bind the User Properties to the View
 
 Start by binding the obvious user properties to the view. In order to do this
-you'll need to update the view definition (`view.html`) with appropriate usage of
+you'll need to update the view definition with appropriate usage of
 `data-bind`.
 
 In order to test the binding without editing your application code you can use
@@ -201,10 +218,7 @@ the values of the Blade's View Model.
 ### Don't Show the User Card by Default
 
 By default the `cardShown` should be `false` this can make things difficult during
-development. We can use the Workbench to help here. Once you've used the KnockoutJS
-[visible binding](http://knockoutjs.com/documentation/visible-binding.html) to
-bind to this property to the element with the class of `chat-usercard`,
-and verify the card is hidden, you can again jump into the Workbench code and change
+development. We can use the Workbench to help here - open `workbench/index.html` and change
 the value to help development.
 
 ```js
@@ -212,7 +226,7 @@ var model = new UsercardViewModel();
 model.cardShown( true );
 ```
 
-### Set the Position of the User Card
+### Set the Position of the User Card (if time)
 
 When the user requests to see more information about a user they may do this via
 the UI. If that's the case the User Card should be positioned where the UI interaction
