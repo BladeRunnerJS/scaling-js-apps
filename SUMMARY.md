@@ -7,7 +7,7 @@
   * [Organisations & Teams](overview/teams.md)
   * [Prerequisites](overview/prerequisites.md)
 * [KnockoutJS](knockout/README.md) (if required)
-  * [Ex. Understanding KnockoutJS](knockout/exercises.md)
+  * [Exercise: KnockoutJS](knockout/exercises.md)
 * [Features/Blades](blades/README.md)
   * [Get the application code](blades/code.md)
   * [Choose a Feature](blades/build_feature.md)
@@ -28,9 +28,8 @@
   * [Exercise: User Card Blade & Services](services/usercard_services.md)
   * [Retrospective](services/retrospective.md)
 * [Apps & Aspects (again)](aspects_services/README.md)
-* Extras
-  * Theming / CSS
-  * i18n
+  * [Retrospective](aspects_services/retrospective.md)
+* [Extras](extras/README.md)
 * Reference
   * [Suggested Dev Setup](reference/dev_setup.md)
   * [FAQ & Gotchas](reference/faq_gotchas.md)
