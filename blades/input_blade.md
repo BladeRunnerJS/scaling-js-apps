@@ -284,7 +284,7 @@ the functionality the Blade is to provide:
 * If the user enters empty text then the `buttonClicked` should return `false`
 * Valid text will result in the `buttonClicked` returning `true`.
 
-*Heads Up! test functions must have a name with the `test` prefix*
+*Heads Up! test functions must have a name with the `test` prefix e.g. `testThisThing`*
 
 ## Basic Blade Functionality Complete - push to github
 

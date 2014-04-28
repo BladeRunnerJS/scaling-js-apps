@@ -53,9 +53,9 @@ Open up the `messages/resources/html/view.html` file and make it look as follows
 
 		<div class="messages-container">
 			<div class="message">
-				<span class="message-user-id"></span>
-				<span class="message-text"></span>
-				<span class="message-timestamp"></span>
+				<span class="message-user-id">Some UserId</span>
+				<span class="message-text">Some Test</span>
+				<span class="message-timestamp">Some Timestamp</span>
 			</div>
   	</div>
 
@@ -64,10 +64,75 @@ Open up the `messages/resources/html/view.html` file and make it look as follows
 </div>
 ```
 
-Reload the Workbench to make sure this looks okay... *Err, I can't see anything!*.
+Reload the Workbench to make sure this you see the fake data. We'll add the data bindings later.
 
-Good point. What do you do when you don't have any data? Well, you need to add
-some fake data. So, let's take a look at the code.
+Next, let's add some styling. Update `messages/themes/standard/style.css` as follows:
+
+```css
+/* Message Blade container element */
+.messages {
+	min-width: 400px;
+	height: 200px;
+	overflow: auto;
+}
+
+/* individual message */
+.message {
+	position: relative;
+	overflow: auto;
+
+	margin-bottom: 10px;
+}
+
+.message-user-id {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	font-weight: bold;
+	width: 150px;
+	margin-right: 5px;
+	text-align: right;
+
+	cursor: pointer;
+}
+
+.message-user-id:after {
+	content:': ';
+}
+
+.message-text {
+	display: inline-block;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	/* space for userId */
+	padding-left: 160px;
+	/* space for timestamp */
+	padding-right: 100px;
+
+	width: 100%;
+	min-width: 200px
+}
+
+.message-timestamp {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	width: 100px;
+
+	text-align: right;
+	font-style: italic;
+	font-size: small;
+}
+```
+
+How does the Blade look in the Workbench now?
+
+Time to look at the View Model.
 
 ## The MessagesViewModel
 
@@ -119,8 +184,40 @@ function MessageItemViewModel( message ) {
 module.exports = MessageItemViewModel;
 ```
 
+*Heads Up! There's a bug in BRJS here which means you need to restart the development server.
+for this new file to be picked up. So, kill the existing server process and restart using `./brjs serve`*
+
+### Loop over the messages Array and Show the Message Data
+
+In order to do this you'll need to remove the fake data and update the view definition (`view.html`) with an
+appropriate `data-bind="foreach:..."` property and value. Do this on the element with the class
+of `messages-container`.
+
+Once you've done that, show the values of each of the MessageItemViewModel in their respective spans.
+You don't need any help on this one, just use `data-bind` for this.
+
+### Check your Work in the Workbench
+
+Once you've done this reload the Workbench to see the result of your fine work...
+*Err, I can't see anything!*.
+
+Good point. What do you do when you don't have any data? Well, before we look into that
+we need to consider *what's shown when there are no messages?*.
+
+### Tell the User when there are No Messages
+
+Add a new element that tells the user there are no messages and is only show
+when there are no messages.
+
+### Add Fake Data via the Workbench
+
+Okay, back to the fact we don't have any data to help us develop our Blade when it's
+in a state where there is data.
+
+The solution is to add some fake data. So, let's take a look at the code.
+
 Back in the `MessagesViewModel` there is an `addMessage` function that takes a
-data structure that is passed into the `MessageItemViewModel` constructure. The
+data structure that is passed into the `MessageItemViewModel` constructor. The
 new instance is then pushed onto the `messages` Array. Let's use that function
 to add some fake data.
 
@@ -132,92 +229,13 @@ model.addMessage( { userId: 'leggetter', text: 'hello', timestamp: new Date() } 
 model.addMessage( { userId: 'andyberry88', text: 'Yo!', timestamp: new Date() } );
 ```
 
-## Back to the View(ture - sorry!)
-
-Okay, let's reload the messages Workbench. We now have some UI to work with!
-
-Next, let's add some styling. Update `messages/themes/standard/style.css` as follows:
-
-```css
-/* Message Blade container element */
-.messages {
-  min-width: 400px;
-  height: 200px;
-  overflow: auto;
-}
-
-/* individual message */
-.message {
-  position: relative;
-  overflow: auto;
-
-  margin-bottom: 10px;
-}
-
-.message-user-id {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  font-weight: bold;
-  width: 150px;
-  margin-right: 5px;
-  text-align: right;
-
-  cursor: pointer;
-}
-
-.message-user-id:after {
-  content:': ';
-}
-
-.message-text {
-  display: inline-block;
-
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-
-  /* space for userId */
-  padding-left: 160px;
-  /* space for timestamp */
-  padding-right: 100px;
-
-  width: 100%;
-  min-width: 200px
-}
-
-.message-timestamp {
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  width: 100px;
-
-  text-align: right;
-  font-style: italic;
-  font-size: small;
-}
-```
-
-How does the Blade look in the Workbench now?
-
-Enough hand-holding! Time for some real exercises:
-
-### Loop over the messages Array
-
-In order to do this you'll need to update the view definition (`view.html`) with an
-appropriate `data-bind="for-each:"` property and value (*note: that value isn't complete*). Do this on the element with the class
-of `messages-container`.
-
-### Show the values of each of the MessageItemViewModel in their respective spans
-
-You'll also need to use `data-bind` for this.
+Reload the workbench and you'll now see some fake data so that you can develop
+your workbench in the required state.
 
 ### Change the timestamp to a nicely formatted value
 
-That timestamp isn't human readable. Update the `MessageItemViewModel` so that
-it sets the `timestamp` property to something that's much more human-readable.
+We don't like the default timestamp formatting. Update the `MessageItemViewModel` so that
+it sets the `timestamp` property to something that's nicer.
 
 BRJS comes with the [momentjs](http://momentjs.com/) library so you can do the following
 within `MessageItemViewModel.js` to use it:
@@ -303,7 +321,7 @@ Error:
   Test failure or error while running tests.
 ```
 
-Let's fix that error by updating the test to check for an empty string:
+Let's fix that error by updating the test to correctly check the number of messages:
 
 ```js
 var MessagesViewModelTest = TestCase( 'MessagesViewModelTest' );
@@ -351,10 +369,13 @@ For full details see the [Running Test documentation](http://bladerunnerjs.org/d
 Now that you know how to write and run tests you can also write test that assert
 the functionality the Blade is to provide:
 
-* Check the `MessageItemViewModel` properties are initialised as expected from data structure that's passed to its constructor
-* Ensure the `timestamp` is formatted as expected in the `MessageItemViewModel`
+* Check the `MessageItemViewModel` properties are initialised as expected from the
+data structure that's passed to its constructor
+* Add a message to the `MessagesViewModel` using `addMessages` function and ensure the added message
+has the correct `userId`, `text` and `timestamp` values.
+* If you've time, ensure the `timestamp` is formatted as expected in the `MessageItemViewModel`
 
-*Heads Up! test functions must have a name with the `test` prefix*
+*Heads Up! test functions must have a name with the `test` prefix e.g. `testThisThing`*
 
 ## Basic Blade Functionality Complete - push to github
 
