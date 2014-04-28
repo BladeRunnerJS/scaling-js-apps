@@ -64,7 +64,7 @@ GitHub login.
 
 ## Adding a Blade to an Aspect
 
-First, delete the default Aspect message from the `index.html` file. Then open up
+Open up
 `App.js`. The `App` class is a class in exactly the same what that all the View Models
 that we've created up until this point are. So, we treat it in exactly the same way.
 
