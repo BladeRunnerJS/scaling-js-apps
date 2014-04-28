@@ -104,36 +104,22 @@ The Chat Service emits a `new-message` event whenever a new message becomes avai
 So, in order to be informed when that happens you need to bind to that event `on`
 the Chat Service.
 
+*You should only bind to this event once you have the initial list of messages.
+This avoids accidentally adding newer messages before the older ones, dealing with
+duplicates and reordering. This can be done in `messagesRetrieved`.*
+
 An example of doing this, calling a function on the `MessagesViewModel` and maintaining
 the `this` context is:
 
 ```js
-var ServiceRegistry = require( 'br/ServiceRegistry' );
-
-function MessagesViewModel() {
-  var chatService = ServiceRegistry.getService( 'chat.service' );
-  chatService.on( 'new-message', this.handleNewMessage, this );
-}
-
-MessagesViewModel.prototype.handleNewMessage = function( message ) {
-  // Update the messages Array
-};
+// do this within an instance function
+chatService.on( 'new-message', this.handleNewMessage, this );
 ```
 
 #### Hints
 
-The `FakeChatService` is an [emitr](https://github.com/BladeRunnerJS/emitr) so
-you can add code to the workbench to trigger messages to ensure your `new-message`
-functionality is working.
-
-You could also try the following from the console:
-
-```js
-ServiceRegistry.getService( 'chat.service' ).trigger( 'new-message',
-  { userId: 'testUser', text: 'hello from the console', timestamp: new Date() } );
-```
-
-You could also use the `sendMessage` function we used earlier e.g.
+You could also use the `sendMessage` function we used earlier to test sending messages
+from the JavaScript console e.g.
 
 ```js
 var chatService = ServiceRegistry.getService( 'chat.service' );
@@ -141,6 +127,8 @@ chatService.sendMessage(
   { userId: 'testUser', text: 'Awesome console message!', timestamp: new Date()  }
 );
 ```
+
+**TODO: use the Chat Workbench Tool**
 
 ## Broadcast that the User ID in a Message has been Selected
 
@@ -247,7 +235,7 @@ Add the following spec to the `The Input` suite:
 ```js
 describe( 'The Messages', function() {
 
-  it( 'When a user is selected triggers a "user-selected" event on a user channel on the EventHub', function() {
+  it( 'Should trigger a "user-selected" event on a user channel on the EventHub when a user is selected', function() {
 
     spyOn( eventHub, 'channel' ).andCallThrough();
     spyOn( userChannel, 'trigger' );
