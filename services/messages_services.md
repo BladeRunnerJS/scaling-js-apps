@@ -179,6 +179,8 @@ channel.trigger( 'user-selected', { userId} );
 
 #### Hints
 
+No hints here. Any questions, please ask.
+
 ## Testing Features
 
 *Before we start, you need to copy the contents of `aliases.xml` from the Workbench
@@ -232,13 +234,47 @@ For example, we can test service interactions by:
 
 Since we're using Jasmine, we'll use [Spies](http://j.mp/PITNqK), but we'll also demonstrate how the
 `FakeChatService`, that was developed really to help our development within the
-Workbench, is also really useful.
+Workbench, is also useful here.
 
 ### Testing Feature Service Interactions using Spies
 
+The only user interaction that takes place in the Messages Blade is the user
+clicking on the User ID in a message. This results in an interaction with the
+`EventHub` service.
+
+Add the following spec to the `The Input` suite:
+
+```js
+describe( 'The Messages', function() {
+
+  it( 'When a user is selected triggers a "user-selected" event on a user channel on the EventHub', function() {
+
+    spyOn( eventHub, 'channel' ).andCallThrough();
+    spyOn( userChannel, 'trigger' );
+
+    var testUserId = 'testUser';
+
+    // TODO: Interact with View Model as if the user has selected a User Id
+
+    var expectedEventData = {
+      userId: testUserId
+    };
+    expect( eventHub.channel ).toHaveBeenCalledWith( 'user' );
+    expect( userChannel.trigger ).toHaveBeenCalled( 'user-selected', expectedEventData );
+
+  } );
+
+} );
+```
+
+The test above is nearly complete. You just need to interact with the `MessagesViewModel`
+and simulate the user clicking the User Id. You'll need to make sure that the appropriate
+data (the User Id) is passed to the click handler.
 
 #### Hints
 
+* Use the `testUserId` value in the data that's passed to the click handler as
+it's also used when creating the `expectedEventData` object used in the assertion
 
 ### Testing Feature ViewModel State using a Fake Service
 
@@ -246,6 +282,7 @@ The next thing we want to do is see how services can impact the state of the Vie
 
 #### Hints
 
+No hints here. Any questions, please ask.
 
 ## Congrats - Service Interaction Complete!
 
