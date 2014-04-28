@@ -312,10 +312,11 @@ it( 'Should display new messages that are send via the Chat Service', function()
   var message = { userId: 'testUserId', text: 'testUserText', timestamp: new Date() };
 
   // Execute
+  // TODO: send message using the Chat Service
 
   // Assert
   var firstMessage = messagesViewModel.messages()[ 0 ];
-  // expect( ... );
+  // TODO: expect( ... );
 } );
 ```
 

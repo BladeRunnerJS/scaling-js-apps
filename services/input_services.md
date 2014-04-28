@@ -267,6 +267,18 @@ user retrieval fails:
 * the UI is not enabled
 * a feedback messages is provided
 
+So, complete the following tests:
+
+```js
+it( 'Disables the interface when the current user is not available', function() {
+  // TODO
+} );
+
+it( 'Provides the user with a feedback messages when the current user is not available', function() {
+  // TODO
+} );
+```
+
 #### Hints
 
 * The `userService.setUserDataFetcher` makes an instant call to `userRetrievalFailed`
