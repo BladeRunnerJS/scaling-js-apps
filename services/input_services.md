@@ -155,7 +155,7 @@ and update it to look as follows:
 
 require( 'jasmine' );
 
-var InputViewModel = require( 'modularapp/chat/input/InputViewModel');
+var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
 var ServiceRegistry = require( 'br/ServiceRegistry' );
 var userService = ServiceRegistry.getService( 'user.service' );
 
@@ -191,7 +191,7 @@ For example, we can test service interactions by:
 
 Since we're using Jasmine, we'll use [Spies](http://j.mp/PITNqK), but we'll also demonstrate how the
 `FakeUserService`, that was developed really to help our development within the
-Workbench, is also really useful.
+Workbench, is also useful here.
 
 ### Testing Feature Service Interactions using Spies
 
@@ -201,7 +201,7 @@ from the User Service in the `InputViewModel` constructor.
 
 Add the following spec to the `The Input` suite:
 
-```
+```js
 describe( 'The Input', function() {
 
 	it( 'Requests a user from the UserService', function() {
