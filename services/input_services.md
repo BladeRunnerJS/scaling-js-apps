@@ -39,16 +39,10 @@ Now that the helper services are in place, we can get to work.
 
 ## Get the Current User from the User Service
 
-If you remember back to the overview of the services, the `ChatService.sendMessage`
-function takes an object that should have three properties:
+In order to send a message you need to know who is sending the message. You do this
+by getting the current user from the User Service.
 
-* `userId` - the ID of the current user
-* `text` - the text entered into the `textarea`
-* `timestamp` - the time the message is being sent
-
-So, we need to get access to the the current user from the User Service.
-
-In order to get the User Service we first need to get the `ServiceRegistry`.
+To get the User Service we first need to get the `ServiceRegistry`.
 Update your `InputViewModel` accordingly e.g.:
 
 ```js
