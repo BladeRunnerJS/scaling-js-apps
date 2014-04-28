@@ -164,18 +164,21 @@ var eventHub = ServiceRegistry.getService( 'br.event-hub' );
 
 We've seen using the Knockout `data-bind` property to handle clicks before. What
 you'll also need to do is make sure the function that handles the click
+//TODO: this doesnt make sense, is part of the sentance missing?
 
 Channels can be retrieved from the EventHub:
 
 ```js
 var channel = eventHub.channel( 'user' );
 ```
+//TODO: should this be `this.eventHub` so it suggests it should be inside of the class definition?
 
 Events are triggered on the Channel:
 
 ```js
 channel.trigger( 'user-selected', { userId} );
 ```
+//TODO: should this be `{ userId: "userId" }`?
 
 #### Hints
 
@@ -207,6 +210,7 @@ describe( 'The Messages', function() {
 } );
 
 ```
+//TODO: an example test would be useful here (like with the input blade tests tutorial)
 
 *Note: You could call this file MessagesSpecTest.js*.
 
@@ -215,6 +219,8 @@ The first thing to notice is that we're using Jasmine, and specifcially we're us
 
 From there, you'll see we've required the `MessagesViewModel` and we have a reference to
 the Chat Service via `chatService`. Now we need to write at least two tests:
+
+//TODO: this isnt obvious whether it is something I should continue on my own or continue reading and follow. I started writing it myself and upon reading it again it looks like I should follow and copy/paste
 
 1. Create an instance of the `MessagesViewModel`, interact with it, and ensure that
 it results in the expected service interactions.
