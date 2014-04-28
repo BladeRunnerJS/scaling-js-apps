@@ -226,8 +226,8 @@ A better test is to interact with the View Model and then verify that a service
 interaction has occurred. So, over to you:
 
 Verify that when valid text has been entered into `message` and the send button
-is clicked that the `sendMessage` function is called with an appropriately formed
-message object.
+is clicked (don't touch that DOM!) that the `sendMessage` function is called with
+an appropriately formed message object.
 
 #### Hints
 
