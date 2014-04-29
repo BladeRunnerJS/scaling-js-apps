@@ -218,7 +218,6 @@ require( 'jasmine' );
 
 var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel');
 var ServiceRegistry = require( 'br/ServiceRegistry' );
-var chatService = ServiceRegistry.getService( 'chat.service' );
 
 describe( 'The Messages', function() {
 
@@ -231,21 +230,17 @@ describe( 'The Messages', function() {
 The first thing to notice is that we're using Jasmine, and specifcially we're using
 [Jasmine 1.3](http://jasmine.github.io/1.3/introduction.html) as it ships with BRJS.
 
-You'll see we've required the `MessagesViewModel` and we have a reference to
-the Chat Service via `chatService`. Now we need to write one of each of the two types
-of test.
-
 ### Testing Service Interactions
 
 As with anything in software it's possible to achieve the same thing in multiple ways.
 For example, we can test service interactions by:
 
-* Spying on interactions with the User Service that is already registered with the ServiceRegistry
-* Add functionality to our `FakeChatService` that lets us check interactions
+* Spying on interactions with a service that is already registered with the ServiceRegistry
+* Add functionality to Fake services that lets us check interactions
 * Replace the User Service in the `ServiceRegistry` with a Mock object
 
 Since we're using Jasmine, we'll use [Spies](http://j.mp/PITNqK), but we'll also demonstrate how the
-`FakeChatService`, that was developed really to help our development within the
+Fake service, that was developed really to help our development within the
 Workbench, is also useful here.
 
 ### Testing Feature Service Interactions using Spies
@@ -260,6 +255,7 @@ Add the following spec to the `The Input` suite:
 describe( 'The Messages', function() {
 
   it( 'Should trigger a "user-selected" event on a user channel on the EventHub when a user is selected', function() {
+    var eventHub = ServiceRegistry.getService( 'br.event-hub' );
 
     spyOn( eventHub, 'channel' ).andCallThrough();
     spyOn( userChannel, 'trigger' );
