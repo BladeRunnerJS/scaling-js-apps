@@ -9,7 +9,6 @@
 * [KnockoutJS](knockout/README.md) (if required)
   * [Exercise: KnockoutJS](knockout/exercises.md)
 * [Features/Blades](blades/README.md)
-  * [Get the application code](blades/code.md)
   * [Choose a Feature](blades/build_feature.md)
   * [Heads Up!](blades/heads_up.md)
   * [Exercise: Input](blades/input_blade.md)
