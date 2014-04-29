@@ -26,7 +26,6 @@
   * [Where's the Code?](blades/find_code.md)
   * [Who Broke the App?](blades/broken_app.md)
   * [F5 is the New Compile](blades/f5_compile.md)
-  * [Get the application code](blades/code.md)
   * [Choose a Feature](blades/build_feature.md)
   * [Heads Up!](blades/heads_up.md)
   * [Exercise: Input](blades/input_blade.md)

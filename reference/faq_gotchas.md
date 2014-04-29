@@ -1,5 +1,9 @@
 # FAQ & Gotchas
 
+## New classes/files aren't being picked up
+
+If new files, or changes to files, aren't being picked up try refreshing again or restart the development server.
+
 ## My Tests aren't being run/discovered by the test runner
 
 * Test files must end with `Test.js` e.g. `myAwesomeViewModelTest.js`
