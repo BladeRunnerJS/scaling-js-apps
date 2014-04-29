@@ -23,7 +23,9 @@ To create the starting point app from the finished example:
 - for each 'company':
   - `git remote add <company-name>` https://github.com/BladeRunnerJS/futurejs-modularapp-<Company Name>
   - `git push origin <company-name>`
-  - remember to create the GitHub repo first
+  - remember to create the GitHub repo first; it should probably be a private repo
+  - create a new team called `futurejs-workshop-<Company Name>`
+  - assign this team to the new repo, team members will be added during the workshop
 
 # Creating the USB sticks
 
@@ -32,3 +34,8 @@ To create the starting point app from the finished example:
 - for each 'company'/USB stick (running commands from within the USB stick path)
  - `git clone --bare https://github.com/BladeRunnerJS/futurejs-modularapp-<Company Name>`
  - `cp -r <path to bladerunnerjs.github.io mirror> ./`
+
+# During the workshop - adding team members
+
+- for each company:
+  - add the correct GitHub usernames to the team
