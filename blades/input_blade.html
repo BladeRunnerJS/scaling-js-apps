@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html lang="en-US" manifest="../manifest.appcache">
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="BladeRunnerJS">
-        <meta name="description" content="![How to Build Front-End Web Apps that Scale](/img/apps-that-scale.jpg)">
+        <meta name="description" content="![How to Build Front-End Web Apps that Scale](./img/apps-that-scale.jpg)">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
 
@@ -36,7 +36,13 @@
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.7" data-basepath=".." data-revision="1398788328363">
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.7" data-basepath=".." data-revision="1398791732182">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -44,6 +50,33 @@
     
     <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
 
     <!-- Actions Right -->
     <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
@@ -56,7 +89,10 @@
     
 
     <!-- Title -->
-    <h1><a href="../" >Jump to an Exercise:</a></h1>
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >Jump to an Exercise:</a>
+    </h1>
 </div>
 
     <div class="book-summary">
@@ -583,126 +619,130 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 57.407407407407405%;min-width: 55.55555555555556%;"></div>
+        <div class="inner" style="width: 55.357142857142854%;min-width: 53.57142857142857%;"></div>
     </div>
     <div class="chapters">
     
         <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="../overview/README.html" title="Workshop Overview" class="chapter done new-chapter" data-progress="1" style="left: 1.8518518518518519%;"></a>
+        <a href="../overview/README.html" title="Workshop Overview" class="chapter done new-chapter" data-progress="1" style="left: 1.7857142857142858%;"></a>
     
-        <a href="../overview/who.html" title="Who are we?" class="chapter done " data-progress="1.1" style="left: 3.7037037037037037%;"></a>
+        <a href="../overview/who.html" title="Who are we?" class="chapter done " data-progress="1.1" style="left: 3.5714285714285716%;"></a>
     
-        <a href="../overview/schedule.html" title="Schedule" class="chapter done " data-progress="1.2" style="left: 5.555555555555555%;"></a>
+        <a href="../overview/schedule.html" title="Schedule" class="chapter done " data-progress="1.2" style="left: 5.357142857142857%;"></a>
     
-        <a href="../overview/learn.html" title="What we&#39;re going to learn" class="chapter done " data-progress="1.3" style="left: 7.407407407407407%;"></a>
+        <a href="../overview/learn.html" title="What we&#39;re going to learn" class="chapter done " data-progress="1.3" style="left: 7.142857142857143%;"></a>
     
-        <a href="../overview/build.html" title="What we&#39;re going to build" class="chapter done " data-progress="1.4" style="left: 9.25925925925926%;"></a>
+        <a href="../overview/build.html" title="What we&#39;re going to build" class="chapter done " data-progress="1.4" style="left: 8.928571428571429%;"></a>
     
-        <a href="../overview/teams.html" title="Organisations &amp; Teams" class="chapter done " data-progress="1.5" style="left: 11.11111111111111%;"></a>
+        <a href="../overview/teams.html" title="Organisations &amp; Teams" class="chapter done " data-progress="1.5" style="left: 10.714285714285714%;"></a>
     
-        <a href="../overview/prerequisites.html" title="Prerequisites" class="chapter done " data-progress="1.6" style="left: 12.962962962962964%;"></a>
+        <a href="../overview/prerequisites.html" title="Prerequisites" class="chapter done " data-progress="1.6" style="left: 12.5%;"></a>
     
-        <a href="../overview/heads_up.html" title="Heads Up!" class="chapter done " data-progress="1.7" style="left: 14.814814814814815%;"></a>
+        <a href="../overview/heads_up.html" title="Heads Up!" class="chapter done " data-progress="1.7" style="left: 14.285714285714286%;"></a>
     
-        <a href="../knockout/README.html" title="KnockoutJS" class="chapter done new-chapter" data-progress="2" style="left: 16.666666666666668%;"></a>
+        <a href="../knockout/README.html" title="KnockoutJS" class="chapter done new-chapter" data-progress="2" style="left: 16.071428571428573%;"></a>
     
-        <a href="../knockout/exercises.html" title="Exercise: KnockoutJS" class="chapter done " data-progress="2.1" style="left: 18.51851851851852%;"></a>
+        <a href="../knockout/exercises.html" title="Exercise: KnockoutJS" class="chapter done " data-progress="2.1" style="left: 17.857142857142858%;"></a>
     
-        <a href="../background/README.html" title="Background" class="chapter done new-chapter" data-progress="3" style="left: 20.37037037037037%;"></a>
+        <a href="../background/README.html" title="Background" class="chapter done new-chapter" data-progress="3" style="left: 19.642857142857142%;"></a>
     
-        <a href="../background/large_scale.html" title="What is a Large Scale Front-End App?" class="chapter done " data-progress="3.1" style="left: 22.22222222222222%;"></a>
+        <a href="../background/large_scale.html" title="What is a Large Scale Front-End App?" class="chapter done " data-progress="3.1" style="left: 21.428571428571427%;"></a>
     
-        <a href="../background/questions.html" title="Lots of Questions?" class="chapter done " data-progress="3.10" style="left: 24.074074074074073%;"></a>
+        <a href="../background/questions.html" title="Lots of Questions?" class="chapter done " data-progress="3.10" style="left: 23.214285714285715%;"></a>
     
-        <a href="../background/approach.html" title="Workshop Approach" class="chapter done " data-progress="3.11" style="left: 25.925925925925927%;"></a>
+        <a href="../background/approach.html" title="Workshop Approach" class="chapter done " data-progress="3.11" style="left: 25%;"></a>
     
-        <a href="../background/large_codebase.html" title="Large Codebase" class="chapter done " data-progress="3.2" style="left: 27.77777777777778%;"></a>
+        <a href="../background/large_codebase.html" title="Large Codebase" class="chapter done " data-progress="3.2" style="left: 26.785714285714285%;"></a>
     
-        <a href="../background/ct_codebase.html" title="Example Large Codebase" class="chapter done " data-progress="3.3" style="left: 29.62962962962963%;"></a>
+        <a href="../background/ct_codebase.html" title="Example Large Codebase" class="chapter done " data-progress="3.3" style="left: 28.571428571428573%;"></a>
     
-        <a href="../background/complexity.html" title="Complexity" class="chapter done " data-progress="3.4" style="left: 31.48148148148148%;"></a>
+        <a href="../background/complexity.html" title="Complexity" class="chapter done " data-progress="3.4" style="left: 30.357142857142858%;"></a>
     
-        <a href="../background/gmail.html" title="Gmail" class="chapter done " data-progress="3.5" style="left: 33.333333333333336%;"></a>
+        <a href="../background/gmail.html" title="Gmail" class="chapter done " data-progress="3.5" style="left: 32.142857142857146%;"></a>
     
-        <a href="../background/caplin_trader.html" title="Caplin Trader" class="chapter done " data-progress="3.6" style="left: 35.18518518518518%;"></a>
+        <a href="../background/caplin_trader.html" title="Caplin Trader" class="chapter done " data-progress="3.6" style="left: 33.92857142857143%;"></a>
     
-        <a href="../background/large_spa.html" title="Large SPAs" class="chapter done " data-progress="3.7" style="left: 37.03703703703704%;"></a>
+        <a href="../background/large_spa.html" title="Large SPAs" class="chapter done " data-progress="3.7" style="left: 35.714285714285715%;"></a>
     
-        <a href="../background/contributors.html" title="Contributors" class="chapter done " data-progress="3.8" style="left: 38.888888888888886%;"></a>
+        <a href="../background/contributors.html" title="Contributors" class="chapter done " data-progress="3.8" style="left: 37.5%;"></a>
     
-        <a href="../background/who_contributes.html" title="Who Contributes?" class="chapter done " data-progress="3.9" style="left: 40.74074074074074%;"></a>
+        <a href="../background/who_contributes.html" title="Who Contributes?" class="chapter done " data-progress="3.9" style="left: 39.285714285714285%;"></a>
     
-        <a href="../blades/README.html" title="Features/Blades" class="chapter done new-chapter" data-progress="4" style="left: 42.592592592592595%;"></a>
+        <a href="../blades/README.html" title="Features/Blades" class="chapter done new-chapter" data-progress="4" style="left: 41.07142857142857%;"></a>
     
-        <a href="../blades/overview.html" title="Overview" class="chapter done " data-progress="4.1" style="left: 44.44444444444444%;"></a>
+        <a href="../blades/overview.html" title="Overview" class="chapter done " data-progress="4.1" style="left: 42.857142857142854%;"></a>
     
-        <a href="../blades/retrospective.html" title="Retrospective" class="chapter done " data-progress="4.10" style="left: 46.2962962962963%;"></a>
+        <a href="../blades/retrospective.html" title="Retrospective" class="chapter done " data-progress="4.10" style="left: 44.642857142857146%;"></a>
     
-        <a href="../blades/problems_solved.html" title="Problems Solved" class="chapter done " data-progress="4.2" style="left: 48.148148148148145%;"></a>
+        <a href="../blades/problems_solved.html" title="Problems Solved" class="chapter done " data-progress="4.2" style="left: 46.42857142857143%;"></a>
     
-        <a href="../blades/find_code.html" title="Where&#39;s the Code?" class="chapter done " data-progress="4.3" style="left: 50%;"></a>
+        <a href="../blades/find_code.html" title="Where&#39;s the Code?" class="chapter done " data-progress="4.3" style="left: 48.214285714285715%;"></a>
     
-        <a href="../blades/broken_app.html" title="Who Broke the App?" class="chapter done " data-progress="4.4" style="left: 51.851851851851855%;"></a>
+        <a href="../blades/broken_app.html" title="Who Broke the App?" class="chapter done " data-progress="4.4" style="left: 50%;"></a>
     
-        <a href="../blades/f5_compile.html" title="F5 is the New Compile" class="chapter done " data-progress="4.5" style="left: 53.7037037037037%;"></a>
+        <a href="../blades/f5_compile.html" title="F5 is the New Compile" class="chapter done " data-progress="4.5" style="left: 51.785714285714285%;"></a>
     
-        <a href="../blades/exercises.html" title="Exercises" class="chapter done " data-progress="4.6" style="left: 55.55555555555556%;"></a>
+        <a href="../blades/exercises.html" title="Exercises" class="chapter done " data-progress="4.6" style="left: 53.57142857142857%;"></a>
     
-        <a href="../blades/input_blade.html" title="Exercise: Input" class="chapter done " data-progress="4.7" style="left: 57.407407407407405%;"></a>
+        <a href="../blades/input_blade.html" title="Exercise: Input" class="chapter done " data-progress="4.7" style="left: 55.357142857142854%;"></a>
     
-        <a href="../blades/messages_blade.html" title="Exercise: Messages" class="chapter  " data-progress="4.8" style="left: 59.25925925925926%;"></a>
+        <a href="../blades/messages_blade.html" title="Exercise: Messages" class="chapter  " data-progress="4.8" style="left: 57.142857142857146%;"></a>
     
-        <a href="../blades/usercard_blade.html" title="Exercise: User Card" class="chapter  " data-progress="4.9" style="left: 61.111111111111114%;"></a>
+        <a href="../blades/usercard_blade.html" title="Exercise: User Card" class="chapter  " data-progress="4.9" style="left: 58.92857142857143%;"></a>
     
-        <a href="../aspects/README.html" title="Apps &amp; Aspects" class="chapter  new-chapter" data-progress="5" style="left: 62.96296296296296%;"></a>
+        <a href="../aspects/README.html" title="Apps &amp; Aspects" class="chapter  new-chapter" data-progress="5" style="left: 60.714285714285715%;"></a>
     
-        <a href="../aspects/exercise.html" title="Composing Blades into Aspects" class="chapter  " data-progress="5.1" style="left: 64.81481481481481%;"></a>
+        <a href="../aspects/exercise.html" title="Composing Blades into Aspects" class="chapter  " data-progress="5.1" style="left: 62.5%;"></a>
     
-        <a href="../aspects/retrospective.html" title="Retrospective" class="chapter  " data-progress="5.2" style="left: 66.66666666666667%;"></a>
+        <a href="../aspects/retrospective.html" title="Retrospective" class="chapter  " data-progress="5.2" style="left: 64.28571428571429%;"></a>
     
-        <a href="../services/README.html" title="Services &amp; the ServiceRegistry" class="chapter  new-chapter" data-progress="6" style="left: 68.51851851851852%;"></a>
+        <a href="../services/README.html" title="Services &amp; the ServiceRegistry" class="chapter  new-chapter" data-progress="6" style="left: 66.07142857142857%;"></a>
     
-        <a href="../services/services.html" title="Services" class="chapter  " data-progress="6.1" style="left: 70.37037037037037%;"></a>
+        <a href="../services/services.html" title="Services" class="chapter  " data-progress="6.1" style="left: 67.85714285714286%;"></a>
     
-        <a href="../services/exercises_overview.html" title="Exercises Overview" class="chapter  " data-progress="6.10" style="left: 72.22222222222223%;"></a>
+        <a href="../services/exercises_overview.html" title="Exercises Overview" class="chapter  " data-progress="6.10" style="left: 69.64285714285714%;"></a>
     
-        <a href="../services/input_services.html" title="Exercise: Input Blade &amp; Services" class="chapter  " data-progress="6.11" style="left: 74.07407407407408%;"></a>
+        <a href="../services/input_services.html" title="Exercise: Input Blade &amp; Services" class="chapter  " data-progress="6.11" style="left: 71.42857142857143%;"></a>
     
-        <a href="../services/messages_services.html" title="Exercise: Messages Blade &amp; Services" class="chapter  " data-progress="6.12" style="left: 75.92592592592592%;"></a>
+        <a href="../services/messages_services.html" title="Exercise: Messages Blade &amp; Services" class="chapter  " data-progress="6.12" style="left: 73.21428571428571%;"></a>
     
-        <a href="../services/usercard_services.html" title="Exercise: User Card Blade &amp; Services" class="chapter  " data-progress="6.13" style="left: 77.77777777777777%;"></a>
+        <a href="../services/usercard_services.html" title="Exercise: User Card Blade &amp; Services" class="chapter  " data-progress="6.13" style="left: 75%;"></a>
     
-        <a href="../services/retrospective.html" title="Retrospective" class="chapter  " data-progress="6.14" style="left: 79.62962962962963%;"></a>
+        <a href="../services/retrospective.html" title="Retrospective" class="chapter  " data-progress="6.14" style="left: 76.78571428571429%;"></a>
     
-        <a href="../services/service_registry.html" title="ServiceRegistry" class="chapter  " data-progress="6.2" style="left: 81.48148148148148%;"></a>
+        <a href="../services/service_registry.html" title="ServiceRegistry" class="chapter  " data-progress="6.2" style="left: 78.57142857142857%;"></a>
     
-        <a href="../services/problems_solved.html" title="Problems Solved" class="chapter  " data-progress="6.3" style="left: 83.33333333333333%;"></a>
+        <a href="../services/problems_solved.html" title="Problems Solved" class="chapter  " data-progress="6.3" style="left: 80.35714285714286%;"></a>
     
-        <a href="../services/dev_dependencies.html" title="Developer Environment Dependencies" class="chapter  " data-progress="6.4" style="left: 85.18518518518519%;"></a>
+        <a href="../services/dev_dependencies.html" title="Developer Environment Dependencies" class="chapter  " data-progress="6.4" style="left: 82.14285714285714%;"></a>
     
-        <a href="../services/required_dependencies.html" title="Required Dependencies" class="chapter  " data-progress="6.5" style="left: 87.03703703703704%;"></a>
+        <a href="../services/required_dependencies.html" title="Required Dependencies" class="chapter  " data-progress="6.5" style="left: 83.92857142857143%;"></a>
     
-        <a href="../services/no_dependencies.html" title="No Backend Dependencies" class="chapter  " data-progress="6.6" style="left: 88.88888888888889%;"></a>
+        <a href="../services/no_dependencies.html" title="No Backend Dependencies" class="chapter  " data-progress="6.6" style="left: 85.71428571428571%;"></a>
     
-        <a href="../services/configuring_services.html" title="Configuring Services" class="chapter  " data-progress="6.7" style="left: 90.74074074074075%;"></a>
+        <a href="../services/configuring_services.html" title="Configuring Services" class="chapter  " data-progress="6.7" style="left: 87.5%;"></a>
     
-        <a href="../services/workbenches.html" title="Workbenches" class="chapter  " data-progress="6.8" style="left: 92.5925925925926%;"></a>
+        <a href="../services/workbenches.html" title="Workbenches" class="chapter  " data-progress="6.8" style="left: 89.28571428571429%;"></a>
     
-        <a href="../services/modularapp_services.html" title="ModularApp Services" class="chapter  " data-progress="6.9" style="left: 94.44444444444444%;"></a>
+        <a href="../services/modularapp_services.html" title="ModularApp Services" class="chapter  " data-progress="6.9" style="left: 91.07142857142857%;"></a>
     
-        <a href="../aspects_services/README.html" title="Apps &amp; Aspects (again)" class="chapter  new-chapter" data-progress="7" style="left: 96.29629629629629%;"></a>
+        <a href="../aspects_services/README.html" title="Apps &amp; Aspects (again)" class="chapter  new-chapter" data-progress="7" style="left: 92.85714285714286%;"></a>
     
-        <a href="../aspects_services/retrospective.html" title="Retrospective" class="chapter  " data-progress="7.1" style="left: 98.14814814814815%;"></a>
+        <a href="../aspects_services/retrospective.html" title="Retrospective" class="chapter  " data-progress="7.1" style="left: 94.64285714285714%;"></a>
     
-        <a href="../extras/README.html" title="Extras" class="chapter  new-chapter" data-progress="8" style="left: 100%;"></a>
+        <a href="../extras/README.html" title="Extras" class="chapter  new-chapter" data-progress="8" style="left: 96.42857142857143%;"></a>
+    
+        <a href="../reference/dev_setup.html" title="Suggested Dev Setup" class="chapter  " data-progress="9.1" style="left: 98.21428571428571%;"></a>
+    
+        <a href="../reference/faq_gotchas.html" title="FAQ &amp; Gotchas" class="chapter  " data-progress="9.2" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1">
+                    <section class="normal" id="section-gitbook_20">
                     
                         <h1 id="exercise-input-blade-30-mins-">Exercise: Input Blade (30 mins)</h1>
 <p>Your team has chosen to build the Input Blade. Without it nobody can enter
@@ -718,7 +758,7 @@ any information into the application.</p>
 also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
 BladeSets, we won&#39;t be using them, but our Blades will be located under this folder.</p>
 <p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
-<pre><code>./brjs <span class="hljs-operator"><span class="hljs-keyword">create</span>-blade modularapp chat <span class="hljs-keyword">input</span></span>
+<pre><code>./brjs create-blade modularapp chat input
 </code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
 <code>apps/modularapp/chat-bladeset/blades/input</code>.</p>
 <p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
@@ -846,40 +886,40 @@ InputViewModelTest.prototype.testDefaultMessageIsEmpty = <span class="hljs-funct
 built-in.</p>
 <p>In order to run the tests you first need to start the test server. From the <code>sdk</code>
 directory run:</p>
-<pre><code><span class="hljs-built_in">.</span>/brjs test<span class="hljs-attribute">-server</span> <span class="hljs-subst">--</span>no<span class="hljs-attribute">-browser</span>
+<pre><code>./brjs test-server --no-browser
 </code></pre><p>In your browser navigate to <a href="http://localhost:4224/capture" target="_blank">http://localhost:4224/capture</a>. This is the browser window/tab
 that the test server will instruct to execute your tests.</p>
 <p>Now that the test server is running open another terminal/command prompt and execute
 the following from the <code>sdk</code> directory:</p>
-<pre><code><span class="hljs-built_in">.</span>/brjs test <span class="hljs-built_in">..</span>/apps/modularapp/chat<span class="hljs-attribute">-bladeset</span>/blades/input
+<pre><code>./brjs test ../apps/modularapp/chat-bladeset/blades/input
 </code></pre><p>This will execute all the tests it finds within that directory. For now, this
 is just the single test that we&#39;ve written.</p>
 <p>You should see output similar to the following:</p>
 <pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/input
-Java HotSpot(TM) <span class="hljs-number">64</span>-Bit Server VM warning: ignoring option MaxPermSize=<span class="hljs-number">128</span>M; support was removed <span class="hljs-operator">in</span> <span class="hljs-number">8.0</span>
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
 creating plugins
 performing node discovery
 making plugins available via model
-BladeRunnerJS <span class="hljs-built_in">version</span>: v0<span class="hljs-number">.7</span>-<span class="hljs-number">0</span>-gff6e9cb, built: <span class="hljs-number">14</span> April <span class="hljs-number">2014</span> <span class="hljs-number">15</span>:<span class="hljs-number">53</span> BST
+BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
 
-Server already running, <span class="hljs-operator">not</span> bothering <span class="hljs-built_in">to</span> start <span class="hljs-operator">a</span> <span class="hljs-built_in">new</span> instance...
+Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 F
-Total <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">0</span>; Fails: <span class="hljs-number">1</span>; Errors: <span class="hljs-number">0</span>) (<span class="hljs-number">2.00</span> ms)
-  Chrome <span class="hljs-number">34.0</span><span class="hljs-number">.1847</span><span class="hljs-number">.131</span> Mac OS: Run <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">0</span>; Fails: <span class="hljs-number">1</span>; Errors <span class="hljs-number">0</span>) (<span class="hljs-number">2.00</span> ms)
-    InputViewModelTest.testDefaultMessageIsEmpty failed (<span class="hljs-number">2.00</span> ms): AssertError: expected <span class="hljs-string">"Hello!"</span> but was <span class="hljs-string">""</span>
-      Error: expected <span class="hljs-string">"Hello!"</span> but was <span class="hljs-string">""</span>
-          <span class="hljs-keyword">at</span> InputViewModelTest.testDefaultMessageIsEmpty (<span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">4224</span>/test/tests/InputViewModelTest.js:<span class="hljs-number">18</span>:<span class="hljs-number">33</span>)
+Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (2.00 ms)
+  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (2.00 ms)
+    InputViewModelTest.testDefaultMessageIsEmpty failed (2.00 ms): AssertError: expected &quot;Hello!&quot; but was &quot;&quot;
+      Error: expected &quot;Hello!&quot; but was &quot;&quot;
+          at InputViewModelTest.testDefaultMessageIsEmpty (http://localhost:4224/test/tests/InputViewModelTest.js:18:33)
 
-Tests failed: Tests failed. See <span class="hljs-built_in">log</span> <span class="hljs-keyword">for</span> details.
+Tests failed: Tests failed. See log for details.
 Tests Failed.
 
-- Time Taken: <span class="hljs-number">2</span><span class="hljs-built_in">secs</span>
+- Time Taken: 2secs
 Error:
-  Test failure <span class="hljs-operator">or</span> error <span class="hljs-keyword">while</span> running tests.
+  Test failure or error while running tests.
 </code></pre><p>Let&#39;s fix that error by updating the test to check for an empty string:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> InputViewModelTest = TestCase( <span class="hljs-string">'InputViewModelTest'</span> );
 
@@ -892,23 +932,23 @@ InputViewModelTest.prototype.testDefaultMessageIsEmpty = <span class="hljs-funct
 </code></pre>
 <p>If you run the <code>brjs test</code> command the test will now pass:</p>
 <pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/input
-Java HotSpot(TM) <span class="hljs-number">64</span>-Bit <span class="hljs-built_in">Server</span> VM warning: ignoring <span class="hljs-keyword">option</span> MaxPermSize=<span class="hljs-number">128</span>M; support was removed <span class="hljs-keyword">in</span> <span class="hljs-number">8.0</span>
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
 creating plugins
 performing node discovery
 making plugins available via model
-BladeRunnerJS version: v0<span class="hljs-number">.7</span>-<span class="hljs-number">0</span>-gff6e9cb, built: <span class="hljs-number">14</span> April <span class="hljs-number">2014</span> <span class="hljs-number">15</span>:<span class="hljs-number">53</span> BST
+BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
 
-<span class="hljs-built_in">Server</span> already running, <span class="hljs-keyword">not</span> bothering <span class="hljs-keyword">to</span> start a <span class="hljs-keyword">new</span> instance...
+Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 .
-Total <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">1</span>; Fails: <span class="hljs-number">0</span>; Errors: <span class="hljs-number">0</span>) (<span class="hljs-number">2.00</span> ms)
-  Chrome <span class="hljs-number">34.0</span><span class="hljs-number">.1847</span><span class="hljs-number">.131</span> Mac OS: Run <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">1</span>; Fails: <span class="hljs-number">0</span>; Errors <span class="hljs-number">0</span>) (<span class="hljs-number">2.00</span> ms)
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
+  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
 Tests Passed.
 
-- <span class="hljs-built_in">Time</span> Taken: <span class="hljs-number">2</span>secs
+- Time Taken: 2secs
 </code></pre><p>We&#39;ve now written our first test and made it pass.</p>
 <p>For full details see the <a href="http://bladerunnerjs.org/docs/use/running_tests/" target="_blank">Running Test documentation</a>.</p>
 <h3 id="additional-tests">Additional Tests</h3>
@@ -949,13 +989,31 @@ commit your changes locally and push them to github.</p>
 </div>
 
         
-        <link rel="stylesheet" href="../gitbook/style.css">
-        
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
         <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
         <script src="../gitbook/app.js"></script>
         
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
     </body>
 </html>
