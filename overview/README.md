@@ -1,17 +1,10 @@
 # Overview
 
-## Schedule
+The purpose of this workshop is to learn how to build a maintainable and extensible
+front-end applications that offer highly complex functionality, consists of
+thousands of assets and thousands of lines of JavaScript.
 
-|                                                             | How long?       | Running time  |
-| ------------------                                          | -------------:  | -------------:|
-| This introduction                                           | 10 mins         |               |
-| Split into Companies & Teams                                | 5 mins          | 15 mins       |
-| Ensure we're all 100% ready                                 | 10 mins         | 25 mins       |
-| Basic KnockoutJS overview exercise (*if required*)          | 15 mins         | 40 mins       |
-| Building and Testing a Feature/Blade in isolation           | 40 mins         | 1 hr 20 mins  |
-| Composing Apps from Features                                | 20 mins         | 1 hr 40 mins  |
-| **Break**                                                   | 15 mins         | 1 hr 55 mins  |
-| Services, the ServiceRegistry & Inter-Feature communication | 50 mins         | 2 hrs 45 mins |
-| Composing Apps from Features that use services              | 30 mins         | 3 hrs 15 mins |
-| Explore...                                                  | 30 mins         | 3 hrs 45 mins |
-| Wrap-up                                                     | 15 mins         | 4 hrs 0 mins  |
+The principles and practices have developed over a number of years at [Caplin Systems](http://www.caplin.com)
+as part of building and maintaining [Caplin Trader](http://caplin.com/caplin-trader)-based
+applications. In addition, Caplin's customers also use the same principles, practices
+and tooling to themselves build large and highly functional front-end applications.

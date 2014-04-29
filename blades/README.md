@@ -5,14 +5,10 @@ because it represents a full slice of application functionality containing every
 required to fullfil a business requirements. So, "Feature" and "Blade" are generally
 inter-changable.*
 
-## Concepts & Demo
+## What would a Blade look like in GMail?
 
-* Scaffolding
-* Building a feature in isolation
-  * All assets are co-located
-  * Tests reside with the feature
-* Workbenches
-* Asset dependency analysis
-* A note on CSS
+![](/img/gmail-compose-open-blades.png)
 
-**TODO: show app split into blades**
+## What are the Blades in Modular App
+
+![](/img/modularapp-blades.png)
