@@ -30,10 +30,12 @@ To create the starting point app from the finished example:
 # Creating the USB sticks
 
 - `wget -m https://bladerunnerjs.github.io/scaling-js-apps/`
+- wget https://www.dropbox.com/s/iv3fv0be3w8cpt5/BladeRunnerJS-v0.7-108-g0b13594.zip
 
 - for each 'company'/USB stick (running commands from within the USB stick path)
  - `git clone --bare https://github.com/BladeRunnerJS/futurejs-modularapp-<Company Name>`
  - `cp -r <path to bladerunnerjs.github.io mirror> ./`
+ - `cp -r <path to BladeRunnerJS-v0.7-108-g0b13594.zip> ./`
 
 # During the workshop - adding team members
 
