@@ -39,7 +39,7 @@ Now that the helper service is in place, we can get to work.
 
 By this we mean bind to `user-selected` that have been triggered by other parts
 of the application that know doing this will result in other parts of the app
-doing something. In this case it's the User Card displaying informationa about a
+doing something. In this case it's the User Card displaying information about a
 selected user.
 
 In order for this to work the publisher and subscriber need to know three things:
@@ -220,132 +220,159 @@ and update it to look as follows to add the Test Suite:
 
 require( 'jasmine' );
 
-var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel');
+var UsercardViewModel = require( 'modularapp/chat/usercard/UsercardViewModel');
 var ServiceRegistry = require( 'br/ServiceRegistry' );
-var chatService = ServiceRegistry.getService( 'chat.service' );
 
-describe( 'The Messages', function() {
+describe( 'The User Card', function() {
 
 } );
 
 ```
 
-*Note: You could call this file MessagesSpecTest.js*.
+*Note: You could call this file UsercardSpecTest.js*.
 
 The first thing to notice is that we're using Jasmine, and specifcially we're using
 [Jasmine 1.3](http://jasmine.github.io/1.3/introduction.html) as it ships with BRJS.
-
-You'll see we've required the `MessagesViewModel` and we have a reference to
-the Chat Service via `chatService`. Now we need to write one of each of the two types
-of test.
 
 ### Testing Service Interactions
 
 As with anything in software it's possible to achieve the same thing in multiple ways.
 For example, we can test service interactions by:
 
-* Spying on interactions with the User Service that is already registered with the ServiceRegistry
-* Add functionality to our `FakeChatService` that lets us check interactions
+* Spying on interactions with a service that is already registered with the ServiceRegistry
+* Add functionality to Fake services that lets us check interactions
 * Replace the User Service in the `ServiceRegistry` with a Mock object
 
 Since we're using Jasmine, we'll use [Spies](http://j.mp/PITNqK), but we'll also demonstrate how the
-`FakeChatService`, that was developed really to help our development within the
+Fake service, that was developed really to help our development within the
 Workbench, is also useful here.
 
 ### Testing Feature Service Interactions using Spies
 
-The only user interaction that takes place in the Messages Blade is the user
-clicking on the User ID in a message. This results in an interaction with the
-`EventHub` service.
+*Whoops! Since the User Card doesn't allow for any user action that results in a
+service interaction, we can't write a test for this scenario.*
 
-Add the following spec to the `The Input` suite:
+### Testing Feature ViewModel State using a Fake Service
+
+But we can make up for it by seeing how the two services the User Card uses
+can impact the state of the View Model. The User Card uses both the  EventHub,
+to see the affect of `user-selected` events, and the User Service, to ensure
+user data is shown as expected.
+
+#### The User Card Should be Shown Following a User Selection
+
+From earlier we know all about user selection interactions and how they are indicated
+within the app by an event being triggered on the `EventHub`. Well, let's test
+that scenario and ensure that the User Card is shown.
+
+In order to do this we need to trigger the appropriate event on the `EventHub` and
+pass event data in the correct format. Also, the User Service must return with
+a valid user for this to work.
+
+For this test we can let the `FakeUserService` help us out by always returning
+user data for any `userId`. *However*, we will need to call upon Jasmine's very handy
+`jasmine.Clock` to help us work around the User Service `getUser` function being
+asynchronous.
+
+Here's the test template - just fill in the blanks:
 
 ```js
-describe( 'The Messages', function() {
+describe( 'The User Card', function() {
 
-  it( 'Should trigger a "user-selected" event on a user channel on the EventHub when a user is selected', function() {
+  it( 'Should show the User Card when a User Selected event occurs', function() {
+    jasmine.Clock.useMock();
 
-    spyOn( eventHub, 'channel' ).andCallThrough();
-    spyOn( userChannel, 'trigger' );
+    var eventHub = ServiceRegistry.getService( 'br.event-hub' );
 
-    var testUserId = 'testUser';
+    var usercardViewModel = new UsercardViewModel();
 
-    // TODO: Interact with View Model as if the user has selected a User Id
+    // TODO: trigger 'user-selected' event on 'user' channel
 
-    var expectedEventData = {
-      userId: testUserId
-    };
-    expect( eventHub.channel ).toHaveBeenCalledWith( 'user' );
-    expect( userChannel.trigger ).toHaveBeenCalled( 'user-selected', expectedEventData );
+    jasmine.Clock.tick( 1 );
 
+    // Assert
+    // expect( ... );
   } );
 
 } );
 ```
 
-The test above is nearly complete. You just need to interact with the `MessagesViewModel`
-and simulate the user clicking the User Id. You'll need to make sure that the appropriate
-data (the User Id) is passed to the click handler.
-
 #### Hints
 
-* Use the `testUserId` value in the data that's passed to the click handler as
-it's also used when creating the `expectedEventData` object used in the assertion
+* We'll think of something useful to add here in the future. If you've any suggestions
+please let us know.
 
-### Testing Feature ViewModel State using a Fake Service
+#### The User Card Should Display the Information Returned by the User Service
 
-The next thing we want to do is see how services can impact the state of the View Model.
-To do this we'll use the chat service - we've seen that our `FakeChatService`
-implementation triggers a `new-message` event when the `sendMessage` function is
-called. We can use this knowledge to do the test.
+Add another spec to *The User Card* test suite. This time you should ensure that
+the information that the User Service returns.
 
-Before we start, we need to remember that our implementation doesn't bind to the
-`new-message` event until it's recieved the `getMessages` callback which is an
-asynchronous call. Luckily our `FakeService` has a setting `FakeService.fakeAsync`
-so that it doesn't make this callback truly asynchronously. This means we can ensure
-that the `getMessages` response has been made before we call `sendMessage`.
-
-Here's the test template - just fill in the blanks:
+In order to do this we again need to call upon the `FakeUserService`. This time
+we can use the `addUser` function that some of the other teams will have been using
+during their development. In order for it to behave appropriately you'll need
+to ensure that the `user` object has both a `userId` and `data` property with some
+of the expected data set e.g.
 
 ```js
-it( 'Should display new messages that are send via the Chat Service', function() {
-  // Setup
-  var chatService = ServiceRegistry.getService( 'chat.service' );
-  chatService.fakeAsync = false;
-  var messagesViewModel = new MessagesViewModel();
-  var message = { userId: 'testUserId', text: 'testUserText', timestamp: new Date() };
+var user = {
+  userId: 'crazyLegs',
+  data: {
+    avatar_url: 'http://stream1.gifsoup.com/view2/1414597/crazy-legs-o.gif',
+    login: 'crazylegs',
+    company: 'Disney',
+    name: 'Dancin\' Dude!'
+  }
+};
+userService.addUser( user );
+```
 
-  // Execute
-  // TODO: send message using the Chat Service
+Now you're ready to complete the test.
 
-  // Assert
-  var firstMessage = messagesViewModel.messages()[ 0 ];
-  // TODO: expect( ... );
-} );
+```js
+  it( 'Should show the user information that the User Service provides', function() {
+    jasmine.Clock.useMock();
+
+    var eventHub = ServiceRegistry.getService( 'br.event-hub' );
+    var userService = ServiceRegistry.getService( 'user.service' );
+
+    // TODO: add fake data to User Service
+
+    var usercardViewModel = new UsercardViewModel();
+
+    // TODO: trigger 'user-selected' event on 'user' channel as done earlier
+
+    jasmine.Clock.tick( 1 );
+
+    // Assert
+    // expect( usercardViewModel.name() ).toBe( ... );
+    // expect( ... )
+
+  } );
 ```
 
 #### Hints
 
-* An alternative to using `FakeChatService.fakeAsync = false;` is to use the very
-handy [jasmine.Clock](http://j.mp/1nWvotX).
-* You should probably clear down the `FakeChatService.fakeAsync` after the test.
-Otherwise future tests may be affected by this unexpected synchronous behaviour.
+* We'll think of something useful to add here in the future. If you've any suggestions
+please let us know.
 
 ## Congrats - Service Interaction Complete!
 
-Our Blade is now interacting with two services and we've tested both UI through
-to Services and Services through to the UI; full feature testing.
+Our Blade is now interacting with two services and we've tested Services through
+to the UI, but we didn't get a chance to test View Model through to Service. If
+you've time you can take a look at the other Blades & Services excercises!
 
-It's time to commit those changes and push them to github:
+For now, it's time to commit those changes and push them to github:
 
-* `git add chat-bladeset/blades/messages`
-* `git commit -m 'integrating messages blade with services'`
+* `git add chat-bladeset/blades/usercard`
+* `git commit -m 'integrating user card blade with services'`
 * `git pull origin master`
 * Fix any merges - there shouldn't be any
 * `git push origin master`
 
 ## Where Next?
 
-See how the other teams in your company are getting on. Can you help them out?
+If you've time you can take a look at the other Blades & Services exercises so
+that you can see View through to Service testing. Or you can see how the other
+teams in your company are getting on. Can you help them out?
 
 Then, we'll see how our application looks.
