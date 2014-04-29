@@ -5,6 +5,6 @@ features and contributed to by multiple teams.
 
 Let's call it **ModularApp**!
 
-![Modular App](/img/modularapp.png)
+![Modular App](../img/modularapp.png)
 
 *Are the any designers in the house?*

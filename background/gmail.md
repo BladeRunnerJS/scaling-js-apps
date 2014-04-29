@@ -1,6 +1,6 @@
 # GMail
 
-![](/img/gmail-compose-open.png)
+![](../img/gmail-compose-open.png)
 
 *Do you use GMail?
 

@@ -1,1 +1,1 @@
-![](/img/gmail-ct.jpg)
+![](../img/gmail-ct.jpg)

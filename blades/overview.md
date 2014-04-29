@@ -7,4 +7,4 @@ inter-changable.*
 
 ## What would a Blade look like in GMail?
 
-![](/img/gmail-compose-open-blades.png)
+![](../img/gmail-compose-open-blades.png)

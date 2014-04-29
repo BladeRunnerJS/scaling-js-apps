@@ -1,1 +1,1 @@
-![Application Complexity](/img/complexity.jpg)
+![Application Complexity](../img/complexity.jpg)

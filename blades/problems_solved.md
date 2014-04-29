@@ -1,3 +1,3 @@
 # What Problems do Blades Solve?
 
-![](/img/question-mark.jpg)
+![](../img/question-mark.jpg)

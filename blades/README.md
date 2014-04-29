@@ -1,3 +1,3 @@
 # Features & Blades
 
-![](/img/blade.png)
+![](../img/blade.png)

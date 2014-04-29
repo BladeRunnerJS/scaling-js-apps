@@ -1,3 +1,3 @@
 # Dependencies Required for Feature Development
 
-![](/img/single-feature-developer-dependencies.png)
+![](../img/single-feature-developer-dependencies.png)

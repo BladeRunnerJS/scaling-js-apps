@@ -1,1 +1,1 @@
-![Large Codebase](/img/large-codebase.jpg)
+![Large Codebase](../img/large-codebase.jpg)

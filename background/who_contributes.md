@@ -1,1 +1,1 @@
-![](/img/who-contributes.jpg)
+![](../img/who-contributes.jpg)

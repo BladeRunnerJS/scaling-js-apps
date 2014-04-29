@@ -1,3 +1,3 @@
 # What Problems do Services Solve?
 
-![](/img/question-mark.jpg)
+![](../img/question-mark.jpg)

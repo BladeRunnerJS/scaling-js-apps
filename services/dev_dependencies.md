@@ -1,3 +1,3 @@
 # App Dependencies in Development
 
-![](/img/developer-dependencies.png)
+![](../img/developer-dependencies.png)
