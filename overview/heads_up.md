@@ -20,7 +20,7 @@ As a heads-up, you should be aware of the following:
 
 If you come across a problem then:
 
-* Please *shout at us*. We're here to help. If you
+* Please *shout at us*. We're here to hel
 * Check if it's a known issue or a listed *Gotcha* then check out the [FAQ & Gotcha reference](/reference/faq_gotchas.html)
 * Consider adding the Q&A to the shared Google Doc
 

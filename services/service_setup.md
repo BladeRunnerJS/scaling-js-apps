@@ -1,1 +1,0 @@
-![](/img/dev-setup.png)

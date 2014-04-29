@@ -1,5 +1,18 @@
 # Configuring Services
 
+Easily swap service implementations:
+
+* When better versions become available
+* To interact with different services offering the same functionality
+* For different runtimes e.g.
+  * Tests
+  * Workbenches
+  * Aspects
+
+---
+
+## More Details
+
 Services can be configured in two ways; *via code* or *via configuration files*. In
 the exercises we're doing to use the configuration file option for development.
 We'll look at the code-based solution in the Feature Testing section.

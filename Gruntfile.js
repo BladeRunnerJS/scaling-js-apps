@@ -9,6 +9,8 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           '**/*.md',
+          '**/*.png',
+          '**/*.jpg',
           '!**/node_modules/**',
           '!**/_book/**'
         ],

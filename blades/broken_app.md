@@ -10,6 +10,6 @@ Reduce chances of merge conflicts or complete incompatibility.
 
 ## Run Feature in Isolation
 
-![](/img/messages-workbench.png)
+![](/img/workbench_v2.png)
 
 Broken code elsewhere won't stop your developing.

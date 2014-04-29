@@ -136,10 +136,10 @@ and the functionality that the file exposes is determined via assignment to `mod
 
 Enough hand-holding! Time for some real exercises:
 
-### Bind to the message property
+### Bind the message property
 
-In order to do this you'll need to update the view definition (`view.html`) with an
-appropriate `data-bind` property.
+In order to do this you'll need to update the `textarea` in the view definition
+(`view.html`) with an appropriate `data-bind` property.
 
 ##### Hint:
 
@@ -223,7 +223,7 @@ Server already running, not bothering to start a new instance...
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-E
+F
 Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (2.00 ms)
   Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (2.00 ms)
     InputViewModelTest.testDefaultMessageIsEmpty failed (2.00 ms): AssertError: expected "Hello!" but was ""
@@ -242,6 +242,8 @@ Let's fix that error by updating the test to check for an empty string:
 
 ```js
 var InputViewModelTest = TestCase( 'InputViewModelTest' );
+
+var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
   var model = new InputViewModel();

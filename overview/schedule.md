@@ -10,6 +10,6 @@
 | Composing Apps from Features                                | 20 mins         | 1 hr 40 mins  |
 | **Break**                                                   | 15 mins         | 1 hr 55 mins  |
 | Services, the ServiceRegistry & Inter-Feature communication | 50 mins         | 2 hrs 45 mins |
-| Composing Apps from Features that use services              | 30 mins         | 3 hrs 15 mins |
+| Using the App with Blades and Features                      | 30 mins         | 3 hrs 15 mins |
 | Explore...                                                  | 30 mins         | 3 hrs 45 mins |
 | Wrap-up                                                     | 15 mins         | 4 hrs 0 mins  |
