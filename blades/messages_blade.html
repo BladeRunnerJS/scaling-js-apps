@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.5" data-basepath=".." data-revision="1398697074587">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.5" data-basepath=".." data-revision="1398760557062">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -459,9 +459,9 @@ thousands of assets and thousands of lines of JavaScript.">
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_11">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="messages-blade-exercise-30-mins-">Messages Blade Exercise (30 mins)</h1>
+                        <h1 id="exercise-messages-blade-30-mins-">Exercise: Messages Blade (30 mins)</h1>
 <p>Your team is building the Messages Blade. Sweet!</p>
 <p>The Message Blade should have the following functionality:</p>
 <ul>
@@ -472,7 +472,7 @@ thousands of assets and thousands of lines of JavaScript.">
 <h2 id="create-the-blade">Create the Blade</h2>
 <p>You already have the application within the BladeRunnerJS installation. You&#39;ll
 also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
-BladeSets, we won&#39;t be using them, but out Blades will be located under this folder.</p>
+BladeSets, we won&#39;t be using them, but our Blades will be located under this folder.</p>
 <p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
 <pre><code>./brjs <span class="hljs-operator"><span class="hljs-keyword">create</span>-blade modularapp chat messages</span>
 </code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
@@ -491,13 +491,13 @@ and familiarise yourself with where things are.</p>
 <p>Open up the <code>messages/resources/html/view.html</code> file and make it look as follows:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.messages.view-template"</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span>&gt;</span>
 
-        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"messages-container"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message"</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-user-id"</span>&gt;</span>Some UserId<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-text"</span>&gt;</span>Some Test<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-timestamp"</span>&gt;</span>Some Timestamp<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages-container"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message-user-id"</span>&gt;</span>Some UserId<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message-text"</span>&gt;</span>Some Test<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message-timestamp"</span>&gt;</span>Some Timestamp<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
@@ -508,21 +508,21 @@ and familiarise yourself with where things are.</p>
 <p>Reload the Workbench to make sure this you see the fake data. We&#39;ll add the data bindings later.</p>
 <p>Next, let&#39;s add some styling. Update <code>messages/themes/standard/style.css</code> as follows:</p>
 <pre><code class="lang-css"><span class="hljs-comment">/* Message Blade container element */</span>
-<span class="hljs-class">.messages</span> <span class="hljs-rules">{
+<span class="hljs-class">.chat-messages</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">400</span>px</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
 <span class="hljs-rule">}</span></span>
 
 <span class="hljs-comment">/* individual message */</span>
-<span class="hljs-class">.message</span> <span class="hljs-rules">{
+<span class="hljs-class">.chat-message</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
 
     <span class="hljs-rule"><span class="hljs-attribute">margin-bottom</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-class">.message-user-id</span> <span class="hljs-rules">{
+<span class="hljs-class">.chat-message-user-id</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
@@ -535,11 +535,11 @@ and familiarise yourself with where things are.</p>
     <span class="hljs-rule"><span class="hljs-attribute">cursor</span>:<span class="hljs-value"> pointer</span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-class">.message-user-id</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+<span class="hljs-class">.chat-message-user-id</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"><span class="hljs-string">': '</span></span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-class">.message-text</span> <span class="hljs-rules">{
+<span class="hljs-class">.chat-message-text</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline-block</span></span>;
 
     <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
@@ -555,7 +555,7 @@ and familiarise yourself with where things are.</p>
     <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px
 </span></span></span>}
 
-<span class="hljs-class">.message-timestamp</span> <span class="hljs-rules">{
+<span class="hljs-class">.chat-message-timestamp</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
@@ -614,7 +614,7 @@ for this new file to be picked up. So, kill the existing server process and rest
 <h3 id="loop-over-the-messages-array-and-show-the-message-data">Loop over the messages Array and Show the Message Data</h3>
 <p>In order to do this you&#39;ll need to remove the fake data and update the view definition (<code>view.html</code>) with an
 appropriate <code>data-bind=&quot;foreach:...&quot;</code> property and value. Do this on the element with the class
-of <code>messages-container</code>.</p>
+of <code>chat-messages-container</code>.</p>
 <p>Once you&#39;ve done that, show the values of each of the MessageItemViewModel in their respective spans.
 You don&#39;t need any help on this one, just use <code>data-bind</code> for this.</p>
 <h3 id="check-your-work-in-the-workbench">Check your Work in the Workbench</h3>

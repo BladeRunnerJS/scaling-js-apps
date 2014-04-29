@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.6" data-basepath=".." data-revision="1398697074587">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="3.6" data-basepath=".." data-revision="1398760557062">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -461,7 +461,318 @@ thousands of assets and thousands of lines of JavaScript.">
                 
                     <section class="normal" id="section-gitbook_14">
                     
-                        <h1 id="user-card-blade-exercise-30-mins-">User Card Blade Exercise (30 mins)</h1>
+                        <h1 id="exercise-user-card-blade-30-mins-">Exercise: User Card Blade (30 mins)</h1>
+<p>Your team has landed the User Card Blade. Great catch!</p>
+<p>The User Card Blade should have the following functionality:</p>
+<ul>
+<li>Display information about a user</li>
+<li>Show based on a &#39;User Selected&#39; application interaction</li>
+<li>Hide when closed</li>
+</ul>
+<h2 id="create-the-blade">Create the Blade</h2>
+<p>You already have the application within the BladeRunnerJS installation. You&#39;ll
+also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
+BladeSets, we won&#39;t be using them, but our Blades will be located under this folder.</p>
+<p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
+<pre><code>./brjs <span class="hljs-operator"><span class="hljs-keyword">create</span>-blade modularapp chat usercard</span>
+</code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
+<code>apps/modularapp/chat-bladeset/blades/usercard</code>.</p>
+<p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
+<h2 id="view-the-blade-a-workbench">View the Blade a Workbench</h2>
+<p>Start the BRJS development server by running the following command from the <code>sdk</code>
+directory:</p>
+<pre><code>./brjs serve
+</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/chat-bladeset/blades/usercard/workbench/" target="_blank">http://localhost:7070/modularapp/chat-bladeset/blades/usercard/workbench/</a>
+to see your <em>amazing</em> Blade.</p>
+<p>Feel free to take a look around the Blade assets to see how the code is structured
+and familiarise yourself with where things are.</p>
+<h2 id="build-the-view">Build the View</h2>
+<p>Let&#39;s update the view to have the elements we need for our required functionality.</p>
+<p>Open up the <code>usercard/resources/html/view.html</code> file and make it look as follows:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.usercard.view-template"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-usercard"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-avatar"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-name"</span>&gt;</span>Some Name<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-company"</span>&gt;</span>Some Company<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-email"</span>&gt;</span>some@emailaddress.com<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-location"</span>&gt;</span>Some Location<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-default btn-xs usercard-close-btn"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"glyphicon glyphicon-remove"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p>Reload the Workbench to make sure this you see the fake data. We&#39;ll add the data bindings later.</p>
+<p>Next, let&#39;s add some styling. Update <code>usercard/themes/standard/style.css</code> as follows:</p>
+<pre><code class="lang-css"><span class="hljs-class">.chat-usercard</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> fixed</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">"Helvetica Neue"</span>, Helvetica, Arial, sans-serif</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">14</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">1.42857143</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#333</span></span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">300</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">min-height</span>:<span class="hljs-value"> <span class="hljs-number">75</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">70</span>px</span></span>;
+
+  <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">5</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">2</span>px <span class="hljs-number">3</span>px <span class="hljs-function">rgba(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,.<span class="hljs-number">3</span>)</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">2</span>px <span class="hljs-number">3</span>px <span class="hljs-function">rgba(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,.<span class="hljs-number">3</span>)</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#f7f7f9</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.usercard-avatar</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">50</span>px</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.usercard-close-btn</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">10</span>px</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>How does the Blade look in the Workbench now?</p>
+<p>Time to look at the View Model.</p>
+<h2 id="the-usercardviewmodel">The UsercardViewModel</h2>
+<p>Since you&#39;re now familiar with Knockout you&#39;ll know all about View Models; they
+are a logical representation of the view. A purist view would also be that there
+should be no business logic in a View Model, but we&#39;re building a reasonably simple
+Blade (but feel free to refactor afterwards).</p>
+<p>You can find the class definition for the User Card View Model in
+<code>src/modularapp/chat/usercard/UsercardViewModel.js</code>; yeah, sorry about the folder structure!</p>
+<p>Update the <code>UsercardViewModel</code> definition to look as follows:</p>
+<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-keyword">var</span> ko = <span class="hljs-built_in">require</span>( <span class="hljs-string">'ko'</span> );
+
+<span class="hljs-keyword">var</span> POSITION_DEFAULT = { x: <span class="hljs-string">'50%'</span>, y: <span class="hljs-number">0</span> };
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UsercardViewModel</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-keyword">this</span>.avatarUrl = ko.observable(<span class="hljs-string">''</span>);
+    <span class="hljs-keyword">this</span>.name = ko.observable(<span class="hljs-string">''</span>);
+    <span class="hljs-keyword">this</span>.company = ko.observable(<span class="hljs-string">''</span>);
+    <span class="hljs-keyword">this</span>.email = ko.observable(<span class="hljs-string">''</span>);
+    <span class="hljs-keyword">this</span>.location = ko.observable(<span class="hljs-string">''</span>);
+
+  <span class="hljs-keyword">this</span>.cardShown = ko.observable( <span class="hljs-literal">false</span> );
+    <span class="hljs-keyword">this</span>.position = ko.observable( pixelify( POSITION_DEFAULT ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pixelify</span><span class="hljs-params">( pos )</span> {</span>
+    <span class="hljs-keyword">var</span> newPos = {};
+    <span class="hljs-keyword">var</span> value;
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">var</span> prop <span class="hljs-keyword">in</span> pos ) {
+        value = pos[ prop ];
+        <span class="hljs-comment">// only add px to number values</span>
+        <span class="hljs-keyword">if</span>( <span class="hljs-built_in">isNaN</span>( value ) === <span class="hljs-literal">false</span> ) {
+            newPos[ prop ] = value + <span class="hljs-string">'px'</span>;
+        }
+        <span class="hljs-keyword">else</span> {
+            newPos[ prop ] = value;
+        }
+    }
+    <span class="hljs-keyword">return</span> newPos;
+}
+
+module.exports = UsercardViewModel;
+</code></pre>
+<p><strong>You&#39;ll noticed that the tooling supports Node.js-style <code>require( &#39;module&#39; )</code> calls
+and the functionality that the file exposes is determined via assignment to <code>module.exports</code>.</strong></p>
+<p>The first set of properties are pretty obvious - they hold the user information.</p>
+<p>The <code>cardShown</code> property is used to indicate if the Blade should be shown at all.
+This is because the User Card should only be shown if the user has requested to
+see more information about another user.</p>
+<p>The <code>position</code> property is required because the User Card may be shown next to
+the UI element that has been clicked on when selecting a user.</p>
+<p>Enough hand-holding! Time for some real exercises:</p>
+<h2 id="ensure-the-user-card-can-be-hidden-via-the-close-button">Ensure the User Card can be Hidden via the Close Button</h2>
+<p>Bind the <code>button</code> element to a click event which calls a <code>closeClicked</code> function
+on the View Model. It should also set the <code>cardShown</code> property to <code>false</code>.</p>
+<pre><code class="lang-js">UsercardViewModel.prototype.closeClicked = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( data, event )</span> {</span>
+  <span class="hljs-comment">// TODO: hide card</span>
+};
+</code></pre>
+<p>Over to you to to implement the click handler and add the appropriate data-bindings
+to the view (<code>view.html</code>).</p>
+<h5 id="hints">Hints</h5>
+<ul>
+<li>Use the <a href="">click binding</a> to set up the click event</li>
+<li>Use the <a href="http://knockoutjs.com/documentation/visible-binding.html" target="_blank">visible binding</a> to
+bind to this property to the element with the class of <code>chat-usercard</code></li>
+<li>Use the Workbench to check the close button works and the User Card is hidden</li>
+</ul>
+<h3 id="bind-the-user-properties-to-the-view">Bind the User Properties to the View</h3>
+<p>Start by binding the obvious user properties to the view. In order to do this
+you&#39;ll need to update the view definition with appropriate usage of
+<code>data-bind</code>.</p>
+<p>In order to test the binding without editing your application code you can use
+the Workbench.</p>
+<p>The Workbench code can be found in <code>chat-bladeset/blades/usercard/workbench/index.html</code>.</p>
+<p>You can easily add code to manipulate the properties on the View Model e.g.</p>
+<pre><code><span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> UsercardViewModel();
+model.name( <span class="hljs-string">'Jive Bunny'</span> );
+</code></pre><h5 id="hint-">Hint:</h5>
+<ul>
+<li>The <em>Visualise Knockout View Model</em> Workbench tool can be handy when checking
+the values of the Blade&#39;s View Model.</li>
+</ul>
+<h3 id="don-t-show-the-user-card-by-default">Don&#39;t Show the User Card by Default</h3>
+<p>By default the <code>cardShown</code> should be <code>false</code> this can make things difficult during
+development. We can use the Workbench to help here - open <code>workbench/index.html</code> and change
+the value to help development.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> UsercardViewModel();
+model.cardShown( <span class="hljs-literal">true</span> );
+</code></pre>
+<h3 id="set-the-position-of-the-user-card-if-time-">Set the Position of the User Card (if time)</h3>
+<p>When the user requests to see more information about a user they may do this via
+the UI. If that&#39;s the case the User Card should be positioned where the UI interaction
+was performed. Because of this it&#39;s necessary to be able to position the User
+Card via the <code>position</code> observable.</p>
+<p>This property should have a value with an <code>x</code> and <code>y</code> that can be set to
+<code>style.left</code> and <code>style.top</code> respectively. The <code>pixelify</code> function that
+we added to the View Model helps make sure any <code>Number</code> values are given
+a <code>px</code> suffix. Any other value types are left unaltered.</p>
+<p>So, use the KnockoutJS <a href="http://knockoutjs.com/documentation/style-binding.html" target="_blank">style binding</a>
+to set the position on the <code>class=&quot;chat-usercard&quot;</code> element.</p>
+<p>Once you&#39;ve added the binding create a <code>userSelected( data )</code> function that sets the user
+information as well as optionally supplying a position. The <code>data</code> parameter
+should take the following structure:</p>
+<pre><code class="lang-js">{
+  userId: <span class="hljs-built_in">String</span>
+  position: {
+    x: <span class="hljs-built_in">Number</span>,
+    y: <span class="hljs-built_in">Number</span>
+  }
+}
+</code></pre>
+<p>For now, concentrate on ensuring the function can handle the <code>position</code> property
+is optional on the <code>data</code> parameter. We&#39;ll deal with user data later.</p>
+<pre><code class="lang-js">UsercardViewModel.prototype.userSelected = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( data )</span> {</span>
+    <span class="hljs-comment">// TODO: set position</span>
+};
+</code></pre>
+<h5 id="hint">Hint</h5>
+<ul>
+<li>Use the Workbench to set the <code>position</code> property and make sure everything is working
+as expected.</li>
+<li>Default to the values set in the <code>POSITION_DEFAULT</code> variable</li>
+<li>Use the Workbench to call the <code>userSelected</code> function with different parameters</li>
+</ul>
+<h2 id="test-the-usercardviewmodel">Test the UsercardViewModel</h2>
+<p>A key part of building a quality maintainable application is that it&#39;s tested. So,
+let&#39;s write a test that checks the User Card defaults to not being shown.</p>
+<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and update <code>UsercardViewModelTest.js</code>
+as follows:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> UsercardViewModelTest = TestCase( <span class="hljs-string">'UsercardViewModelTest'</span> );
+
+<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/usercard/UsercardViewModel'</span> );
+
+UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> UsercardViewModel();
+  assertTrue( model.cardShown() );
+};
+</code></pre>
+<p><em>Yeah, this will fail! We&#39;ll fix that shortly.</em></p>
+<h3 id="running-tests">Running Tests</h3>
+<p>There are lots of testing tools available. BladeRunnerJS comes with <a href="https://code.google.com/p/js-test-driver/" target="_blank">js-test-driver</a>
+built-in.</p>
+<p>In order to run the tests you first need to start the test server. From the <code>sdk</code>
+directory run:</p>
+<pre><code><span class="hljs-built_in">.</span>/brjs test<span class="hljs-attribute">-server</span> <span class="hljs-subst">--</span>no<span class="hljs-attribute">-browser</span>
+</code></pre><p>In your browser navigate to <a href="http://localhost:4224/capture" target="_blank">http://localhost:4224/capture</a>. This is the browser window/tab
+that the test server will instruct to execute your tests.</p>
+<p>Now that the test server is running open another terminal/command prompt and execute
+the following from the <code>sdk</code> directory:</p>
+<pre><code><span class="hljs-built_in">.</span>/brjs test <span class="hljs-built_in">..</span>/apps/modularapp/chat<span class="hljs-attribute">-bladeset</span>/blades/usercard
+</code></pre><p>This will execute all the tests it finds within that directory. For now, this
+is just the single test that we&#39;ve written.</p>
+<p>You should see output similar to the following:</p>
+<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+Java HotSpot(TM) <span class="hljs-number">64</span>-Bit Server VM warning: ignoring option MaxPermSize=<span class="hljs-number">128</span>M; support was removed <span class="hljs-operator">in</span> <span class="hljs-number">8.0</span>
+creating plugins
+performing node discovery
+making plugins available via model
+BladeRunnerJS <span class="hljs-built_in">version</span>: v0<span class="hljs-number">.7</span>-<span class="hljs-number">0</span>-gff6e9cb, built: <span class="hljs-number">14</span> April <span class="hljs-number">2014</span> <span class="hljs-number">15</span>:<span class="hljs-number">53</span> BST
+
+Server already running, <span class="hljs-operator">not</span> bothering <span class="hljs-built_in">to</span> start <span class="hljs-operator">a</span> <span class="hljs-built_in">new</span> instance...
+
+Testing tests (UTs):
+Chrome: Reset
+Chrome: Reset
+F
+Total <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">0</span>; Fails: <span class="hljs-number">1</span>; Errors: <span class="hljs-number">0</span>) (<span class="hljs-number">3.00</span> ms)
+  Chrome <span class="hljs-number">34.0</span><span class="hljs-number">.1847</span><span class="hljs-number">.131</span> Mac OS: Run <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">0</span>; Fails: <span class="hljs-number">1</span>; Errors <span class="hljs-number">0</span>) (<span class="hljs-number">3.00</span> ms)
+    UsercardViewModelTest.testCardShownDefaultsToFalse failed (<span class="hljs-number">3.00</span> ms): AssertError: expected <span class="hljs-constant">true</span> but was <span class="hljs-constant">false</span>
+      Error: expected <span class="hljs-constant">true</span> but was <span class="hljs-constant">false</span>
+          <span class="hljs-keyword">at</span> UsercardViewModelTest.testCardShownDefaultsToFalse (<span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">4224</span>/test/tests/UsercardViewModelTest.js:<span class="hljs-number">7</span>:<span class="hljs-number">21</span>)
+
+Tests failed: Tests failed. See <span class="hljs-built_in">log</span> <span class="hljs-keyword">for</span> details.
+Tests Failed.
+
+- Time Taken: <span class="hljs-number">2</span><span class="hljs-built_in">secs</span>
+Error:
+  Test failure <span class="hljs-operator">or</span> error <span class="hljs-keyword">while</span> running tests.
+</code></pre><p>Let&#39;s fix that error by updating the test to correctly <code>assertFalse</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> UsercardViewModelTest = TestCase( <span class="hljs-string">'UsercardViewModelTest'</span> );
+
+<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/usercard/UsercardViewModel'</span> );
+
+UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> UsercardViewModel();
+  assertFalse( model.cardShown() );
+};
+</code></pre>
+<p>If you run the <code>brjs test</code> command the test will now pass:</p>
+<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+Java HotSpot(TM) <span class="hljs-number">64</span>-Bit <span class="hljs-built_in">Server</span> VM warning: ignoring <span class="hljs-keyword">option</span> MaxPermSize=<span class="hljs-number">128</span>M; support was removed <span class="hljs-keyword">in</span> <span class="hljs-number">8.0</span>
+creating plugins
+performing node discovery
+making plugins available via model
+BladeRunnerJS version: v0<span class="hljs-number">.7</span>-<span class="hljs-number">0</span>-gff6e9cb, built: <span class="hljs-number">14</span> April <span class="hljs-number">2014</span> <span class="hljs-number">15</span>:<span class="hljs-number">53</span> BST
+
+<span class="hljs-built_in">Server</span> already running, <span class="hljs-keyword">not</span> bothering <span class="hljs-keyword">to</span> start a <span class="hljs-keyword">new</span> instance...
+
+Testing tests (UTs):
+Chrome: Reset
+Chrome: Reset
+.
+Total <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">1</span>; Fails: <span class="hljs-number">0</span>; Errors: <span class="hljs-number">0</span>) (<span class="hljs-number">2.00</span> ms)
+  Chrome <span class="hljs-number">34.0</span><span class="hljs-number">.1847</span><span class="hljs-number">.131</span> Mac OS: Run <span class="hljs-number">1</span> tests (Passed: <span class="hljs-number">1</span>; Fails: <span class="hljs-number">0</span>; Errors <span class="hljs-number">0</span>) (<span class="hljs-number">2.00</span> ms)
+Tests Passed.
+
+- <span class="hljs-built_in">Time</span> Taken: <span class="hljs-number">2</span>secs
+</code></pre><p>We&#39;ve now written our first test and made it pass.</p>
+<p>For full details see the <a href="http://bladerunnerjs.org/docs/use/running_tests/" target="_blank">Running Test documentation</a>.</p>
+<h3 id="additional-tests">Additional Tests</h3>
+<p>Now that you know how to write and run tests you can also write test that assert
+the functionality the Blade is to provide:</p>
+<ul>
+<li>Test your handling of the optional <code>data.position</code> parameter to the <code>userSelected</code> function</li>
+<li>If time, check the <code>UsercardViewModel</code> properties are initialised as expected from the
+data structure that&#39;s passed to its constructor</li>
+</ul>
+<p><em>Heads Up! test functions must have a name with the <code>test</code> prefix e.g. <code>testThisThing</code></em></p>
+<h2 id="basic-blade-functionality-complete-push-to-github">Basic Blade Functionality Complete - push to github</h2>
+<p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
+commit your changes locally and push them to github.</p>
+<ul>
+<li><code>git add chat-bladeset/blades/usercard</code></li>
+<li><code>git commit -m &#39;basic user card blade functionality&#39;</code></li>
+<li><code>git pull origin master</code></li>
+<li>Fix any merge conflicts - <em>there shouldn&#39;t be any</em></li>
+<li><code>git push origin master</code></li>
+</ul>
+<h2 id="where-next-">Where next?</h2>
+<p>If you&#39;ve completed this really quickly you can always try creating another Blade.</p>
 
                     
                     </section>

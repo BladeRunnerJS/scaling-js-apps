@@ -38,7 +38,7 @@ thousands of assets and thousands of lines of JavaScript.">
     </head>
     <body>
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.6" data-basepath=".." data-revision="1398697074587">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.6" data-basepath=".." data-revision="1398760557062">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -461,7 +461,303 @@ thousands of assets and thousands of lines of JavaScript.">
                 
                     <section class="normal" id="section-gitbook_31">
                     
-                        <h1 id="user-card-services-exercise">User Card &amp; Services Exercise</h1>
+                        <h1 id="exercise-user-card-services">Exercise: User Card &amp; Services</h1>
+<p>The following doesn&#39;t give you a step-by-step guide of what to do. It gives you
+a number of individual pieces and you need to put them together in order to meet
+the main feature requirement of the User Card Blade:</p>
+<blockquote>
+<p>When an interaction occurs within the application that indicates more information
+about a user is to be shown the User Card will appear and show that information</p>
+</blockquote>
+<p>The User Card Blade uses two services which will enable you to achieve this functionality:</p>
+<ul>
+<li>The User Service to take a use ID and get more information about that user</li>
+<li>The EventHub in order to be informed of <code>user-selected</code> interactions</li>
+</ul>
+<p>We&#39;re nearly ready to start coding. But before we do let&#39;s do a little bit of setup.</p>
+<h2 id="service-configuration">Service Configuration</h2>
+<p>As we said, a nice team have put together some fake services to help us develop
+our Blade&#39;s functionality. In order to configure the services you need to know
+the require path to these implementations. Of course, we do. So, open up the configuration
+file for the Workbench, which you&#39;ll find here:
+<code>chat-bladeset/blades/usercard/workbench/resources/aliases.xml</code>, and update it as
+follows:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">aliases</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schema.caplin.com/CaplinTrader/aliases"</span> <span class="hljs-attribute">useScenario</span>=<span class="hljs-value">"dev"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"userservice.FakeUserService"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">aliases</span>&gt;</span>
+</code></pre>
+<p><em>Yes, it&#39;s XML</em>. What can we say! Anyway, we&#39;ve now actually configured:</p>
+<ul>
+<li><code>user.service</code> to use a fake User Service implementation</li>
+</ul>
+<p>Now that the helper service is in place, we can get to work.</p>
+<h2 id="bind-to-user-selected-interaction-events">Bind to User Selected Interaction Events</h2>
+<p>By this we mean bind to <code>user-selected</code> that have been triggered by other parts
+of the application that know doing this will result in other parts of the app
+doing something. In this case it&#39;s the User Card displaying information about a
+selected user.</p>
+<p>In order for this to work the publisher and subscriber need to know three things:</p>
+<ul>
+<li>The channel to publish (trigger) the event on - the channel name is <code>user</code></li>
+<li>The name of the event to trigger - we&#39;ve agreed upon <code>user-selected</code></li>
+<li>The payload of the event data</li>
+</ul>
+<p>From earlier you&#39;ll remember that the latter is in the form:</p>
+<pre><code class="lang-js">{
+  userId: <span class="hljs-built_in">String</span>
+  position: {
+    x: <span class="hljs-built_in">Number</span>,
+    y: <span class="hljs-built_in">Number</span>
+  }
+}
+</code></pre>
+<p>So, here are the pieces of the puzzle that you need to put together in order
+for the User Card to be informed of these events:</p>
+<p>Firstly, you need to get hold of the <code>EventHub</code> from the <code>ServiceRegistry</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
+<span class="hljs-keyword">this</span>._eventHub = ServiceRegistry.getService( <span class="hljs-string">'br.event-hub'</span> );
+</code></pre>
+<p>Channels can be retrieved from the EventHub:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> channel = <span class="hljs-keyword">this</span>._eventHub.channel( <span class="hljs-string">'user'</span> );
+</code></pre>
+<p>Events are bound to on the Channel as follows, with the second parameter being
+the handling function and the third the content. By using <code>this</code> as the context
+we can ensure it will refer to the <code>UsercardViewModel</code> instance so we easily have
+access to other member variables. From earlier, you&#39;ll already have a <code>userSelected</code>
+function:</p>
+<pre><code class="lang-js">channel.on( <span class="hljs-string">'user-selected'</span>, <span class="hljs-keyword">this</span>.userSelected, <span class="hljs-keyword">this</span> );
+</code></pre>
+<p>Now you should be able to build a good picture of the functionality to handle
+<code>user-selected</code> events.</p>
+<h5 id="hints">Hints</h5>
+<ul>
+<li>You can trigger events from the JavaScript console to test your functionality.
+Try entering the following:</li>
+</ul>
+<pre><code class="lang-js">ServiceRegistry.getService( <span class="hljs-string">'br.event-hub'</span> )
+  .channel( <span class="hljs-string">'user'</span> )
+    .trigger( <span class="hljs-string">'user-selected'</span>, { userId: <span class="hljs-string">'testUser'</span> } );
+</code></pre>
+<ul>
+<li>The Workbench has an <em>EventHub Logging</em> tool that can be useful to make sure
+the <code>UsercardViewModel</code> is correcting interacting with the <code>EventHub</code> service.</li>
+</ul>
+<h2 id="fetch-user-information-from-the-user-service">Fetch User Information from the User Service</h2>
+<p>In order to display additional user information you need to get that information
+from the User Service.</p>
+<p>Get the User Service instance that&#39;s been set up from the `ServiceRegistry:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
+<span class="hljs-keyword">this</span>._userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+</code></pre>
+<p>The <code>userSelected</code> callback provides access to a unique identifier to the user -
+the <code>data.userId</code> property - so we need to get hold of that an use it with the
+User Service <code>getUser( userId, listener )</code> function.</p>
+<pre><code class="lang-js">UsercardViewModel.prototype.userSelected = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( data )</span> {</span>
+    <span class="hljs-keyword">this</span>._userService.getUser( data.userId, <span class="hljs-keyword">this</span> );
+
+    <span class="hljs-comment">// Leave existing positioning handling code here.</span>
+};
+</code></pre>
+<p>The fact that there&#39;s a <code>listener</code> object being passed in tells you that this is
+an asynchronous call. In JavaScript there are a number of ways to listen for callbacks.
+We&#39;ve found that although passing in listeners that have to implement contracts
+(in the same way as services do) can be a bit more effort, it can result in
+a much more robust solution. There are of course times where passing in a <code>function</code>
+will be fine.</p>
+<p>Anyway, in this case we need to pass in an object that implements
+two functions:</p>
+<ul>
+<li><code>userRetrieved( user )</code> called when the user is successfully retrieved</li>
+<li><code>userRetrievalFailed( code, message )</code> called if there is a problem - <em>we don&#39;t expect this</em></li>
+</ul>
+<p>One way of achieving this is by <code>UsercardViewModel</code> a listener by implementing these functions
+and passing a reference to <code>this</code> in as the <code>listener</code>.</p>
+<pre><code class="lang-js">UsercardViewModel.prototype.userRetrieved = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( user )</span> {</span>
+  <span class="hljs-comment">// TODO: update the user properties with the appropriate values</span>
+
+  <span class="hljs-comment">// TODO: show the User Card</span>
+};
+
+UsercardViewModel.prototype.userRetrievalFailed = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( code, message )</span> {</span>
+  <span class="hljs-comment">// Something has gone wrong!</span>
+  <span class="hljs-comment">// TODO: Panic!</span>
+};
+</code></pre>
+<p>The <code>user</code> object provides the required information via a <code>data</code> property and
+sub-properties:</p>
+<pre><code class="lang-js">{
+  data: {
+    login: <span class="hljs-built_in">String</span> <span class="hljs-comment">// the same as the provided userId</span>
+    avatar_url: <span class="hljs-built_in">String</span> <span class="hljs-comment">// a Url to an avatar</span>
+    name: <span class="hljs-built_in">String</span>, <span class="hljs-comment">// display name</span>
+    email: <span class="hljs-built_in">String</span>,
+    company: <span class="hljs-built_in">String</span>,
+    location: <span class="hljs-built_in">String</span>
+  }
+}
+</code></pre>
+<p>You&#39;ll find there&#39;s even more information on the <code>data</code> property. Full details
+can be found on the <a href="https://developer.github.com/v3/users/#get-a-single-user" target="_blank">GitHub getUsers Get a single user docs</a>.</p>
+<p>This should provide you with enough information to get all the appropriate
+moving parts in place. Don&#39;t worry, the provided <code>FakeUserService</code> is set up
+to make development easier by providing fake user information for any <code>userId</code>.</p>
+<h4 id="hint-use-the-github-api-to-get-real-user-data-during-development">Hint: Use the GitHub API to Get Real User Data During Development</h4>
+<p>The <code>FakeUserService</code> knows how to get data from GitHub - where the live app will
+get its data. You can turn this on by calling <code>setUserDataFetcher( &#39;github&#39; )</code> on
+the User Service instance.</p>
+<p>To keep your application code clean you should set this within your Workbench
+(<code>workbench/index.html</code>).</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+userService.setUserDataFetcher( <span class="hljs-string">'github'</span> );
+</code></pre>
+<p>When you do this you&#39;ll need to ensure that the <code>userId</code> you provide is a valid
+GitHub username or the <code>userRetrievalFailed</code> callback will be called.</p>
+<h2 id="testing-features">Testing Features</h2>
+<p><em>Before we start, you need to copy the contents of <code>aliases.xml</code> from the Workbench
+into <code>usercard/tests/test-unit/js-test-driver/resources/aliases.xml</code>.</em></p>
+<p>In the services overview we talked about how using MVVM and Services allows us to
+test full features in isolation. In this part of the exercise we&#39;re going to do
+exactly that. We&#39;ll demonstrate how to achieve two types of test:</p>
+<ol>
+<li>Create an instance of the View Model, interact with it, and ensure that
+it results in the expected service interactions.</li>
+<li>Force the Service to interact with the View Model and then verify the View Model state.</li>
+</ol>
+<p>This way we&#39;re testing how UI interactions result in service interactions and how
+service events are reflected in UI state.</p>
+<p>Let&#39;s start by creating a new file called <code>UsercardFeatureTest.js</code> in <code>usercard/tests/test-unit/js-test-driver/tests/</code>
+and update it to look as follows to add the Test Suite:</p>
+<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-built_in">require</span>( <span class="hljs-string">'jasmine'</span> );
+
+<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/usercard/UsercardViewModel'</span>);
+<span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
+
+describe( <span class="hljs-string">'The User Card'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+
+} );
+</code></pre>
+<p><em>Note: You could call this file UsercardSpecTest.js</em>.</p>
+<p>The first thing to notice is that we&#39;re using Jasmine, and specifcially we&#39;re using
+<a href="http://jasmine.github.io/1.3/introduction.html" target="_blank">Jasmine 1.3</a> as it ships with BRJS.</p>
+<h3 id="testing-service-interactions">Testing Service Interactions</h3>
+<p>As with anything in software it&#39;s possible to achieve the same thing in multiple ways.
+For example, we can test service interactions by:</p>
+<ul>
+<li>Spying on interactions with a service that is already registered with the ServiceRegistry</li>
+<li>Add functionality to Fake services that lets us check interactions</li>
+<li>Replace the User Service in the <code>ServiceRegistry</code> with a Mock object</li>
+</ul>
+<p>Since we&#39;re using Jasmine, we&#39;ll use <a href="http://j.mp/PITNqK" target="_blank">Spies</a>, but we&#39;ll also demonstrate how the
+Fake service, that was developed really to help our development within the
+Workbench, is also useful here.</p>
+<h3 id="testing-feature-service-interactions-using-spies">Testing Feature Service Interactions using Spies</h3>
+<p><em>Whoops! Since the User Card doesn&#39;t allow for any user action that results in a
+service interaction, we can&#39;t write a test for this scenario.</em></p>
+<h3 id="testing-feature-viewmodel-state-using-a-fake-service">Testing Feature ViewModel State using a Fake Service</h3>
+<p>But we can make up for it by seeing how the two services the User Card uses
+can impact the state of the View Model. The User Card uses both the  EventHub,
+to see the affect of <code>user-selected</code> events, and the User Service, to ensure
+user data is shown as expected.</p>
+<h4 id="the-user-card-should-be-shown-following-a-user-selection">The User Card Should be Shown Following a User Selection</h4>
+<p>From earlier we know all about user selection interactions and how they are indicated
+within the app by an event being triggered on the <code>EventHub</code>. Well, let&#39;s test
+that scenario and ensure that the User Card is shown.</p>
+<p>In order to do this we need to trigger the appropriate event on the <code>EventHub</code> and
+pass event data in the correct format. Also, the User Service must return with
+a valid user for this to work.</p>
+<p>For this test we can let the <code>FakeUserService</code> help us out by always returning
+user data for any <code>userId</code>. <em>However</em>, we will need to call upon Jasmine&#39;s very handy
+<code>jasmine.Clock</code> to help us work around the User Service <code>getUser</code> function being
+asynchronous.</p>
+<p>Here&#39;s the test template - just fill in the blanks:</p>
+<pre><code class="lang-js">describe( <span class="hljs-string">'The User Card'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+
+  it( <span class="hljs-string">'Should show the User Card when a User Selected event occurs'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    jasmine.Clock.useMock();
+
+    <span class="hljs-keyword">var</span> eventHub = ServiceRegistry.getService( <span class="hljs-string">'br.event-hub'</span> );
+
+    <span class="hljs-keyword">var</span> usercardViewModel = <span class="hljs-keyword">new</span> UsercardViewModel();
+
+    <span class="hljs-comment">// TODO: trigger 'user-selected' event on 'user' channel</span>
+
+    jasmine.Clock.tick( <span class="hljs-number">1</span> );
+
+    <span class="hljs-comment">// Assert</span>
+    <span class="hljs-comment">// expect( ... );</span>
+  } );
+
+} );
+</code></pre>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>We&#39;ll think of something useful to add here in the future. If you&#39;ve any suggestions
+please let us know.</li>
+</ul>
+<h4 id="the-user-card-should-display-the-information-returned-by-the-user-service">The User Card Should Display the Information Returned by the User Service</h4>
+<p>Add another spec to <em>The User Card</em> test suite. This time you should ensure that
+the information that the User Service returns.</p>
+<p>In order to do this we again need to call upon the <code>FakeUserService</code>. This time
+we can use the <code>addUser</code> function that some of the other teams will have been using
+during their development. In order for it to behave appropriately you&#39;ll need
+to ensure that the <code>user</code> object has both a <code>userId</code> and <code>data</code> property with some
+of the expected data set e.g.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> user = {
+  userId: <span class="hljs-string">'crazyLegs'</span>,
+  data: {
+    avatar_url: <span class="hljs-string">'http://stream1.gifsoup.com/view2/1414597/crazy-legs-o.gif'</span>,
+    login: <span class="hljs-string">'crazylegs'</span>,
+    company: <span class="hljs-string">'Disney'</span>,
+    name: <span class="hljs-string">'Dancin\' Dude!'</span>
+  }
+};
+userService.addUser( user );
+</code></pre>
+<p>Now you&#39;re ready to complete the test.</p>
+<pre><code class="lang-js">  it( <span class="hljs-string">'Should show the user information that the User Service provides'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    jasmine.Clock.useMock();
+
+    <span class="hljs-keyword">var</span> eventHub = ServiceRegistry.getService( <span class="hljs-string">'br.event-hub'</span> );
+    <span class="hljs-keyword">var</span> userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+
+    <span class="hljs-comment">// TODO: add fake data to User Service</span>
+
+    <span class="hljs-keyword">var</span> usercardViewModel = <span class="hljs-keyword">new</span> UsercardViewModel();
+
+    <span class="hljs-comment">// TODO: trigger 'user-selected' event on 'user' channel as done earlier</span>
+
+    jasmine.Clock.tick( <span class="hljs-number">1</span> );
+
+    <span class="hljs-comment">// Assert</span>
+    <span class="hljs-comment">// expect( usercardViewModel.name() ).toBe( ... );</span>
+    <span class="hljs-comment">// expect( ... )</span>
+
+  } );
+</code></pre>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>We&#39;ll think of something useful to add here in the future. If you&#39;ve any suggestions
+please let us know.</li>
+</ul>
+<h2 id="congrats-service-interaction-complete-">Congrats - Service Interaction Complete!</h2>
+<p>Our Blade is now interacting with two services and we&#39;ve tested Services through
+to the UI, but we didn&#39;t get a chance to test View Model through to Service. If
+you&#39;ve time you can take a look at the other Blades &amp; Services excercises!</p>
+<p>For now, it&#39;s time to commit those changes and push them to github:</p>
+<ul>
+<li><code>git add chat-bladeset/blades/usercard</code></li>
+<li><code>git commit -m &#39;integrating user card blade with services&#39;</code></li>
+<li><code>git pull origin master</code></li>
+<li>Fix any merges - there shouldn&#39;t be any</li>
+<li><code>git push origin master</code></li>
+</ul>
+<h2 id="where-next-">Where Next?</h2>
+<p>If you&#39;ve time you can take a look at the other Blades &amp; Services exercises so
+that you can see View through to Service testing. Or you can see how the other
+teams in your company are getting on. Can you help them out?</p>
+<p>Then, we&#39;ll see how our application looks.</p>
 
                     
                     </section>
