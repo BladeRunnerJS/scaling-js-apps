@@ -1,4 +1,4 @@
-# Services make Workbenches Really Useful
+# Services Facilitate Workbenches
 
 ![](../img/messages-workbench-marked.png)
 

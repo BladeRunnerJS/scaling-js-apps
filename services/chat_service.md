@@ -8,11 +8,9 @@ var chatService = ServiceRegistry.getService( 'chat.service' );
 
 It allows you to:
 
-* setCurrentUser( user )
-* getCurrentUser( listener )
-* getUsers( listener )
-* getUser( userId, listener )
 * .on( 'new-message', function() { } )
+* sendMessage( message )
+* getMessages( listener )
 
 You can find the definition of the User Service in:
 `modularapp/libs/chatservice/src/ChatService.js`.
