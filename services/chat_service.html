@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Exercise: Messages Blade &amp; Services | Jump to an Exercise:</title>
+        <title>Chat Service | Jump to an Exercise:</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../services/usercard_services.html" />
+        <link rel="next" href="../services/exercises_overview.html" />
         
         
-        <link rel="prev" href="../services/input_services.html" />
+        <link rel="prev" href="../services/user_service.html" />
         
 
-        <meta property="og:title" content="Exercise: Messages Blade &amp; Services | Jump to an Exercise:">
+        <meta property="og:title" content="Chat Service | Jump to an Exercise:">
         <meta property="og:site_name" content="Jump to an Exercise:">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.14" data-basepath=".." data-revision="1398897934925">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.11" data-basepath=".." data-revision="1398897934925">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -108,7 +108,7 @@
             <a href="https://github.com/BladeRunnerJS/scaling-js-apps/issues" target="blank">Questions and Issues</a>
         </li>
         <li>
-            <a href="https://github.com/BladeRunnerJS/scaling-js-apps/edit/master/services/messages_services.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/BladeRunnerJS/scaling-js-apps/edit/master/services/chat_service.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
         
@@ -635,7 +635,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 74.13793103448276%;min-width: 72.41379310344827%;"></div>
+        <div class="inner" style="width: 68.96551724137932%;min-width: 67.24137931034483%;"></div>
     </div>
     <div class="chapters">
     
@@ -721,11 +721,11 @@
     
         <a href="../services/chat_service.html" title="Chat Service" class="chapter done " data-progress="6.11" style="left: 68.96551724137932%;"></a>
     
-        <a href="../services/exercises_overview.html" title="Exercises Overview" class="chapter done " data-progress="6.12" style="left: 70.6896551724138%;"></a>
+        <a href="../services/exercises_overview.html" title="Exercises Overview" class="chapter  " data-progress="6.12" style="left: 70.6896551724138%;"></a>
     
-        <a href="../services/input_services.html" title="Exercise: Input Blade &amp; Services" class="chapter done " data-progress="6.13" style="left: 72.41379310344827%;"></a>
+        <a href="../services/input_services.html" title="Exercise: Input Blade &amp; Services" class="chapter  " data-progress="6.13" style="left: 72.41379310344827%;"></a>
     
-        <a href="../services/messages_services.html" title="Exercise: Messages Blade &amp; Services" class="chapter done " data-progress="6.14" style="left: 74.13793103448276%;"></a>
+        <a href="../services/messages_services.html" title="Exercise: Messages Blade &amp; Services" class="chapter  " data-progress="6.14" style="left: 74.13793103448276%;"></a>
     
         <a href="../services/usercard_services.html" title="Exercise: User Card Blade &amp; Services" class="chapter  " data-progress="6.15" style="left: 75.86206896551724%;"></a>
     
@@ -762,265 +762,81 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_50">
+                    <section class="normal" id="section-gitbook_52">
                     
-                        <h1 id="exercise-messages-services">Exercise: Messages &amp; Services</h1>
-<p>The following doesn&#39;t give you a step-by-step guide of what to do. It gives you
-a number of individual pieces and you need to put them together in order to meet
-the main feature requirement of the Messages Blade:</p>
-<blockquote>
-<p>Display message details that are received from the Chat Service</p>
-</blockquote>
-<p>The Messages Blade uses two services which will enable you to achieve this functionality:</p>
-<ul>
-<li>The Chat Service in order to receive messages</li>
-<li>The EventHub in order to broadcast when a user ID is a message is selected</li>
-</ul>
-<p>We&#39;re nearly ready to start coding. But before we do let&#39;s do a little bit of setup.</p>
-<h2 id="service-configuration">Service Configuration</h2>
-<p>As we said, a nice team have put together some fake services to help us develop
-our Blade&#39;s functionality. In order to configure the services you need to know
-the require path to these implementations. Of course, we do. So, open up the configuration
-file for the Workbench, which you&#39;ll find here:
-<code>chat-bladeset/blades/messages/workbench/resources/aliases.xml</code>, and update it as
-follows:</p>
-<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">aliases</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schema.caplin.com/CaplinTrader/aliases"</span> <span class="hljs-attribute">useScenario</span>=<span class="hljs-value">"dev"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chat.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chatservice.FakeChatService"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">aliases</span>&gt;</span>
-</code></pre>
-<p><em>Yes, it&#39;s XML</em>. What can we say! Anyway, we&#39;ve now actually configured:</p>
-<ul>
-<li><code>chat.service</code> to use a fake chat service implementation</li>
-</ul>
-<p>Now that the helper service is in place, we can get to work.</p>
-<h2 id="get-the-existing-messages-from-the-chat-service">Get the Existing Messages from the Chat Service</h2>
-<p>In order to get the Chat Service we first need to get the <code>ServiceRegistry</code>.
-Update your <code>MessagesViewModel</code> accordingly e.g.</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
-</code></pre>
-<p>To get the list of existing messages we need to retrieve the Chat Service
-from the <code>ServiceRegistry</code>.</p>
-<pre><code class="lang-js"><span class="hljs-keyword">this</span>._chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
-</code></pre>
-<p>The Chat Service exposes a <code>getMessages</code> function that takes a <code>listener</code>.</p>
-<pre><code class="lang-js"><span class="hljs-keyword">this</span>._chatService.getMessages( listener );
-</code></pre>
-<p>The listener should implement two callback functions; <code>messagesRetrieved</code> and
-<code>messageRetrievalFailed</code>. This can be achieved by passing in an object literal that defines these functions,
-or by making the <code>MessagesViewModel</code> implement them and passing in <code>this</code> as the listener.</p>
-<p>We&#39;ve found that although passing in listeners that have to implement contracts
-(in the same way as services do) can be a bit more effort, it can result in
-a much more robust solution. There are of course times where passing in a <code>function</code>
-will be fine.</p>
-<p>Here&#39;s how you make the <code>MessagesViewModel</code> fulfil the listener contract:</p>
-<pre><code class="lang-js">MessagesViewModel.prototype.messagesRetrieved = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( messages )</span> {</span>
-  <span class="hljs-comment">// add the messages to the `messages` View Model Array</span>
-};
-
-MessagesViewModel.prototype.messageRetrievalFailed = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-  <span class="hljs-comment">// Something has gone wrong.</span>
-};
-</code></pre>
-<p>From there you need to add the messages to the <code>messages</code> ObservableArray.</p>
-<p>Once this is complete you should see a full list of existing messages in the
-Workbench UI.</p>
-<h5 id="hints-">Hints:</h5>
-<p>You&#39;ll remember that when we were focusing on just building the <code>MessagesViewModel</code>
-we added calls to <code>viewModel.addMessage</code> in the Workbench. Now we want to make
-sure that the View Model is interacting with the Chat Service. So, in the Workbench
-you can replace the calls to <code>viewModel.addMessage</code> with code that fetches
-the Chat Service and calls <code>sendMessage</code> on it; this will store the messages so that
-calls to <code>getMessages</code> return those messages.</p>
-<p>The code looks something like this:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">this</span>._chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
-<span class="hljs-keyword">this</span>._chatService.sendMessage( { userId: <span class="hljs-string">'testUser'</span>, text: <span class="hljs-string">'Word Up!'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()  } );
-</code></pre>
-<h2 id="display-new-messages-from-the-chat-service">Display New Messages from the Chat Service</h2>
-<p>The Chat Service emits a <code>new-message</code> event whenever a new message becomes available.
-So, in order to be informed when that happens you need to bind to that event <code>on</code>
-the Chat Service.</p>
-<p><em>You should only bind to this event once you have the initial list of messages.
-This avoids accidentally adding newer messages before the older ones, dealing with
-duplicates and reordering. This can be done in <code>messagesRetrieved</code>.</em></p>
-<p>An example of doing this, calling a function on the <code>MessagesViewModel</code> and maintaining
-the <code>this</code> context is:</p>
-<pre><code class="lang-js"><span class="hljs-comment">// do this within an instance function</span>
-<span class="hljs-keyword">this</span>._chatService.on( <span class="hljs-string">'new-message'</span>, <span class="hljs-keyword">this</span>.handleNewMessage, <span class="hljs-keyword">this</span> );
-</code></pre>
-<h4 id="hints">Hints</h4>
-<h5 id="a-chat-workbench-tool">A Chat Workbench Tool</h5>
-<p>As part of developing the Chat Service one of the teams added a Chat Workbench Tool.
-This can be added to the Workbench really easily. Just add the following to the end
-of <code>chat-bladeset/blades/messages/index.html</code>:</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addChatTool</span><span class="hljs-params">(workbench )</span> {</span>
-    <span class="hljs-keyword">var</span> ChatWorkbenchTool = <span class="hljs-built_in">require</span>( <span class="hljs-string">'chatservice/ChatWorkbenchTool'</span> );
-    <span class="hljs-keyword">var</span> tool = <span class="hljs-keyword">new</span> ChatWorkbenchTool();
-    workbench.addToLeftWing( tool, <span class="hljs-string">"Chatting"</span>, <span class="hljs-literal">false</span>);
-}
-
-addChatTool( workbench );
-</code></pre>
-<p>You can see the code required for this in <code>libs/chatservice/</code>...:</p>
-<ul>
-<li><code>src/chatservice/ChatWorkbenchTool.js</code> - Creates a UI component and adds to the Workbench</li>
-<li><code>resources/workbench-chat-tool.html</code> - The HTML template</li>
-</ul>
-<p>Due to the Services architecture it really is that simple to add these developer tools.</p>
-<h5 id="sending-messages-from-the-console">Sending Messages from the Console</h5>
-<p>You can use the <code>sendMessage</code> function we used earlier to test sending messages
-from the JavaScript console e.g.</p>
+                        <h1 id="chat-service">Chat Service</h1>
+<p>Retrieved from the <code>ServiceRegistry</code> using:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
-chatService.sendMessage(
-  { userId: <span class="hljs-string">'testUser'</span>, text: <span class="hljs-string">'Awesome console message!'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()  }
-);
 </code></pre>
-<h2 id="broadcast-that-the-user-id-in-a-message-has-been-selected">Broadcast that the User ID in a Message has been Selected</h2>
-<p>The team that is building the User Card Blade rely on being informed if a user
-is selected. This is achieved by other components within ModularApp broadcasting
-<code>user-selected</code> events on a <code>user</code> channel.</p>
-<p>For the Messages Blade this means:</p>
+<p>It allows you to:</p>
 <ul>
-<li>Adding a click handler to the element in the Messages View with <code>class=&quot;message-user-id&quot;</code></li>
-<li>Add a click handler function to the <code>MessagesViewModel</code> or the <code>MessageItemViewMode</code> -
-see <a href="http://knockoutjs.com/documentation/binding-context.html" target="_blank">KnockoutJS binding context</a></li>
-<li>Creating event data object with a <code>userId</code> property that identifies the user that was selected</li>
-<li>Triggering a <code>user-selected</code> event on a <code>user</code> channel on the <code>EventHub</code></li>
+<li>.on( &#39;new-message&#39;, function() { } )</li>
+<li>sendMessage( message )</li>
+<li>getMessages( listener )</li>
 </ul>
-<p>The EventHub can be retrieved from the <code>ServiceRegistry</code> as follows:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
-<span class="hljs-keyword">this</span>._eventHub = ServiceRegistry.getService( <span class="hljs-string">'br.event-hub'</span> );
+<p>You can find the definition of the User Service in:
+<code>modularapp/libs/chatservice/src/ChatService.js</code>.</p>
+<p><em>Full details of both services, along with some examples of use,
+can be found at the end of this page</em></p>
+<hr>
+<h2 id="more-chat-service-details">More Chat Service Details</h2>
+<h4 id="event-new-message-">Event <code>new-message</code></h4>
+<h5 id="data-payload">Data Payload</h5>
+<pre><code class="lang-js">{
+  userId: string, <span class="hljs-comment">// the unique ID of the user generating the message</span>
+  text: string    <span class="hljs-comment">// the textual data of the message</span>
+  timestamp: <span class="hljs-built_in">Date</span> <span class="hljs-comment">// the timestamp when the message originated</span>
+}
 </code></pre>
-<p>Channels can be retrieved from the EventHub:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> channel = <span class="hljs-keyword">this</span>._eventHub.channel( <span class="hljs-string">'user'</span> );
-</code></pre>
-<p>Events are triggered on the Channel:</p>
-<pre><code class="lang-js">channel.trigger( <span class="hljs-string">'user-selected'</span>, { userId: <span class="hljs-string">'testUser'</span> } );
-</code></pre>
-<p>Over to you.</p>
-<h4 id="hints">Hints</h4>
-<p>No hints here. Any questions, please ask.</p>
-<h2 id="testing-features">Testing Features</h2>
-<p><em>Before we start, you need to copy the contents of <code>aliases.xml</code> from the Workbench
-into <code>messages/tests/test-unit/js-test-driver/resources/aliases.xml</code>.</em></p>
-<p>In the services overview we talked about how using MVVM and Services allows us to
-test full features in isolation. In this part of the exercise we&#39;re going to do
-exactly that. We&#39;ll demonstrate how to achieve two types of test:</p>
-<ol>
-<li>Create an instance of the View Model, interact with it, and ensure that
-it results in the expected service interactions.</li>
-<li>Force the Service to interact with the View Model and then verify the View Model state.</li>
-</ol>
-<p>This way we&#39;re testing how UI interactions result in service interactions and how
-service events are reflected in UI state.</p>
-<p>Let&#39;s start by creating a new file called <code>MessagesFeatureTest.js</code> in <code>messages/tests/test-unit/js-test-driver/tests/</code>
-and update it to look as follows to add the Test Suite:</p>
-<pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
-
-<span class="hljs-built_in">require</span>( <span class="hljs-string">'jasmine'</span> );
-
-<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span>);
-<span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
-
-describe( <span class="hljs-string">'The Messages'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-
+<h5 id="example">Example</h5>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
+chatService.on( <span class="hljs-string">'new-message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( msg )</span> {</span>
+  <span class="hljs-comment">// do something with the message</span>
 } );
 </code></pre>
-<p><em>Note: You could call this file MessagesSpecTest.js</em>.</p>
-<p>The first thing to notice is that we&#39;re using Jasmine, and specifcially we&#39;re using
-<a href="http://jasmine.github.io/1.3/introduction.html" target="_blank">Jasmine 1.3</a> as it ships with BRJS.</p>
-<h3 id="testing-service-interactions">Testing Service Interactions</h3>
-<p>As with anything in software it&#39;s possible to achieve the same thing in multiple ways.
-For example, we can test service interactions by:</p>
-<ul>
-<li>Spying on interactions with a service that is already registered with the ServiceRegistry</li>
-<li>Add functionality to Fake services that lets us check interactions</li>
-<li>Replace the User Service in the <code>ServiceRegistry</code> with a Mock object</li>
-</ul>
-<p>Since we&#39;re using Jasmine, we&#39;ll use <a href="http://j.mp/PITNqK" target="_blank">Spies</a>, but we&#39;ll also demonstrate how the
-Fake service, that was developed really to help our development within the
-Workbench, is also useful here.</p>
-<h3 id="testing-feature-service-interactions-using-spies">Testing Feature Service Interactions using Spies</h3>
-<p>The only user interaction that takes place in the Messages Blade is the user
-clicking on the User ID in a message. This results in an interaction with the
-<code>EventHub</code> service.</p>
-<p>Add the following spec to the <code>The Input</code> suite:</p>
-<pre><code class="lang-js">describe( <span class="hljs-string">'The Messages'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+<h4 id="sendmessage-userid-string-text-string-timestamp-date-">sendMessage( { userId: string, text: string, timestamp: Date } );</h4>
+<h5 id="definition">Definition</h5>
+<pre><code class="lang-js"><span class="hljs-comment">/**
+ * Send a message.
+ *
+ * @param {ChatMessage} message - The message to send.
+ */</span>
+ChatService.prototype.sendMessage = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( message )</span> {</span>};
+</code></pre>
+<h5 id="example">Example</h5>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
+chatService.sendMessage( { userId: <span class="hljs-string">'some-user-id'</span>, text: <span class="hljs-string">'yo!'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() } );
+</code></pre>
+<h4 id="getmessages-listener-">getMessages( listener )</h4>
+<h5 id="definition">Definition</h5>
+<pre><code class="lang-js"><span class="hljs-comment">/**
+ * Used to listen to users retrieval.
+ * @typedef {Object} ChatService~GetMessagesListener
+ * @property {Function} messagesRetrived - Messages retrieved successfully.
+ * @property {Function} messagesRetrievalFailed - Message retrieval failed.
+ */</span>
 
-  it( <span class="hljs-string">'Should trigger a "user-selected" event on a user channel on the EventHub when a user is selected'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> eventHub = ServiceRegistry.getService( <span class="hljs-string">'br.event-hub'</span> );
-
-    spyOn( eventHub, <span class="hljs-string">'channel'</span> ).andCallThrough();
-    spyOn( userChannel, <span class="hljs-string">'trigger'</span> );
-
-    <span class="hljs-keyword">var</span> testUserId = <span class="hljs-string">'testUser'</span>;
-
-    <span class="hljs-comment">// TODO: Interact with View Model as if the user has selected a User Id</span>
-
-    <span class="hljs-keyword">var</span> expectedEventData = {
-      userId: testUserId
-    };
-    expect( eventHub.channel ).toHaveBeenCalledWith( <span class="hljs-string">'user'</span> );
-    expect( userChannel.trigger ).toHaveBeenCalled( <span class="hljs-string">'user-selected'</span>, expectedEventData );
-
-  } );
-
+<span class="hljs-comment">/**
+ * Get a list of existing chat messages.
+ *
+ * @param {GetMessagesListener} listener - The object to be informed of chat message retrieval
+ *                            success or failure.
+ */</span>
+ChatService.prototype.getMessages = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( listener )</span> {</span>};
+</code></pre>
+<h5 id="example">Example</h5>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
+chatService.getMessages( {
+  messagesRetrieved: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( messages )</span> {</span>
+    messages.forEach( <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( msg, index )</span> {</span>
+      <span class="hljs-comment">// success - each message</span>
+    } );
+  },
+  messageRetrievalFailed: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-comment">// failed</span>
+  }
 } );
 </code></pre>
-<p>The test above is nearly complete. You just need to interact with the <code>MessagesViewModel</code>
-and simulate the user clicking the User Id. You&#39;ll need to make sure that the appropriate
-data (the User Id) is passed to the click handler.</p>
-<h4 id="hints">Hints</h4>
-<ul>
-<li>Use the <code>testUserId</code> value in the data that&#39;s passed to the click handler as
-it&#39;s also used when creating the <code>expectedEventData</code> object used in the assertion</li>
-</ul>
-<h3 id="testing-feature-viewmodel-state-using-a-fake-service">Testing Feature ViewModel State using a Fake Service</h3>
-<p>The next thing we want to do is see how services can impact the state of the View Model.
-To do this we&#39;ll use the chat service - we&#39;ve seen that our <code>FakeChatService</code>
-implementation triggers a <code>new-message</code> event when the <code>sendMessage</code> function is
-called. We can use this knowledge to do the test.</p>
-<p>Before we start, we need to remember that our implementation doesn&#39;t bind to the
-<code>new-message</code> event until it&#39;s recieved the <code>getMessages</code> callback which is an
-asynchronous call. Luckily our <code>FakeService</code> has a setting <code>FakeService.fakeAsync</code>
-so that it doesn&#39;t make this callback truly asynchronously. This means we can ensure
-that the <code>getMessages</code> response has been made before we call <code>sendMessage</code>.</p>
-<p>Here&#39;s the test template - just fill in the blanks:</p>
-<pre><code class="lang-js">it( <span class="hljs-string">'Should display new messages that are send via the Chat Service'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-  <span class="hljs-comment">// Setup</span>
-  <span class="hljs-keyword">var</span> chatService = ServiceRegistry.getService( <span class="hljs-string">'chat.service'</span> );
-  chatService.fakeAsync = <span class="hljs-literal">false</span>;
-  <span class="hljs-keyword">var</span> messagesViewModel = <span class="hljs-keyword">new</span> MessagesViewModel();
-  <span class="hljs-keyword">var</span> message = { userId: <span class="hljs-string">'testUserId'</span>, text: <span class="hljs-string">'testUserText'</span>, timestamp: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() };
-
-  <span class="hljs-comment">// Execute</span>
-  <span class="hljs-comment">// TODO: send message using the Chat Service</span>
-
-  <span class="hljs-comment">// Assert</span>
-  <span class="hljs-keyword">var</span> firstMessage = messagesViewModel.messages()[ <span class="hljs-number">0</span> ];
-  <span class="hljs-comment">// TODO: expect( ... );</span>
-} );
-</code></pre>
-<h4 id="hints">Hints</h4>
-<ul>
-<li>An alternative to using <code>FakeChatService.fakeAsync = false;</code> is to use the very
-handy <a href="http://j.mp/1nWvotX" target="_blank">jasmine.Clock</a>.</li>
-<li>You should probably clear down the <code>FakeChatService.fakeAsync</code> after the test.
-Otherwise future tests may be affected by this unexpected synchronous behaviour.</li>
-</ul>
-<h2 id="congrats-service-interaction-complete-">Congrats - Service Interaction Complete!</h2>
-<p>Our Blade is now interacting with two services and we&#39;ve tested both UI through
-to Services and Services through to the UI; full feature testing.</p>
-<p>It&#39;s time to commit those changes and push them to github:</p>
-<ul>
-<li><code>git add chat-bladeset/blades/messages</code></li>
-<li><code>git commit -m &#39;integrating messages blade with services&#39;</code></li>
-<li><code>git pull origin master</code></li>
-<li>Fix any merges - there shouldn&#39;t be any</li>
-<li><code>git push origin master</code></li>
-</ul>
-<h2 id="where-next-">Where Next?</h2>
-<p>See how the other teams in your company are getting on. Can you help them out?</p>
-<p>Then, we&#39;ll see how our application looks.</p>
 
                     
                     </section>
@@ -1030,10 +846,10 @@ to Services and Services through to the UI; full feature testing.</p>
         </div>
 
         
-        <a href="../services/input_services.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../services/user_service.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../services/usercard_services.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../services/exercises_overview.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
