@@ -134,7 +134,7 @@ function UsercardViewModel() {
 	this.email = ko.observable('');
 	this.location = ko.observable('');
 
-  this.cardShown = ko.observable( false );
+  this.cardShown = ko.observable( true );
 	this.position = ko.observable( pixelify( POSITION_DEFAULT ) );
 }
 
@@ -162,9 +162,10 @@ and the functionality that the file exposes is determined via assignment to `mod
 
 The first set of properties are pretty obvious - they hold the user information.
 
-The `cardShown` property is used to indicate if the Blade should be shown at all.
+The `cardShown` property is used to indicate if the Blade should be shown.
 This is because the User Card should only be shown if the user has requested to
-see more information about another user.
+see more information about another user. *Right now this defaults to `true` (shown)
+but later we'll need to default to `false`.
 
 The `position` property is required because the User Card may be shown next to
 the UI element that has been clicked on when selecting a user.
@@ -219,14 +220,14 @@ the values of the Blade's View Model.
 
 By default the `cardShown` should be `false` this can make things difficult during
 development. We can use the Workbench to help here - open `workbench/index.html` and change
-the value to help development.
+the value to help development after we've completed this task.
 
 ```js
 var model = new UsercardViewModel();
 model.cardShown( true );
 ```
 
-### Set the Position of the User Card (if time)
+### Set the Position of the User Card (*if time*)
 
 When the user requests to see more information about a user they may do this via
 the UI. If that's the case the User Card should be positioned where the UI interaction
@@ -291,7 +292,7 @@ UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = function() {
 };
 ```
 
-*Yeah, this will fail! We'll fix that shortly.*
+*Yeah, this should fail! We'll fix that shortly.*
 
 ### Running Tests
 
@@ -388,7 +389,7 @@ We've now written our first test and made it pass.
 
 For full details see the [Running Test documentation](http://bladerunnerjs.org/docs/use/running_tests/).
 
-### Additional Tests
+### Additional Tests (if time)
 
 Now that you know how to write and run tests you can also write test that assert
 the functionality the Blade is to provide:

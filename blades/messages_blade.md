@@ -196,6 +196,11 @@ of `chat-messages-container`.
 Once you've done that, show the values of each of the MessageItemViewModel in their respective spans.
 You don't need any help on this one, just use `data-bind` for this.
 
+#### Hints
+
+* You want to update the `text` of the `span` elements so use the `text` Knockout
+binding.
+
 ### Check your Work in the Workbench
 
 Once you've done this reload the Workbench to see the result of your fine work...
@@ -308,7 +313,7 @@ Chrome: Reset
 Chrome: Reset
 ...F
 Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (180.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 4 tests (Passed: 0; Fails: 1; Errors 0) (180.00 ms)
+  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (180.00 ms)
     MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne failed (1.00 ms): AssertError: expected 0 but was 1
       Error: expected 0 but was 1
           at MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne (http://localhost:4224/test/tests/MessagesViewModelTest.js:10:55)

@@ -64,8 +64,7 @@ GitHub login.
 
 ## Adding a Blade to an Aspect
 
-Open up
-`App.js`. The `App` class is a class in exactly the same what that all the View Models
+Open up `App.js`. The `App` class is a class in exactly the same what that all the View Models
 that we've created up until this point are. So, we treat it in exactly the same way.
 
 This `App.js` has had a little bit of work done to it already. Another team has
@@ -134,6 +133,12 @@ added in the following order:
 5. User Card
 
 Please add the Input and User Card Blades.
+
+Once you've done this reload the aspect - http://localhost:7070/modularapp/ - to
+see all the Blades running together.
+
+*However, they won't be able to communicate with each other, or with backend service yet.
+We'll cover this in the next section of the Workshop.*
 
 ## Aspect Complete - The chosen team should push to github
 

@@ -146,6 +146,8 @@ In order to do this you'll need to update the `textarea` in the view definition
 * The *Visualise Knockout View Model* Workbench tool can be handy here. In order to see
 the model update after you have entered text into the `textarea` you'll need to click
 the button or click out of the element.
+* You want to update the `value` of the `textarea` element so use the `value` Knockout
+binding.
 
 ### Bind the buttonClicked function to the button
 
