@@ -25,28 +25,25 @@ module.exports = function(grunt) {
         input: path.join(__dirname, ".")
       }
     },
-    shell: {
-      gitbook_serve: {
-        command: 'gitbook serve',
+    connect: {
+      server: {
         options: {
-          async: true
+          port: 4000,
+          hostname: '*',
+          base: '_book'
         }
-      },
-      options: {
-        stdout: true,
-        stderr: true,
-        failOnError: true
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-shell-spawn');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-gitbook');
 
   // Default task(s).
   grunt.registerTask('default', [
-    'shell:gitbook_serve',
+    'gitbook:build',
+    'connect',
     'watch'
   ]);
 
