@@ -1,9 +1,9 @@
 CACHE MANIFEST
-# Revision 1398931295673
+# Revision 1399910547442
 
 CACHE:
-extras/README.html
 index.html
+extras/README.html
 aspects/README.html
 aspects/exercise.html
 aspects/retrospective.html
