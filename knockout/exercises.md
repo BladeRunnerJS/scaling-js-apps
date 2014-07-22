@@ -1,5 +1,7 @@
 # Knockout Exercise (15 mins)
 
+**If you're going through this as an e-book you may benefit from spending 15 or so minutes going through the tutorials on the KnockoutJS website. If you're in a workshop then you can ignore this.**
+
 The [KnockoutJS website](http://knockoutjs.com/) is the best learning resource. We suggest doing the
 following two tutorials:
 

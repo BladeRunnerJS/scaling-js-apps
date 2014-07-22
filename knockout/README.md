@@ -1,5 +1,7 @@
 # Knockout
 
+**We're building a front-end web app so we kinda need to choose a front-end library or framework**
+
 **The focus of this workshop isn't KnockoutJS**. However, being able to test the UI
 without poking the [DOM (Document Object Model)](https://developer.mozilla.org/en/docs/DOM)
 is a key in building a large scale front-end app. So, we need to use a solution
