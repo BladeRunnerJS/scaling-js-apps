@@ -15,3 +15,7 @@ How apps can be **composed of features**
 ## Testing & Architecture
 
 How building apps in this way helps build a **maintainable and extensible** web app
+
+## Tooling
+
+How tooling can support all the above techniques and practices.
