@@ -35,7 +35,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/chat-bladeset/blades/input/workbench/
+Now navigate to `http://localhost:7070/modularapp/workbench/chat/input/`
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -48,15 +48,11 @@ Let's update the view to have the elements we need for our required functionalit
 Open up the `input/resources/html/view.html` file and make it look as follows:
 
 ```html
-<div id="modularapp.chat.input.view-template">
-
-	<section class="chat-input">
-		<textarea class="chat-input-message"
-							placeholder="type a message"></textarea>
-		<button class="chat-input-send-btn">Send</button>
-	</section>
-
-</div>
+<section class="chat-input" id="modularapp.chat.input.view-template">
+	<textarea class="chat-input-message"
+			  placeholder="type a message"></textarea>
+	<button class="chat-input-send-btn">Send</button>
+</section>
 ```
 
 Reload the Workbench to make sure this looks okay.
@@ -66,37 +62,37 @@ Now, let's add some styling. Update `input/themes/standard/style.css` as follows
 ```css
 /* Input Blade containing element */
 .chat-input {
-  position: relative;
+	position: relative;
 
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 
-  /* push textarea in for button */
-  padding-right: 80px;
+	/* push textarea in for button */
+	padding-right: 80px;
 }
 
 .chat-input .chat-input-message,
 .chat-input .chat-input-send-btn {
-  height: 60px;
+	height: 60px;
 }
 
 /* textarea */
 .chat-input .chat-input-message {
-  display: block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
+	display: block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 /* button */
 .chat-input .chat-input-send-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 75px;
-  text-align: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 75px;
+	text-align: center;
 }
 ```
 
@@ -104,8 +100,7 @@ How does the Blade look in the Workbench now?
 
 ## The InputViewModel
 
-Since you're now familiar with Knockout you'll know all about View Models; they
-are a logical representation of the view. A purist view would also be that there
+For this workshop we're using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
@@ -141,6 +136,15 @@ Enough hand-holding! Time for some real exercises:
 In order to do this you'll need to update the `textarea` in the view definition
 (`view.html`) with an appropriate `data-bind` property.
 
+```html
+<section class="chat-input" id="modularapp.chat.input.view-template">
+	<textarea class="chat-input-message"
+				placeholder="type a message"
+				data-bind="value: message"></textarea>
+	<button class="chat-input-send-btn">Send</button>
+</section>
+```
+
 ##### Hint:
 
 * The *Visualise Knockout View Model* Workbench tool can be handy here. In order to see
@@ -157,6 +161,16 @@ Also, when the button is clicked take the value from the `message` property and 
 to the console using `Log.info( <your-log-message> )`. This will let you check that
 the data binding is working as you expect it.
 
+```html
+<section class="chat-input" id="modularapp.chat.input.view-template">
+	<textarea class="chat-input-message"
+				placeholder="type a message"
+				data-bind="value: message"></textarea>
+	<button class="chat-input-send-btn"
+					data-bind="click:buttonClicked">Send</button>
+</section>
+```
+
 ### Check Message Validity
 
 You'll remember that one of the requirements was to only send the message to other
@@ -165,6 +179,23 @@ The return value from the `buttonClicked` function should then reflect that vali
 do this by returning `true` if the message is valid and `false if it's invalid.
 
 *We'll be testing this shortly.*
+
+Here's the basics of what you need to do. Now just implement the `messageValid` function.
+
+```js
+InputViewModel.prototype.buttonClicked = function() {
+	var message = this.message();
+	var valid = messageValid( message );
+
+	Log.info( 'sent message? {0}', valid );
+
+	return valid;
+};
+
+function messageValid( message ) {
+	// TODO: implement
+}
+```
 
 ## Test the InputViewModel
 
@@ -180,8 +211,8 @@ var InputViewModelTest = TestCase( 'InputViewModelTest' );
 var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
-  var model = new InputViewModel();
-  assertEquals( 'Hello!', model.message() );
+	var model = new InputViewModel();
+	assertEquals( 'Hello!', model.message() );
 };
 ```
 
@@ -214,30 +245,23 @@ You should see output similar to the following:
 
 ```
 › ./brjs test ../apps/modularapp/chat-bladeset/blades/input
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
-creating plugins
-performing node discovery
-making plugins available via model
-BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
-
-Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 F
 Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (2.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (2.00 ms)
-    InputViewModelTest.testDefaultMessageIsEmpty failed (2.00 ms): AssertError: expected "Hello!" but was ""
-      Error: expected "Hello!" but was ""
-          at InputViewModelTest.testDefaultMessageIsEmpty (http://localhost:4224/test/tests/InputViewModelTest.js:18:33)
+	Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (2.00 ms)
+		InputViewModelTest.testDefaultMessageIsEmpty failed (2.00 ms): AssertError: expected "Hello!" but was ""
+			Error: expected "Hello!" but was ""
+					at InputViewModelTest.testDefaultMessageIsEmpty (http://localhost:4224/test/tests/InputViewModelTest.js:18:33)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
 
 - Time Taken: 2secs
 Error:
-  Test failure or error while running tests.
+	Test failure or error while running tests.
 ```
 
 Let's fix that error by updating the test to check for an empty string:
@@ -248,8 +272,8 @@ var InputViewModelTest = TestCase( 'InputViewModelTest' );
 var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
-  var model = new InputViewModel();
-  assertEquals( '', model.message() );
+	var model = new InputViewModel();
+	assertEquals( '', model.message() );
 };
 ```
 
@@ -257,20 +281,13 @@ If you run the `brjs test` command the test will now pass:
 
 ```
 › ./brjs test ../apps/modularapp/chat-bladeset/blades/input
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
-creating plugins
-performing node discovery
-making plugins available via model
-BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
-
-Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 .
 Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
+	Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
 Tests Passed.
 
 - Time Taken: 2secs

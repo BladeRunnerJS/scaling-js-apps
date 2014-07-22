@@ -110,8 +110,7 @@ Time to look at the View Model.
 
 ## The UsercardViewModel
 
-Since you're now familiar with Knockout you'll know all about View Models; they
-are a logical representation of the view. A purist view would also be that there
+For this workshop we're using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
