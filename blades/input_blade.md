@@ -136,6 +136,18 @@ Enough hand-holding! Time for some real exercises:
 In order to do this you'll need to update the `textarea` in the view definition
 (`view.html`) with an appropriate `data-bind` property.
 
+##### Hint:
+
+* The *Visualise Knockout View Model* Workbench tool can be handy here. In order to see
+the model update after you have entered text into the `textarea` you'll need to click
+the button or click out of the element.
+* You want to update the `value` of the `textarea` element so use the `value` Knockout
+binding.
+
+##### Solution
+
+If you've not used KnockoutJS before or you just want to check your solution here it is:
+
 ```html
 <section class="chat-input" id="modularapp.chat.input.view-template">
 	<textarea class="chat-input-message"
@@ -145,14 +157,6 @@ In order to do this you'll need to update the `textarea` in the view definition
 </section>
 ```
 
-##### Hint:
-
-* The *Visualise Knockout View Model* Workbench tool can be handy here. In order to see
-the model update after you have entered text into the `textarea` you'll need to click
-the button or click out of the element.
-* You want to update the `value` of the `textarea` element so use the `value` Knockout
-binding.
-
 ### Bind the buttonClicked function to the button
 
 You'll also need to use `data-bind` for this.
@@ -160,6 +164,8 @@ You'll also need to use `data-bind` for this.
 Also, when the button is clicked take the value from the `message` property and log it
 to the console using `Log.info( <your-log-message> )`. This will let you check that
 the data binding is working as you expect it.
+
+##### Solution
 
 ```html
 <section class="chat-input" id="modularapp.chat.input.view-template">

@@ -34,7 +34,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/chat-bladeset/blades/messages/workbench/
+Now navigate to http://localhost:7070/modularapp/workbench/chat/messages/
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -47,21 +47,18 @@ Let's update the view to have the elements we need for our required functionalit
 Open up the `messages/resources/html/view.html` file and make it look as follows:
 
 ```html
-<div id="modularapp.chat.messages.view-template">
+<section class="chat-messages" id="modularapp.chat.messages.view-template">
 
-	<section class="chat-messages">
+	<div class="chat-messages-container">
+		<div class="chat-message">
+			<span class="chat-message-user-id">Some UserId</span>
+			<span class="chat-message-text">Some Test</span>
+			<span class="chat-message-timestamp">Some Timestamp</span>
+		</div>
+	</div>
 
-		<div class="chat-messages-container">
-			<div class="chat-message">
-				<span class="chat-message-user-id">Some UserId</span>
-				<span class="chat-message-text">Some Test</span>
-				<span class="chat-message-timestamp">Some Timestamp</span>
-			</div>
-  	</div>
+</section>
 
-	</section>
-
-</div>
 ```
 
 Reload the Workbench to make sure this you see the fake data. We'll add the data bindings later.
@@ -183,9 +180,6 @@ function MessageItemViewModel( message ) {
 module.exports = MessageItemViewModel;
 ```
 
-*Heads Up! There's a bug in BRJS here which means you need to restart the development server.
-for this new file to be picked up. So, kill the existing server process and restart using `./brjs serve`*
-
 ### Loop over the messages Array and Show the Message Data
 
 In order to do this you'll need to remove the fake data and update the view definition (`view.html`) with an
@@ -195,10 +189,29 @@ of `chat-messages-container`.
 Once you've done that, show the values of each of the MessageItemViewModel in their respective spans.
 You don't need any help on this one, just use `data-bind` for this.
 
-#### Hints
+##### Hints
 
 * You want to update the `text` of the `span` elements so use the `text` Knockout
 binding.
+
+##### Solution:
+
+If you've not used KnockoutJS before or you just want to check your solution here it is:
+
+```html
+<section class="chat-messages" id="modularapp.chat.messages.view-template">
+
+	<div class="chat-messages-container" data-bind="foreach: messages">
+		<div class="chat-message">
+			<span class="chat-message-user-id" data-bind="text: userId"></span>
+			<span class="chat-message-text" data-bind="text: text"></span>
+			<span class="chat-message-timestamp" data-bind="text: timestamp"></span>
+		</div>
+	</div>
+
+</section>
+
+```
 
 ### Check your Work in the Workbench
 
@@ -212,6 +225,40 @@ we need to consider *what's shown when there are no messages?*.
 
 Add a new element that tells the user there are no messages and is only show
 when there are no messages.
+
+##### Solution:
+
+Here's the HTML for the solution:
+
+```html
+<section class="chat-messages" id="modularapp.chat.messages.view-template">
+
+	<div class="chat-messages-container" data-bind="foreach: messages">
+		<div class="chat-message">
+			<span class="chat-message-user-id" data-bind="text: userId"></span>
+			<span class="chat-message-text" data-bind="text: text"></span>
+			<span class="chat-message-timestamp" data-bind="text: timestamp"></span>
+		</div>
+	</div>
+
+	<div class="chat-messages-no-messages" data-bind="visible: showNoMessages">
+		Nobody's chatting!
+	</div>
+
+</section>
+
+```
+
+And the JavaScript for the View Model as part of the solution:
+
+```js
+function MessagesViewModel() {
+	this.messages = ko.observableArray( [] );
+	this.showNoMessages = ko.computed( function() {
+		return ( this.messages().length === 0 );
+	}, this );
+}
+```
 
 ### Add Fake Data via the Workbench
 
@@ -299,13 +346,6 @@ You should see output similar to the following:
 
 ```
 › ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
-creating plugins
-performing node discovery
-making plugins available via model
-BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
-
-Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
@@ -345,13 +385,6 @@ If you run the `brjs test` command the test will now pass:
 
 ```
 › ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
-creating plugins
-performing node discovery
-making plugins available via model
-BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
-
-Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset

@@ -34,7 +34,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/chat-bladeset/blades/usercard/workbench/
+Now navigate to http://localhost:7070/modularapp/workbench/chat/usercard/
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -47,23 +47,19 @@ Let's update the view to have the elements we need for our required functionalit
 Open up the `usercard/resources/html/view.html` file and make it look as follows:
 
 ```html
-<div id="modularapp.chat.usercard.view-template">
+<section class="chat-usercard" id="modularapp.chat.usercard.view-template">
 
-	<section class="chat-usercard">
+	<img class="usercard-avatar" />
+	<div class="usercard-name">Some Name</div>
+	<div class="usercard-company">Some Company</div>
+	<div class="usercard-email">some@emailaddress.com</div>
+	<div class="usercard-location">Some Location</div>
 
-		<img class="usercard-avatar" />
-		<div class="usercard-name">Some Name</div>
-		<div class="usercard-company">Some Company</div>
-		<div class="usercard-email">some@emailaddress.com</div>
-		<div class="usercard-location">Some Location</div>
+	<button class="btn btn-default btn-xs usercard-close-btn">
+			<span class="glyphicon glyphicon-remove"></span>
+	</button>
 
-		<button class="btn btn-default btn-xs usercard-close-btn">
-				<span class="glyphicon glyphicon-remove"></span>
-		</button>
-
-	</section>
-
-</div>
+</section>
 
 ```
 
@@ -187,10 +183,32 @@ to the view (`view.html`).
 
 ##### Hints
 
-* Use the [click binding]() to set up the click event
+* Use the [click binding](http://knockoutjs.com/documentation/click-binding.html) to set up the click event
 * Use the [visible binding](http://knockoutjs.com/documentation/visible-binding.html) to
 bind to this property to the element with the class of `chat-usercard`
 * Use the Workbench to check the close button works and the User Card is hidden
+
+##### Solution
+
+If you've not used KnockoutJS before or you just want to check your solution here it is:
+
+```html
+<section class="chat-usercard"
+				 data-bind="visible: cardShown"
+				 id="modularapp.chat.usercard.view-template">
+
+	<img class="usercard-avatar" />
+	<div class="usercard-name"></div>
+	<div class="usercard-company"></div>
+	<div class="usercard-email"></div>
+	<div class="usercard-location"></div>
+
+	<button data-bind="click: closeClicked" class="btn btn-default btn-xs usercard-close-btn">
+			<span class="glyphicon glyphicon-remove"></span>
+	</button>
+
+</section>
+```
 
 ### Bind the User Properties to the View
 
@@ -214,6 +232,26 @@ model.name( 'Jive Bunny' );
 
 * The *Visualise Knockout View Model* Workbench tool can be handy when checking
 the values of the Blade's View Model.
+
+##### Solution:
+
+```html
+<section class="chat-usercard"
+				data-bind="visible: cardShown"
+				id="modularapp.chat.usercard.view-template">
+
+	<img class="usercard-avatar" data-bind="attr: { src: avatarUrl }" />
+	<div class="usercard-name" data-bind="text: name"></div>
+	<div class="usercard-company" data-bind="text: company"></div>
+	<div class="usercard-email" data-bind="text: email"></div>
+	<div class="usercard-location" data-bind="text: location"></div>
+
+	<button data-bind="click: closeClicked" class="btn btn-default btn-xs usercard-close-btn">
+			<span class="glyphicon glyphicon-remove"></span>
+	</button>
+
+</section>
+```
 
 ### Don't Show the User Card by Default
 
@@ -322,13 +360,6 @@ You should see output similar to the following:
 
 ```
 › ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
-creating plugins
-performing node discovery
-making plugins available via model
-BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
-
-Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
@@ -365,13 +396,6 @@ If you run the `brjs test` command the test will now pass:
 
 ```
 › ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=128M; support was removed in 8.0
-creating plugins
-performing node discovery
-making plugins available via model
-BladeRunnerJS version: v0.7-0-gff6e9cb, built: 14 April 2014 15:53 BST
-
-Server already running, not bothering to start a new instance...
 
 Testing tests (UTs):
 Chrome: Reset
