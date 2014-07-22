@@ -12,4 +12,4 @@ Reduce chances of merge conflicts or complete incompatibility.
 
 ![](../img/workbench_v2.png)
 
-Broken code elsewhere won't stop your developing.
+Broken code in locations unrelated to the feature you're working on won't stop you developing.
