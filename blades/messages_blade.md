@@ -44,7 +44,7 @@ and familiarise yourself with where things are.
 
 Let's update the view to have the elements we need for our required functionality.
 
-Open up the `messages/resources/html/view.html` file and make it look as follows:
+Open up the `chat-bladeset/blades/messages/resources/html/view.html` file and make it look as follows:
 
 ```html
 <section class="chat-messages" id="modularapp.chat.messages.view-template">
@@ -63,7 +63,7 @@ Open up the `messages/resources/html/view.html` file and make it look as follows
 
 Reload the Workbench to make sure this you see the fake data. We'll add the data bindings later.
 
-Next, let's add some styling. Update `messages/themes/standard/style.css` as follows:
+Next, let's add some styling. Update `chat-bladeset/blades/messages/themes/black/style.css` as follows:
 
 ```css
 /* Message Blade container element */
@@ -137,7 +137,7 @@ For this workshop we're using KnockoutJS as our data-binding solution. Knockout 
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
-You can find the class definition for the Messages View Model in `src/modularapp/chat/messages/MessagesViewModel.js`;
+You can find the class definition for the Messages View Model in `chat-bladeset/blades/messages/src/modularapp/chat/messages/MessagesViewModel.js`;
 yeah, sorry about the folder structure!
 
 Update the `MessagesViewModel` definition to look as follows:
@@ -300,7 +300,7 @@ var moment = require( 'momentjs' );
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the default message should be blank.
 
-Navigate to `test/test-unit/js-test-drive/tests` and update `MessagesViewModelTest.js`
+Navigate to `chat-bladeset/blades/messages/tests/test-unit/js-test-drive/tests` and update `MessagesViewModelTest.js`
 as follows:
 
 ```js
@@ -350,19 +350,15 @@ You should see output similar to the following:
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-...F
-Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (180.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (180.00 ms)
-    MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne failed (1.00 ms): AssertError: expected 0 but was 1
+F
+Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (7.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (7.00 ms)
+    MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne failed (7.00 ms): AssertError: expected 0 but was 1
       Error: expected 0 but was 1
           at MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne (http://localhost:4224/test/tests/MessagesViewModelTest.js:10:55)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
-
-- Time Taken: 2secs
-Error:
-  Test failure or error while running tests.
 ```
 
 Let's fix that error by updating the test to correctly check the number of messages:
@@ -389,12 +385,10 @@ If you run the `brjs test` command the test will now pass:
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-....
-Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (779.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 4 tests (Passed: 1; Fails: 0; Errors 0) (779.00 ms)
+.
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (7.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (7.00 ms)
 Tests Passed.
-
-- Time Taken: 5secs
 ```
 
 We've now written our first test and made it pass.

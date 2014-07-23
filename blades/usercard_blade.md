@@ -65,7 +65,7 @@ Open up the `usercard/resources/html/view.html` file and make it look as follows
 
 Reload the Workbench to make sure this you see the fake data. We'll add the data bindings later.
 
-Next, let's add some styling. Update `usercard/themes/standard/style.css` as follows:
+Next, let's add some styling. Update `usercard/themes/black/style.css` as follows:
 
 ```css
 .chat-usercard {
@@ -110,8 +110,7 @@ For this workshop we're using KnockoutJS as our data-binding solution. Knockout 
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
-You can find the class definition for the User Card View Model in
-`src/modularapp/chat/usercard/UsercardViewModel.js`; yeah, sorry about the folder structure!
+You can find the class definition for the User Card View Model in `chat-bladeset/blades/usercard/src/modularapp/chat/usercard/UsercardViewModel.js`; yeah, sorry about the folder structure!
 
 Update the `UsercardViewModel` definition to look as follows:
 
@@ -119,6 +118,7 @@ Update the `UsercardViewModel` definition to look as follows:
 'use strict';
 
 var ko = require( 'ko' );
+require( 'bootstrap' );
 
 var POSITION_DEFAULT = { x: '50%', y: 0 };
 
@@ -129,7 +129,7 @@ function UsercardViewModel() {
 	this.email = ko.observable('');
 	this.location = ko.observable('');
 
-  this.cardShown = ko.observable( true );
+	this.cardShown = ko.observable( true );
 	this.position = ko.observable( pixelify( POSITION_DEFAULT ) );
 }
 
@@ -160,7 +160,7 @@ The first set of properties are pretty obvious - they hold the user information.
 The `cardShown` property is used to indicate if the Blade should be shown.
 This is because the User Card should only be shown if the user has requested to
 see more information about another user. *Right now this defaults to `true` (shown)
-but later we'll need to default to `false`.
+but later we'll need to default to `false`*.
 
 The `position` property is required because the User Card may be shown next to
 the UI element that has been clicked on when selecting a user.
@@ -198,10 +198,10 @@ If you've not used KnockoutJS before or you just want to check your solution her
 				 id="modularapp.chat.usercard.view-template">
 
 	<img class="usercard-avatar" />
-	<div class="usercard-name"></div>
-	<div class="usercard-company"></div>
-	<div class="usercard-email"></div>
-	<div class="usercard-location"></div>
+	<div class="usercard-name">Some Name</div>
+	<div class="usercard-company">Some Company</div>
+	<div class="usercard-email">some@emailaddress.com</div>
+	<div class="usercard-location">Some Location</div>
 
 	<button data-bind="click: closeClicked" class="btn btn-default btn-xs usercard-close-btn">
 			<span class="glyphicon glyphicon-remove"></span>
@@ -210,9 +210,17 @@ If you've not used KnockoutJS before or you just want to check your solution her
 </section>
 ```
 
+And the JavaScript:
+
+```js
+UsercardViewModel.prototype.closeClicked = function( data, event ) {
+	this.cardShown( false );
+};
+```
+
 ### Bind the User Properties to the View
 
-Start by binding the obvious user properties to the view. In order to do this
+Start by binding the obvious user properties to the view (`chat-bladeset/blades/usercard/resources/html/view.html`). In order to do this
 you'll need to update the view definition with appropriate usage of
 `data-bind`.
 
@@ -315,8 +323,7 @@ as expected.
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the User Card defaults to not being shown.
 
-Navigate to `test/test-unit/js-test-drive/tests` and update `UsercardViewModelTest.js`
-as follows:
+Navigate to `chat-bladeset/blades/usercard/tests/test-unit/js-test-drive/tests` and update `UsercardViewModelTest.js` as follows:
 
 ```js
 var UsercardViewModelTest = TestCase( 'UsercardViewModelTest' );
@@ -365,18 +372,14 @@ Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 F
-Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (3.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (3.00 ms)
-    UsercardViewModelTest.testCardShownDefaultsToFalse failed (3.00 ms): AssertError: expected true but was false
+Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (1.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (1.00 ms)
+    UsercardViewModelTest.testCardShownDefaultsToFalse failed (1.00 ms): AssertError: expected true but was false
       Error: expected true but was false
           at UsercardViewModelTest.testCardShownDefaultsToFalse (http://localhost:4224/test/tests/UsercardViewModelTest.js:7:21)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
-
-- Time Taken: 2secs
-Error:
-  Test failure or error while running tests.
 ```
 
 Let's fix that error by updating the test to correctly `assertFalse`:
@@ -401,11 +404,9 @@ Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 .
-Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (3.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (3.00 ms)
 Tests Passed.
-
-- Time Taken: 2secs
 ```
 
 We've now written our first test and made it pass.

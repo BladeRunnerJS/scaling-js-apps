@@ -57,7 +57,7 @@ Open up the `input/resources/html/view.html` file and make it look as follows:
 
 Reload the Workbench to make sure this looks okay.
 
-Now, let's add some styling. Update `input/themes/standard/style.css` as follows:
+Now, let's add some styling. Update `input/themes/black/style.css` as follows:
 
 ```css
 /* Input Blade containing element */
@@ -104,7 +104,7 @@ For this workshop we're using KnockoutJS as our data-binding solution. Knockout 
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
-You can find the class definition for the Input View Model in `src/modularapp/chat/input/InputViewModel.js`;
+You can find the class definition for the Input View Model in `chat-bladeset/blades/input/src/modularapp/chat/input/InputViewModel.js`;
 yeah, sorry about the folder structure!
 
 Update the `InputViewModel` definition to look as follows:
@@ -139,8 +139,8 @@ In order to do this you'll need to update the `textarea` in the view definition
 ##### Hint:
 
 * The *Visualise Knockout View Model* Workbench tool can be handy here. In order to see
-the model update after you have entered text into the `textarea` you'll need to click
-the button or click out of the element.
+the model update after you have entered text into the `textarea` **you'll need to click
+the button or click out of the element**.
 * You want to update the `value` of the `textarea` element so use the `value` Knockout
 binding.
 
@@ -173,7 +173,7 @@ the data binding is working as you expect it.
 				placeholder="type a message"
 				data-bind="value: message"></textarea>
 	<button class="chat-input-send-btn"
-					data-bind="click:buttonClicked">Send</button>
+            data-bind="click:buttonClicked">Send</button>
 </section>
 ```
 
@@ -182,7 +182,7 @@ the data binding is working as you expect it.
 You'll remember that one of the requirements was to only send the message to other
 users if there was some text. So, check that the users has actually entered something.
 The return value from the `buttonClicked` function should then reflect that validity;
-do this by returning `true` if the message is valid and `false if it's invalid.
+do this by returning `true` if the message is valid and `false` if it's invalid.
 
 *We'll be testing this shortly.*
 
@@ -208,7 +208,7 @@ function messageValid( message ) {
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the default message should be blank.
 
-Navigate to `test/test-unit/js-test-drive/tests` and open `InputViewModelTest.js`.
+Navigate to `chat-bladeset/blades/input/tests/test-unit/js-test-drive/tests` and open `InputViewModelTest.js`.
 It should look as follows:
 
 ```js
@@ -216,9 +216,9 @@ var InputViewModelTest = TestCase( 'InputViewModelTest' );
 
 var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
 
-InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
-	var model = new InputViewModel();
-	assertEquals( 'Hello!', model.message() );
+InputViewModelTest.prototype.testSomething = function() {
+  var model = new InputViewModel();
+  assertEquals( 'Welcome to your new Blade.', model.welcomeMessage() );
 };
 ```
 
@@ -234,7 +234,7 @@ directory run:
 ./brjs test-server --no-browser
 ```
 
-In your browser navigate to http://localhost:4224/capture. This is the browser window/tab
+In your browser navigate to `http://localhost:4224/capture`. This is the browser window/tab
 that the test server will instruct to execute your tests.
 
 Now that the test server is running open another terminal/command prompt and execute
@@ -255,22 +255,18 @@ You should see output similar to the following:
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-F
-Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (2.00 ms)
-	Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (2.00 ms)
-		InputViewModelTest.testDefaultMessageIsEmpty failed (2.00 ms): AssertError: expected "Hello!" but was ""
-			Error: expected "Hello!" but was ""
-					at InputViewModelTest.testDefaultMessageIsEmpty (http://localhost:4224/test/tests/InputViewModelTest.js:18:33)
+E
+Total 1 tests (Passed: 0; Fails: 0; Errors: 1) (1.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 0; Fails: 0; Errors 1) (1.00 ms)
+    InputViewModelTest.testSomething error (1.00 ms): TypeError: undefined is not a function
+      TypeError: undefined is not a function
+          at InputViewModelTest.testSomething (http://localhost:4224/test/tests/InputViewModelTest.js:7:53)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
-
-- Time Taken: 2secs
-Error:
-	Test failure or error while running tests.
 ```
 
-Let's fix that error by updating the test to check for an empty string:
+Let's fix that error by updating the test to access the correct property of the View Model and to check for an empty string:
 
 ```js
 var InputViewModelTest = TestCase( 'InputViewModelTest' );
@@ -292,11 +288,9 @@ Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 .
-Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
-	Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (1.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (1.00 ms)
 Tests Passed.
-
-- Time Taken: 2secs
 ```
 
 We've now written our first test and made it pass.

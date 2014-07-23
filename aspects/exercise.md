@@ -25,7 +25,7 @@ The definition for this can be found in `default-aspect/src/modularapp`.
 
 ## A note on CSS
 
-The default CSS file can be found in `default-aspect/themes/standard/style.css`. It's important
+The default CSS file can be found in `default-aspect/themes/black/style.css`. It's important
 to realise that the styles defined here will also be used by the Blades and will actually **override the Blade styles**.
 
 If you want to test this out, open the `style.css` file (which already has some
