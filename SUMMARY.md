@@ -45,6 +45,7 @@
   * [No Backend Dependencies](services/no_dependencies.md)
   * [Configuring Services](services/configuring_services.md)
   * [Workbenches](services/workbenches.md)
+  * [Modular App Services](services/full_feature_testing.md)
   * [Modular App Services](services/modularapp_services.md)
   * [User Service](services/user_service.md)
   * [Chat Service](services/chat_service.md)
@@ -56,6 +57,7 @@
 * [Apps & Aspects (again)](aspects_services/README.md)
   * [Retrospective](aspects_services/retrospective.md)
 * [Extras](extras/README.md)
+* [That's a Wrap!](thats_a_wrap.md)
 * Reference
   * [Suggested Dev Setup](reference/dev_setup.md)
   * [FAQ & Gotchas](reference/faq_gotchas.md)

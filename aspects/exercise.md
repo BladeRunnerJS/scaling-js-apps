@@ -8,6 +8,8 @@ to their local version, or discard their version before pulling.
 
 *Now: decide which team within your company is going to be in charge of the Aspect*.
 
+**REMEMBER: Only one team should push their code to GitHub**
+
 Sorted? Right, now for the exercise for each team.
 
 ## Aspect Structure
@@ -19,12 +21,12 @@ The structure of an Aspect has some similarities to a Blade. It has:
 
 However, because an Aspect is an entry point for our application it also has
 a `index.html`. Within that file you'll see that it references an `App` object.
-The definition for this can be found in `default-asepct/src/modularapp`.
+The definition for this can be found in `default-aspect/src/modularapp`.
 
 ## A note on CSS
 
-The default CSS file can be found in `default-asepct/themes/standard/style.css`. It's important
-to realise that the styles defined here will also be inherited by the Blades.
+The default CSS file can be found in `default-aspect/themes/standard/style.css`. It's important
+to realise that the styles defined here will also be used by the Blades and will actually **override the Blade styles**.
 
 If you want to test this out, open the `style.css` file (which already has some
 contents contributed by another team) and add:
@@ -37,10 +39,7 @@ body {
 
 And load up a workbench for a Blade. You'll see the background colour is red.
 
-When the Aspect is loaded the CSS for it will be loaded first followed by the CSS
-for the Blades. So it's possible for the rules in an Aspect to override those in
-a Blade. It's also why you should take care when naming your Blade CSS. A good idea
-is to have a top level element with a class and then use that to namespace all
+When the Aspect is loaded the CSS for the Blades are loaded first followed by the Aspect CSS. So it's possible for the rules in an Aspect to override those in a Blade. It's also why you should take care when naming your Blade CSS. A good idea is to have a top level element with a class and then use that to namespace all
 your styles e.g.
 
 ```css
@@ -69,7 +68,7 @@ that we've created up until this point are. So, we treat it in exactly the same 
 
 This `App.js` has had a little bit of work done to it already. Another team has
 very kindly added `Header` and `Login` Blades to the Aspect - isn't that nice of them!
-So, we're going to add the other Blades within the `handleUserLogin` function
+So, we're going to **add the other Blades within the `handleUserLogin` function**
 (which is unsurprisingly called after a user has logged in).
 
 ### Require the Blade Classes

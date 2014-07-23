@@ -1,6 +1,6 @@
 # Who Broke the App?
 
-![](../img/error.png)
+![](../img/broken-256.png)
 
 ## Group Code By Feature (same as other Assets)
 

@@ -74,7 +74,7 @@ two functions:
 * `userRetrieved( user )` called when the user is successfully retrieved
 * `userRetrievalFailed( code, message )` called if there is a problem - we don't expect this
 
-One way of achieving this is by `InputViewModel` a listener by implementing these functions
+One way of achieving this is by making `InputViewModel` a listener by implementing these functions
 and passing a reference to `this` in as the `listener`.
 
 ```js
@@ -100,7 +100,7 @@ that you just make sure your existing tests still pass, or update them if requir
 
 The first time you call `getCurrentUser` the `userRetrievalFailed` callback is likely
 to trigger because the `FakeUserService` (set up in `aliases.xml`) hasn't had a
-user set on it via `setCurrentUser.
+user set on it via `setCurrentUser`.
 
 You can fix this by setting the user in your Workbench. This is achieved as follows:
 
@@ -233,7 +233,7 @@ an appropriately formed message object.
 `FakeUserService` has a `setCurrentUser` function.
 * `getCurrentUser` is asynchronous - you have two options:
   * Call `InputViewModel.userRetrieved` with the user *this is probably the easiest*
-  * Use Jasmine's [asynchronous support](http://jasmine.github.io/1.3/introduction.html?spec=A%20spec%20(with%20setup%20and%20tear-down)#section-Asynchronous_Support)
+  * Use Jasmine's [asynchronous support](http://j.mp/1r5K0s5)
 * You can use `expect( someFunction ).toHaveBeenCalledWith( args... )` to verify what parameters were passed
 * If you want to verify the `timestamp` of the message you can use the `jasmine.any( Date )` to at least
 check a `Date` object was passed

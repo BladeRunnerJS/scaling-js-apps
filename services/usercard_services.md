@@ -140,7 +140,7 @@ two functions:
 * `userRetrieved( user )` called when the user is successfully retrieved
 * `userRetrievalFailed( code, message )` called if there is a problem - *we don't expect this*
 
-One way of achieving this is by `UsercardViewModel` a listener by implementing these functions
+One way of achieving this is by making `UsercardViewModel` a listener by implementing these functions
 and passing a reference to `this` in as the `listener`.
 
 ```js
