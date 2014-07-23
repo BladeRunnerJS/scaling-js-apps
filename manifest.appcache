@@ -1,9 +1,9 @@
 CACHE MANIFEST
-# Revision 1399910547442
+# Revision 1406137654376
 
 CACHE:
-index.html
 extras/README.html
+index.html
 aspects/README.html
 aspects/exercise.html
 aspects/retrospective.html
@@ -19,8 +19,8 @@ background/approach.html
 background/large_codebase.html
 background/large_scale.html
 background/large_spa.html
-background/questions.html
 background/who_contributes.html
+background/questions.html
 blades/input_blade.html
 blades/README.html
 blades/exercises.html
@@ -35,8 +35,8 @@ blades/usercard_blade.html
 knockout/README.html
 knockout/exercises.html
 overview/README.html
-overview/build.html
 overview/heads_up.html
+overview/build.html
 overview/learn.html
 overview/prerequisites.html
 overview/schedule.html
@@ -49,6 +49,7 @@ services/README.html
 services/configuring_services.html
 services/dev_dependencies.html
 services/exercises_overview.html
+services/full_feature_testing.html
 services/input_services.html
 services/messages_services.html
 services/modularapp_services.html
@@ -61,6 +62,7 @@ services/services.html
 services/user_service.html
 services/usercard_services.html
 services/workbenches.html
+thats_a_wrap.html
 gitbook/app.js
 gitbook/fonts/anonymouspro/400.woff
 gitbook/fonts/anonymouspro/400i.woff
