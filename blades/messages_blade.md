@@ -402,7 +402,7 @@ the functionality the Blade is to provide:
 
 * Check the `MessageItemViewModel` properties are initialised as expected from the
 data structure that's passed to its constructor
-* Add a message to the `MessagesViewModel` using `addMessages` function and ensure the added message
+* Add a message to the `MessagesViewModel` using `addMessage` function and ensure the added message
 has the correct `userId`, `text` and `timestamp` values.
 * If you've time, ensure the `timestamp` is formatted as expected in the `MessageItemViewModel`
 
