@@ -18,10 +18,10 @@ We're nearly ready to start coding. But before we do let's do a little bit of se
 
 As we said, a nice team have put together some fake services to help us develop
 our Blade's functionality. In order to configure the services you need to know
-the require path to these implementations. Of course, we do. So, open up the configuration
-file for the Workbench, which you'll find here:
-`chat-bladeset/blades/input/workbench/resources/aliases.xml`, and update it as
-follows:
+the require path to these implementations.
+
+Open the `aliases.xml` configuration file for the Workbench,
+`chat-bladeset/blades/input/workbench/resources/aliases.xml`, and set the content as:
 
 ```xml
 <aliases xmlns="http://schema.caplin.com/CaplinTrader/aliases" useScenario="dev">
@@ -52,7 +52,10 @@ var ServiceRegistry = require( 'br/ServiceRegistry' );
 Next, we want to get the User Service instance that's been set up:
 
 ```js
-this._userService = ServiceRegistry.getService( 'user.service' );
+function InputViewModel() {
+  this.message = ko.observable( '' );
+  this._userService = ServiceRegistry.getService( 'user.service' );
+}
 ```
 
 Finally, we need to get hold of the current user:
@@ -136,6 +139,7 @@ set the contents of this so the user knows something has gone wrong.
 * There's a [visible binding](http://knockoutjs.com/documentation/visible-binding.html)
 that can ensure an element is only shown based on a condition e.g. if the `feedbackMessage`
 is not empty.
+* You can directly call `userRetrievalFailed` on the View Model to simulate failure. Or you can ensure you haven't set a current user on the service.
 
 ## Sending a Message using the Chat Service
 
@@ -225,6 +229,12 @@ interaction has occurred. So, over to you:
 Verify that when valid text has been entered into `message` and the send button
 is clicked (don't touch that DOM!) that the `sendMessage` function is called with
 an appropriately formed message object.
+
+```js
+it( 'Sends a Message using the ChatService when the Button is clicked', function() {
+	// TODO: Implement test as described above
+} );
+```
 
 #### Hints
 

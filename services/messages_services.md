@@ -17,10 +17,10 @@ We're nearly ready to start coding. But before we do let's do a little bit of se
 
 As we said, a nice team have put together some fake services to help us develop
 our Blade's functionality. In order to configure the services you need to know
-the require path to these implementations. Of course, we do. So, open up the configuration
-file for the Workbench, which you'll find here:
-`chat-bladeset/blades/messages/workbench/resources/aliases.xml`, and update it as
-follows:
+the require path to these implementations.
+
+Open the `aliases.xml` configuration file for the Workbench,
+`chat-bladeset/blades/messages/workbench/resources/aliases.xml`, and set the content as:
 
 ```xml
 <aliases xmlns="http://schema.caplin.com/CaplinTrader/aliases" useScenario="dev">

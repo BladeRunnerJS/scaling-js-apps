@@ -2,15 +2,14 @@
 
 ## How does this relate to the concepts?
 
-* Features/Blades
+* Grouped Assets
+* Running a feature in isolation
 
 ## What problems did it solve?
 
-* Finding Assets
-* Running a feature in isolation
-  * Unaffected by changes elsewhere
-  * Fast reloads
 * Anything else?
+* Unaffected by changes elsewhere
+* Fast reloads
 
 ## What did the tooling do and how did it help?
 

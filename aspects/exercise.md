@@ -37,7 +37,7 @@ body {
 }
 ```
 
-And load up a workbench for a Blade. You'll see the background colour is red.
+And load up a workbench for a Blade. You'll see the background colour is red. *Probably worth removing that now as it looks terrible!*
 
 When the Aspect is loaded the CSS for the Blades are loaded first followed by the Aspect CSS. So it's possible for the rules in an Aspect to override those in a Blade. It's also why you should take care when naming your Blade CSS. A good idea is to have a top level element with a class and then use that to namespace all
 your styles e.g.
@@ -56,15 +56,14 @@ these are reasonably common CSS classes, so I'm being very careful.
 ## Viewing the Aspect
 
 As with Workbenches, an Aspect is served using the development server. The
-default aspect URL for ModularApp is http://localhost:7070/modularapp/
+default aspect URL for ModularApp is `http://localhost:7070/modularapp/`
 
 Loading that up will show you a "ModularApp" heading and will prompt you for a
 GitHub login.
 
 ## Adding a Blade to an Aspect
 
-Open up `App.js`. The `App` class is a class in exactly the same what that all the View Models
-that we've created up until this point are. So, we treat it in exactly the same way.
+Open up `default-aspect/src/modularapp/App.js`. The `App` class is a class in exactly the same what that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
 
 This `App.js` has had a little bit of work done to it already. Another team has
 very kindly added `Header` and `Login` Blades to the Aspect - isn't that nice of them!
