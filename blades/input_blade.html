@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.7" data-basepath=".." data-revision="1406137654375">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.7" data-basepath=".." data-revision="1406181201240">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -821,7 +821,7 @@ and familiarise yourself with where things are.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
 <p>Reload the Workbench to make sure this looks okay.</p>
-<p>Now, let&#39;s add some styling. Update <code>input/themes/standard/style.css</code> as follows:</p>
+<p>Now, let&#39;s add some styling. Update <code>input/themes/black/style.css</code> as follows:</p>
 <pre><code class="lang-css"><span class="hljs-comment">/* Input Blade containing element */</span>
 <span class="hljs-class">.chat-input</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
@@ -862,7 +862,7 @@ and familiarise yourself with where things are.</p>
 <p>For this workshop we&#39;re using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we&#39;re building a reasonably simple
 Blade (but feel free to refactor afterwards).</p>
-<p>You can find the class definition for the Input View Model in <code>src/modularapp/chat/input/InputViewModel.js</code>;
+<p>You can find the class definition for the Input View Model in <code>chat-bladeset/blades/input/src/modularapp/chat/input/InputViewModel.js</code>;
 yeah, sorry about the folder structure!</p>
 <p>Update the <code>InputViewModel</code> definition to look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
@@ -889,8 +889,8 @@ and the functionality that the file exposes is determined via assignment to <cod
 <h5 id="hint-">Hint:</h5>
 <ul>
 <li>The <em>Visualise Knockout View Model</em> Workbench tool can be handy here. In order to see
-the model update after you have entered text into the <code>textarea</code> you&#39;ll need to click
-the button or click out of the element.</li>
+the model update after you have entered text into the <code>textarea</code> <strong>you&#39;ll need to click
+the button or click out of the element</strong>.</li>
 <li>You want to update the <code>value</code> of the <code>textarea</code> element so use the <code>value</code> Knockout
 binding.</li>
 </ul>
@@ -914,14 +914,14 @@ the data binding is working as you expect it.</p>
                 <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"type a message"</span>
                 <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"value: message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input-send-btn"</span>
-                    <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"click:buttonClicked"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+            <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"click:buttonClicked"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
 <h3 id="check-message-validity">Check Message Validity</h3>
 <p>You&#39;ll remember that one of the requirements was to only send the message to other
 users if there was some text. So, check that the users has actually entered something.
 The return value from the <code>buttonClicked</code> function should then reflect that validity;
-do this by returning <code>true</code> if the message is valid and `false if it&#39;s invalid.</p>
+do this by returning <code>true</code> if the message is valid and <code>false</code> if it&#39;s invalid.</p>
 <p><em>We&#39;ll be testing this shortly.</em></p>
 <p>Here&#39;s the basics of what you need to do. Now just implement the <code>messageValid</code> function.</p>
 <pre><code class="lang-js">InputViewModel.prototype.buttonClicked = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
@@ -940,15 +940,15 @@ do this by returning <code>true</code> if the message is valid and `false if it&
 <h2 id="test-the-inputviewmodel">Test the InputViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the default message should be blank.</p>
-<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and open <code>InputViewModelTest.js</code>.
+<p>Navigate to <code>chat-bladeset/blades/input/tests/test-unit/js-test-drive/tests</code> and open <code>InputViewModelTest.js</code>.
 It should look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> InputViewModelTest = TestCase( <span class="hljs-string">'InputViewModelTest'</span> );
 
 <span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span> );
 
-InputViewModelTest.prototype.testDefaultMessageIsEmpty = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> InputViewModel();
-    assertEquals( <span class="hljs-string">'Hello!'</span>, model.message() );
+InputViewModelTest.prototype.testSomething = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> InputViewModel();
+  assertEquals( <span class="hljs-string">'Welcome to your new Blade.'</span>, model.welcomeMessage() );
 };
 </code></pre>
 <h3 id="running-tests">Running Tests</h3>
@@ -957,7 +957,7 @@ built-in.</p>
 <p>In order to run the tests you first need to start the test server. From the <code>sdk</code>
 directory run:</p>
 <pre><code>./brjs test-server --no-browser
-</code></pre><p>In your browser navigate to <a href="http://localhost:4224/capture" target="_blank">http://localhost:4224/capture</a>. This is the browser window/tab
+</code></pre><p>In your browser navigate to <code>http://localhost:4224/capture</code>. This is the browser window/tab
 that the test server will instruct to execute your tests.</p>
 <p>Now that the test server is running open another terminal/command prompt and execute
 the following from the <code>sdk</code> directory:</p>
@@ -970,20 +970,16 @@ is just the single test that we&#39;ve written.</p>
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-F
-Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (2.00 ms)
-    Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (2.00 ms)
-        InputViewModelTest.testDefaultMessageIsEmpty failed (2.00 ms): AssertError: expected &quot;Hello!&quot; but was &quot;&quot;
-            Error: expected &quot;Hello!&quot; but was &quot;&quot;
-                    at InputViewModelTest.testDefaultMessageIsEmpty (http://localhost:4224/test/tests/InputViewModelTest.js:18:33)
+E
+Total 1 tests (Passed: 0; Fails: 0; Errors: 1) (1.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 0; Fails: 0; Errors 1) (1.00 ms)
+    InputViewModelTest.testSomething error (1.00 ms): TypeError: undefined is not a function
+      TypeError: undefined is not a function
+          at InputViewModelTest.testSomething (http://localhost:4224/test/tests/InputViewModelTest.js:7:53)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
-
-- Time Taken: 2secs
-Error:
-    Test failure or error while running tests.
-</code></pre><p>Let&#39;s fix that error by updating the test to check for an empty string:</p>
+</code></pre><p>Let&#39;s fix that error by updating the test to access the correct property of the View Model and to check for an empty string:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> InputViewModelTest = TestCase( <span class="hljs-string">'InputViewModelTest'</span> );
 
 <span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span> );
@@ -1000,11 +996,9 @@ Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 .
-Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
-    Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (1.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (1.00 ms)
 Tests Passed.
-
-- Time Taken: 2secs
 </code></pre><p>We&#39;ve now written our first test and made it pass.</p>
 <p>For full details see the <a href="http://bladerunnerjs.org/docs/use/running_tests/" target="_blank">Running Test documentation</a>.</p>
 <h3 id="additional-tests">Additional Tests</h3>

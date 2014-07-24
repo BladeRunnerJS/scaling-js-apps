@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.1" data-basepath=".." data-revision="1406137654375">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.1" data-basepath=".." data-revision="1406181201240">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -803,7 +803,7 @@ to their local version, or discard their version before pulling.</p>
 a <code>index.html</code>. Within that file you&#39;ll see that it references an <code>App</code> object.
 The definition for this can be found in <code>default-aspect/src/modularapp</code>.</p>
 <h2 id="a-note-on-css">A note on CSS</h2>
-<p>The default CSS file can be found in <code>default-aspect/themes/standard/style.css</code>. It&#39;s important
+<p>The default CSS file can be found in <code>default-aspect/themes/black/style.css</code>. It&#39;s important
 to realise that the styles defined here will also be used by the Blades and will actually <strong>override the Blade styles</strong>.</p>
 <p>If you want to test this out, open the <code>style.css</code> file (which already has some
 contents contributed by another team) and add:</p>
@@ -811,7 +811,7 @@ contents contributed by another team) and add:</p>
   <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> red</span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<p>And load up a workbench for a Blade. You&#39;ll see the background colour is red.</p>
+<p>And load up a workbench for a Blade. You&#39;ll see the background colour is red. <em>Probably worth removing that now as it looks terrible!</em></p>
 <p>When the Aspect is loaded the CSS for the Blades are loaded first followed by the Aspect CSS. So it&#39;s possible for the rules in an Aspect to override those in a Blade. It&#39;s also why you should take care when naming your Blade CSS. A good idea is to have a top level element with a class and then use that to namespace all
 your styles e.g.</p>
 <pre><code class="lang-css"><span class="hljs-class">.chat-input</span> <span class="hljs-rules">{<span class="hljs-rule">}</span></span>
@@ -824,12 +824,11 @@ your styles e.g.</p>
 these are reasonably common CSS classes, so I&#39;m being very careful.</p>
 <h2 id="viewing-the-aspect">Viewing the Aspect</h2>
 <p>As with Workbenches, an Aspect is served using the development server. The
-default aspect URL for ModularApp is <a href="http://localhost:7070/modularapp/" target="_blank">http://localhost:7070/modularapp/</a></p>
+default aspect URL for ModularApp is <code>http://localhost:7070/modularapp/</code></p>
 <p>Loading that up will show you a &quot;ModularApp&quot; heading and will prompt you for a
 GitHub login.</p>
 <h2 id="adding-a-blade-to-an-aspect">Adding a Blade to an Aspect</h2>
-<p>Open up <code>App.js</code>. The <code>App</code> class is a class in exactly the same what that all the View Models
-that we&#39;ve created up until this point are. So, we treat it in exactly the same way.</p>
+<p>Open up <code>default-aspect/src/modularapp/App.js</code>. The <code>App</code> class is a class in exactly the same what that all the View Models that we&#39;ve created up until this point are. So, we treat it in exactly the same way.</p>
 <p>This <code>App.js</code> has had a little bit of work done to it already. Another team has
 very kindly added <code>Header</code> and <code>Login</code> Blades to the Aspect - isn&#39;t that nice of them!
 So, we&#39;re going to <strong>add the other Blades within the <code>handleUserLogin</code> function</strong>

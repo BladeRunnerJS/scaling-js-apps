@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.9" data-basepath=".." data-revision="1406137654375">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.9" data-basepath=".." data-revision="1406181201240">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -828,7 +828,7 @@ and familiarise yourself with where things are.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
 <p>Reload the Workbench to make sure this you see the fake data. We&#39;ll add the data bindings later.</p>
-<p>Next, let&#39;s add some styling. Update <code>usercard/themes/standard/style.css</code> as follows:</p>
+<p>Next, let&#39;s add some styling. Update <code>usercard/themes/black/style.css</code> as follows:</p>
 <pre><code class="lang-css"><span class="hljs-class">.chat-usercard</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> fixed</span></span>;
 
@@ -866,12 +866,12 @@ and familiarise yourself with where things are.</p>
 <p>For this workshop we&#39;re using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we&#39;re building a reasonably simple
 Blade (but feel free to refactor afterwards).</p>
-<p>You can find the class definition for the User Card View Model in
-<code>src/modularapp/chat/usercard/UsercardViewModel.js</code>; yeah, sorry about the folder structure!</p>
+<p>You can find the class definition for the User Card View Model in <code>chat-bladeset/blades/usercard/src/modularapp/chat/usercard/UsercardViewModel.js</code>; yeah, sorry about the folder structure!</p>
 <p>Update the <code>UsercardViewModel</code> definition to look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-keyword">var</span> ko = <span class="hljs-built_in">require</span>( <span class="hljs-string">'ko'</span> );
+<span class="hljs-built_in">require</span>( <span class="hljs-string">'bootstrap'</span> );
 
 <span class="hljs-keyword">var</span> POSITION_DEFAULT = { x: <span class="hljs-string">'50%'</span>, y: <span class="hljs-number">0</span> };
 
@@ -882,7 +882,7 @@ Blade (but feel free to refactor afterwards).</p>
     <span class="hljs-keyword">this</span>.email = ko.observable(<span class="hljs-string">''</span>);
     <span class="hljs-keyword">this</span>.location = ko.observable(<span class="hljs-string">''</span>);
 
-  <span class="hljs-keyword">this</span>.cardShown = ko.observable( <span class="hljs-literal">true</span> );
+    <span class="hljs-keyword">this</span>.cardShown = ko.observable( <span class="hljs-literal">true</span> );
     <span class="hljs-keyword">this</span>.position = ko.observable( pixelify( POSITION_DEFAULT ) );
 }
 
@@ -909,8 +909,8 @@ and the functionality that the file exposes is determined via assignment to <cod
 <p>The first set of properties are pretty obvious - they hold the user information.</p>
 <p>The <code>cardShown</code> property is used to indicate if the Blade should be shown.
 This is because the User Card should only be shown if the user has requested to
-see more information about another user. *Right now this defaults to <code>true</code> (shown)
-but later we&#39;ll need to default to <code>false</code>.</p>
+see more information about another user. <em>Right now this defaults to <code>true</code> (shown)
+but later we&#39;ll need to default to <code>false</code></em>.</p>
 <p>The <code>position</code> property is required because the User Card may be shown next to
 the UI element that has been clicked on when selecting a user.</p>
 <p>Enough hand-holding! Time for some real exercises:</p>
@@ -937,10 +937,10 @@ bind to this property to the element with the class of <code>chat-usercard</code
                  <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.usercard.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-avatar"</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-company"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-email"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-location"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-name"</span>&gt;</span>Some Name<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-company"</span>&gt;</span>Some Company<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-email"</span>&gt;</span>some@emailaddress.com<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-location"</span>&gt;</span>Some Location<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"click: closeClicked"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-default btn-xs usercard-close-btn"</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"glyphicon glyphicon-remove"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
@@ -948,8 +948,13 @@ bind to this property to the element with the class of <code>chat-usercard</code
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
+<p>And the JavaScript:</p>
+<pre><code class="lang-js">UsercardViewModel.prototype.closeClicked = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( data, event )</span> {</span>
+    <span class="hljs-keyword">this</span>.cardShown( <span class="hljs-literal">false</span> );
+};
+</code></pre>
 <h3 id="bind-the-user-properties-to-the-view">Bind the User Properties to the View</h3>
-<p>Start by binding the obvious user properties to the view. In order to do this
+<p>Start by binding the obvious user properties to the view (<code>chat-bladeset/blades/usercard/resources/html/view.html</code>). In order to do this
 you&#39;ll need to update the view definition with appropriate usage of
 <code>data-bind</code>.</p>
 <p>In order to test the binding without editing your application code you can use
@@ -1025,8 +1030,7 @@ as expected.</li>
 <h2 id="test-the-usercardviewmodel">Test the UsercardViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the User Card defaults to not being shown.</p>
-<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and update <code>UsercardViewModelTest.js</code>
-as follows:</p>
+<p>Navigate to <code>chat-bladeset/blades/usercard/tests/test-unit/js-test-drive/tests</code> and update <code>UsercardViewModelTest.js</code> as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> UsercardViewModelTest = TestCase( <span class="hljs-string">'UsercardViewModelTest'</span> );
 
 <span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/usercard/UsercardViewModel'</span> );
@@ -1057,18 +1061,14 @@ Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 F
-Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (3.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (3.00 ms)
-    UsercardViewModelTest.testCardShownDefaultsToFalse failed (3.00 ms): AssertError: expected true but was false
+Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (1.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (1.00 ms)
+    UsercardViewModelTest.testCardShownDefaultsToFalse failed (1.00 ms): AssertError: expected true but was false
       Error: expected true but was false
           at UsercardViewModelTest.testCardShownDefaultsToFalse (http://localhost:4224/test/tests/UsercardViewModelTest.js:7:21)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
-
-- Time Taken: 2secs
-Error:
-  Test failure or error while running tests.
 </code></pre><p>Let&#39;s fix that error by updating the test to correctly <code>assertFalse</code>:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> UsercardViewModelTest = TestCase( <span class="hljs-string">'UsercardViewModelTest'</span> );
 
@@ -1086,11 +1086,9 @@ Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
 .
-Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (2.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (2.00 ms)
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (3.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (3.00 ms)
 Tests Passed.
-
-- Time Taken: 2secs
 </code></pre><p>We&#39;ve now written our first test and made it pass.</p>
 <p>For full details see the <a href="http://bladerunnerjs.org/docs/use/running_tests/" target="_blank">Running Test documentation</a>.</p>
 <h3 id="additional-tests-if-time-">Additional Tests (if time)</h3>

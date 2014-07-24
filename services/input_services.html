@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.14" data-basepath=".." data-revision="1406137654375">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.14" data-basepath=".." data-revision="1406181201240">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -802,10 +802,9 @@ other users.</p>
 <h2 id="service-configuration">Service Configuration</h2>
 <p>As we said, a nice team have put together some fake services to help us develop
 our Blade&#39;s functionality. In order to configure the services you need to know
-the require path to these implementations. Of course, we do. So, open up the configuration
-file for the Workbench, which you&#39;ll find here:
-<code>chat-bladeset/blades/input/workbench/resources/aliases.xml</code>, and update it as
-follows:</p>
+the require path to these implementations.</p>
+<p>Open the <code>aliases.xml</code> configuration file for the Workbench,
+<code>chat-bladeset/blades/input/workbench/resources/aliases.xml</code>, and set the content as:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">aliases</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schema.caplin.com/CaplinTrader/aliases"</span> <span class="hljs-attribute">useScenario</span>=<span class="hljs-value">"dev"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chat.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chatservice.FakeChatService"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"userservice.FakeUserService"</span>/&gt;</span>
@@ -825,7 +824,10 @@ Update your <code>InputViewModel</code> accordingly e.g.:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> ServiceRegistry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'br/ServiceRegistry'</span> );
 </code></pre>
 <p>Next, we want to get the User Service instance that&#39;s been set up:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">this</span>._userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">InputViewModel</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">this</span>.message = ko.observable( <span class="hljs-string">''</span> );
+  <span class="hljs-keyword">this</span>._userService = ServiceRegistry.getService( <span class="hljs-string">'user.service'</span> );
+}
 </code></pre>
 <p>Finally, we need to get hold of the current user:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">this</span>._userService.getCurrentUser( listener );
@@ -887,6 +889,7 @@ set the contents of this so the user knows something has gone wrong.</p>
 <li>There&#39;s a <a href="http://knockoutjs.com/documentation/visible-binding.html" target="_blank">visible binding</a>
 that can ensure an element is only shown based on a condition e.g. if the <code>feedbackMessage</code>
 is not empty.</li>
+<li>You can directly call <code>userRetrievalFailed</code> on the View Model to simulate failure. Or you can ensure you haven&#39;t set a current user on the service.</li>
 </ul>
 <h2 id="sending-a-message-using-the-chat-service">Sending a Message using the Chat Service</h2>
 <p>The <code>buttonClicked</code> function gets the text from the UI so it makes sense to
@@ -958,6 +961,10 @@ interaction has occurred. So, over to you:</p>
 <p>Verify that when valid text has been entered into <code>message</code> and the send button
 is clicked (don&#39;t touch that DOM!) that the <code>sendMessage</code> function is called with
 an appropriately formed message object.</p>
+<pre><code class="lang-js">it( <span class="hljs-string">'Sends a Message using the ChatService when the Button is clicked'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    <span class="hljs-comment">// TODO: Implement test as described above</span>
+} );
+</code></pre>
 <h4 id="hints">Hints</h4>
 <ul>
 <li>You&#39;ll need to get the Chat Service from the ServiceRegistry</li>

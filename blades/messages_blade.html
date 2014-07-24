@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.8" data-basepath=".." data-revision="1406137654375">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.8" data-basepath=".." data-revision="1406181201240">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -812,7 +812,7 @@ to see your <em>amazing</em> Blade.</p>
 and familiarise yourself with where things are.</p>
 <h2 id="build-the-view">Build the View</h2>
 <p>Let&#39;s update the view to have the elements we need for our required functionality.</p>
-<p>Open up the <code>messages/resources/html/view.html</code> file and make it look as follows:</p>
+<p>Open up the <code>chat-bladeset/blades/messages/resources/html/view.html</code> file and make it look as follows:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.messages.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages-container"</span>&gt;</span>
@@ -826,7 +826,7 @@ and familiarise yourself with where things are.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
 <p>Reload the Workbench to make sure this you see the fake data. We&#39;ll add the data bindings later.</p>
-<p>Next, let&#39;s add some styling. Update <code>messages/themes/standard/style.css</code> as follows:</p>
+<p>Next, let&#39;s add some styling. Update <code>chat-bladeset/blades/messages/themes/black/style.css</code> as follows:</p>
 <pre><code class="lang-css"><span class="hljs-comment">/* Message Blade container element */</span>
 <span class="hljs-class">.chat-messages</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">400</span>px</span></span>;
@@ -893,7 +893,7 @@ and familiarise yourself with where things are.</p>
 <p>For this workshop we&#39;re using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we&#39;re building a reasonably simple
 Blade (but feel free to refactor afterwards).</p>
-<p>You can find the class definition for the Messages View Model in <code>src/modularapp/chat/messages/MessagesViewModel.js</code>;
+<p>You can find the class definition for the Messages View Model in <code>chat-bladeset/blades/messages/src/modularapp/chat/messages/MessagesViewModel.js</code>;
 yeah, sorry about the folder structure!</p>
 <p>Update the <code>MessagesViewModel</code> definition to look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
@@ -1012,7 +1012,7 @@ within <code>MessageItemViewModel.js</code> to use it:</p>
 <h2 id="test-the-messagesviewmodel">Test the MessagesViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the default message should be blank.</p>
-<p>Navigate to <code>test/test-unit/js-test-drive/tests</code> and update <code>MessagesViewModelTest.js</code>
+<p>Navigate to <code>chat-bladeset/blades/messages/tests/test-unit/js-test-drive/tests</code> and update <code>MessagesViewModelTest.js</code>
 as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
 
@@ -1045,19 +1045,15 @@ is just the single test that we&#39;ve written.</p>
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-...F
-Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (180.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (180.00 ms)
-    MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne failed (1.00 ms): AssertError: expected 0 but was 1
+F
+Total 1 tests (Passed: 0; Fails: 1; Errors: 0) (7.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 0; Fails: 1; Errors 0) (7.00 ms)
+    MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne failed (7.00 ms): AssertError: expected 0 but was 1
       Error: expected 0 but was 1
           at MessagesViewModelTest.testAddingAMessageIncreasesMessageCountByOne (http://localhost:4224/test/tests/MessagesViewModelTest.js:10:55)
 
 Tests failed: Tests failed. See log for details.
 Tests Failed.
-
-- Time Taken: 2secs
-Error:
-  Test failure or error while running tests.
 </code></pre><p>Let&#39;s fix that error by updating the test to correctly check the number of messages:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
 
@@ -1077,12 +1073,10 @@ MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = <
 Testing tests (UTs):
 Chrome: Reset
 Chrome: Reset
-....
-Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (779.00 ms)
-  Chrome 34.0.1847.131 Mac OS: Run 4 tests (Passed: 1; Fails: 0; Errors 0) (779.00 ms)
+.
+Total 1 tests (Passed: 1; Fails: 0; Errors: 0) (7.00 ms)
+  Chrome 36.0.1985.125 Mac OS: Run 1 tests (Passed: 1; Fails: 0; Errors 0) (7.00 ms)
 Tests Passed.
-
-- Time Taken: 5secs
 </code></pre><p>We&#39;ve now written our first test and made it pass.</p>
 <p>For full details see the <a href="http://bladerunnerjs.org/docs/use/running_tests/" target="_blank">Running Test documentation</a>.</p>
 <h3 id="additional-tests">Additional Tests</h3>

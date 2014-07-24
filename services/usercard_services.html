@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.16" data-basepath=".." data-revision="1406137654375">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.16" data-basepath=".." data-revision="1406181201240">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -802,10 +802,9 @@ about a user is to be shown the User Card will appear and show that information<
 <h2 id="service-configuration">Service Configuration</h2>
 <p>As we said, a nice team have put together some fake services to help us develop
 our Blade&#39;s functionality. In order to configure the services you need to know
-the require path to these implementations. Of course, we do. So, open up the configuration
-file for the Workbench, which you&#39;ll find here:
-<code>chat-bladeset/blades/usercard/workbench/resources/aliases.xml</code>, and update it as
-follows:</p>
+the require path to these implementations.</p>
+<p>Open the <code>aliases.xml</code> configuration file for the Workbench,
+<code>chat-bladeset/blades/usercard/workbench/resources/aliases.xml</code>, and set the content as:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">aliases</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schema.caplin.com/CaplinTrader/aliases"</span> <span class="hljs-attribute">useScenario</span>=<span class="hljs-value">"dev"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"userservice.FakeUserService"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">aliases</span>&gt;</span>
