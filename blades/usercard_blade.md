@@ -10,18 +10,16 @@ The User Card Blade should have the following functionality:
 
 ## Create the Blade
 
-You already have the application within the BladeRunnerJS installation. You'll
-also notice that it has a folder called `chat-bladeset`. Don't worry about
-BladeSets, we won't be using them, but our Blades will be located under this folder.
+You already have the application within the BladeRunnerJS installation. Within the root of the application directory you'll see a `blades` sub-directory. This is where blades are to be created.
 
 From the BladeRunnerJS `sdk` directory run the following command to create a Blade:
 
 ```
-./brjs create-blade modularapp chat usercard
+./brjs create-blade modularapp default usercard
 ```
 
 You've just scaffolded your first Blade. You can find the Blade skeleton in
-`apps/modularapp/chat-bladeset/blades/usercard`.
+`apps/modularapp/blades/usercard`.
 
 You can find out more about what's just been created in the [Create a Blade docs](http://bladerunnerjs.org/docs/use/create_blade/).
 
@@ -34,7 +32,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/workbench/chat/usercard/
+Now navigate to http://localhost:7070/modularapp/workbench/usercard/
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -47,7 +45,7 @@ Let's update the view to have the elements we need for our required functionalit
 Open up the `usercard/resources/html/view.html` file and make it look as follows:
 
 ```html
-<section class="chat-usercard" id="modularapp.chat.usercard.view-template">
+<section class="chat-usercard" id="modularapp.usercard.view-template">
 
 	<img class="usercard-avatar" />
 	<div class="usercard-name">Some Name</div>
@@ -110,7 +108,7 @@ For this workshop we're using KnockoutJS as our data-binding solution. Knockout 
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
-You can find the class definition for the User Card View Model in `chat-bladeset/blades/usercard/src/modularapp/chat/usercard/UsercardViewModel.js`; yeah, sorry about the folder structure!
+You can find the class definition for the User Card View Model in `blades/usercard/src/UsercardViewModel.js`; yeah, sorry about the folder structure!
 
 Update the `UsercardViewModel` definition to look as follows:
 
@@ -195,7 +193,7 @@ If you've not used KnockoutJS before or you just want to check your solution her
 ```html
 <section class="chat-usercard"
 				 data-bind="visible: cardShown"
-				 id="modularapp.chat.usercard.view-template">
+				 id="modularapp.usercard.view-template">
 
 	<img class="usercard-avatar" />
 	<div class="usercard-name">Some Name</div>
@@ -220,14 +218,13 @@ UsercardViewModel.prototype.closeClicked = function( data, event ) {
 
 ### Bind the User Properties to the View
 
-Start by binding the obvious user properties to the view (`chat-bladeset/blades/usercard/resources/html/view.html`). In order to do this
-you'll need to update the view definition with appropriate usage of
+Start by binding the obvious user properties to the view (`blades/usercard/resources/html/view.html`). In order to do this you'll need to update the view definition with appropriate usage of
 `data-bind`.
 
 In order to test the binding without editing your application code you can use
 the Workbench.
 
-The Workbench code can be found in `chat-bladeset/blades/usercard/workbench/index.html`.
+The Workbench code can be found in `blades/usercard/workbench/index.html`.
 
 You can easily add code to manipulate the properties on the View Model e.g.
 
@@ -246,7 +243,7 @@ the values of the Blade's View Model.
 ```html
 <section class="chat-usercard"
 				data-bind="visible: cardShown"
-				id="modularapp.chat.usercard.view-template">
+				id="modularapp.usercard.view-template">
 
 	<img class="usercard-avatar" data-bind="attr: { src: avatarUrl }" />
 	<div class="usercard-name" data-bind="text: name"></div>
@@ -323,12 +320,12 @@ as expected.
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the User Card defaults to not being shown.
 
-Navigate to `chat-bladeset/blades/usercard/tests/test-unit/js-test-drive/tests` and update `UsercardViewModelTest.js` as follows:
+Navigate to `blades/usercard/test-unit/tests` and update `UsercardViewModelTest.js` as follows:
 
 ```js
 var UsercardViewModelTest = TestCase( 'UsercardViewModelTest' );
 
-var UsercardViewModel = require( 'modularapp/chat/usercard/UsercardViewModel' );
+var UsercardViewModel = require( 'modularapp/usercard/UsercardViewModel' );
 
 UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = function() {
   var model = new UsercardViewModel();
@@ -357,7 +354,7 @@ Now that the test server is running open another terminal/command prompt and exe
 the following from the `sdk` directory:
 
 ```
-./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+./brjs test ../apps/modularapp/blades/usercard
 ```
 
 This will execute all the tests it finds within that directory. For now, this
@@ -366,7 +363,7 @@ is just the single test that we've written.
 You should see output similar to the following:
 
 ```
-› ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+› ./brjs test ../apps/modularapp/blades/usercard
 
 Testing tests (UTs):
 Chrome: Reset
@@ -387,7 +384,7 @@ Let's fix that error by updating the test to correctly `assertFalse`:
 ```js
 var UsercardViewModelTest = TestCase( 'UsercardViewModelTest' );
 
-var UsercardViewModel = require( 'modularapp/chat/usercard/UsercardViewModel' );
+var UsercardViewModel = require( 'modularapp/usercard/UsercardViewModel' );
 
 UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = function() {
   var model = new UsercardViewModel();
@@ -398,7 +395,7 @@ UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = function() {
 If you run the `brjs test` command the test will now pass:
 
 ```
-› ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+› ./brjs test ../apps/modularapp/blades/usercard
 
 Testing tests (UTs):
 Chrome: Reset
@@ -429,7 +426,7 @@ data structure that's passed to its constructor
 Congratulations! The basic functionality for this Blade is complete. It's time to
 commit your changes locally and push them to github.
 
-* `git add chat-bladeset/blades/usercard`
+* `git add blades/usercard`
 * `git commit -m 'basic user card blade functionality'`
 * `git pull origin master`
 * Fix any merge conflicts - *there shouldn't be any*

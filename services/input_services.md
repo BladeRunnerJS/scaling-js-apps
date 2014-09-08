@@ -21,7 +21,7 @@ our Blade's functionality. In order to configure the services you need to know
 the require path to these implementations.
 
 Open the `aliases.xml` configuration file for the Workbench,
-`chat-bladeset/blades/input/workbench/resources/aliases.xml`, and set the content as:
+`blades/input/workbench/resources/aliases.xml`, and set the content as:
 
 ```xml
 <aliases xmlns="http://schema.caplin.com/CaplinTrader/aliases" useScenario="dev">
@@ -297,7 +297,7 @@ to Services and Services through to the UI; full feature testing.
 
 It's time to commit those changes and push them to github:
 
-* `git add chat-bladeset/blades/input`
+* `git add blades/input`
 * `git commit -m 'integrating input blade with services'`
 * `git pull origin master`
 * Fix any merges - there shouldn't be any

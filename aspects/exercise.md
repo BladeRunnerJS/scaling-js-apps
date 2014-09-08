@@ -1,5 +1,7 @@
 # Composing Blades into an Aspect Exercise (15 mins)
 
+**TODO: Review and Update**
+
 ## Decide who is going to push
 
 All company teams should do this exercise, but only one of those teams is going to
@@ -20,12 +22,12 @@ The structure of an Aspect has some similarities to a Blade. It has:
 * `themes` for CSS
 
 However, because an Aspect is an entry point for our application it also has
-a `index.html`. Within that file you'll see that it references an `App` object.
-The definition for this can be found in `default-aspect/src/modularapp`.
+an `index.html`. Within that file you'll see that it references an `App` object.
+The definition for this can be found in the root directory of the `modularapp`.
 
 ## A note on CSS
 
-The default CSS file can be found in `default-aspect/themes/black/style.css`. It's important
+The default CSS file can be found in `themes/black/style.css`. It's important
 to realise that the styles defined here will also be used by the Blades and will actually **override the Blade styles**.
 
 If you want to test this out, open the `style.css` file (which already has some
@@ -63,7 +65,7 @@ GitHub login.
 
 ## Adding a Blade to an Aspect
 
-Open up `default-aspect/src/modularapp/App.js`. The `App` class is a class in exactly the same what that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
+Open up `default-aspect/src/App.js`. The `App` class is a class in exactly the same what that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
 
 This `App.js` has had a little bit of work done to it already. Another team has
 very kindly added `Header` and `Login` Blades to the Aspect - isn't that nice of them!
@@ -82,7 +84,7 @@ To add a Blade to an Aspect you need to:
 Here's how to do it for the Messages Blade:
 
 ```js
-var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel' );
+var MessagesViewModel = require( 'modularapp/messages/MessagesViewModel' );
 
 App.prototype.handleUserLogin = function( user ) {
 
@@ -101,7 +103,7 @@ App.prototype.handleUserLogin = function( user ) {
   // Create and add Messages Blade
   var messagesViewModel = new MessagesViewModel();
   var messagesComponent =
-    new KnockoutComponent( 'modularapp.chat.messages.view-template', messagesViewModel );
+    new KnockoutComponent( 'modularapp.messages.view-template', messagesViewModel );
   var messagesEl = messagesComponent.getElement();
   document.body.appendChild( messagesEl );
 

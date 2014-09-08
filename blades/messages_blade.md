@@ -10,18 +10,16 @@ The Message Blade should have the following functionality:
 
 ## Create the Blade
 
-You already have the application within the BladeRunnerJS installation. You'll
-also notice that it has a folder called `chat-bladeset`. Don't worry about
-BladeSets, we won't be using them, but our Blades will be located under this folder.
+You already have the application within the BladeRunnerJS installation. Within the root of the application directory you'll see a `blades` sub-directory. This is where blades are to be created.
 
 From the BladeRunnerJS `sdk` directory run the following command to create a Blade:
 
 ```
-./brjs create-blade modularapp chat messages
+./brjs create-blade modularapp default messages
 ```
 
 You've just scaffolded your first Blade. You can find the Blade skeleton in
-`apps/modularapp/chat-bladeset/blades/messages`.
+`apps/modularapp/blades/messages`.
 
 You can find out more about what's just been created in the [Create a Blade docs](http://bladerunnerjs.org/docs/use/create_blade/).
 
@@ -34,7 +32,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/workbench/chat/messages/
+Now navigate to http://localhost:7070/modularapp/workbench/default/messages/
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -44,10 +42,10 @@ and familiarise yourself with where things are.
 
 Let's update the view to have the elements we need for our required functionality.
 
-Open up the `chat-bladeset/blades/messages/resources/html/view.html` file and make it look as follows:
+Open up the `blades/messages/resources/html/view.html` file and make it look as follows:
 
 ```html
-<section class="chat-messages" id="modularapp.chat.messages.view-template">
+<section class="chat-messages" id="modularapp.messages.view-template">
 
 	<div class="chat-messages-container">
 		<div class="chat-message">
@@ -63,7 +61,7 @@ Open up the `chat-bladeset/blades/messages/resources/html/view.html` file and ma
 
 Reload the Workbench to make sure this you see the fake data. We'll add the data bindings later.
 
-Next, let's add some styling. Update `chat-bladeset/blades/messages/themes/black/style.css` as follows:
+Next, let's add some styling. Update `blades/messages/themes/black/style.css` as follows:
 
 ```css
 /* Message Blade container element */
@@ -137,7 +135,7 @@ For this workshop we're using KnockoutJS as our data-binding solution. Knockout 
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
-You can find the class definition for the Messages View Model in `chat-bladeset/blades/messages/src/modularapp/chat/messages/MessagesViewModel.js`;
+You can find the class definition for the Messages View Model in `blades/messages/src/MessagesViewModel.js`;
 yeah, sorry about the folder structure!
 
 Update the `MessagesViewModel` definition to look as follows:
@@ -166,7 +164,7 @@ and the functionality that the file exposes is determined via assignment to `mod
 
 You'll also see that a class called `MessageItemViewModel` is being required. This
 View Model represents individual messages. So, create a `MessageItemViewModel.js` file
-in `src/modularapp/chat/messages/` and set the content as follows:
+in `src/` and set the content as follows:
 
 ```js
 'use strict';
@@ -199,7 +197,7 @@ binding.
 If you've not used KnockoutJS before or you just want to check your solution here it is:
 
 ```html
-<section class="chat-messages" id="modularapp.chat.messages.view-template">
+<section class="chat-messages" id="modularapp.messages.view-template">
 
 	<div class="chat-messages-container" data-bind="foreach: messages">
 		<div class="chat-message">
@@ -231,7 +229,7 @@ when there are no messages.
 Here's the HTML for the solution:
 
 ```html
-<section class="chat-messages" id="modularapp.chat.messages.view-template">
+<section class="chat-messages" id="modularapp.messages.view-template">
 
 	<div class="chat-messages-container" data-bind="foreach: messages">
 		<div class="chat-message">
@@ -300,13 +298,13 @@ var moment = require( 'momentjs' );
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the default message should be blank.
 
-Navigate to `chat-bladeset/blades/messages/tests/test-unit/js-test-drive/tests` and update `MessagesViewModelTest.js`
+Navigate to `blades/messages/test-unit/tests` and update `MessagesViewModelTest.js`
 as follows:
 
 ```js
 var MessagesViewModelTest = TestCase( 'MessagesViewModelTest' );
 
-var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel' );
+var MessagesViewModel = require( 'modularapp/messages/MessagesViewModel' );
 
 MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = function() {
   var model = new MessagesViewModel();
@@ -336,7 +334,7 @@ Now that the test server is running open another terminal/command prompt and exe
 the following from the `sdk` directory:
 
 ```
-./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+./brjs test ../apps/modularapp/blades/messages
 ```
 
 This will execute all the tests it finds within that directory. For now, this
@@ -345,7 +343,7 @@ is just the single test that we've written.
 You should see output similar to the following:
 
 ```
-› ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+› ./brjs test ../apps/modularapp/blades/messages
 
 Testing tests (UTs):
 Chrome: Reset
@@ -366,7 +364,7 @@ Let's fix that error by updating the test to correctly check the number of messa
 ```js
 var MessagesViewModelTest = TestCase( 'MessagesViewModelTest' );
 
-var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel' );
+var MessagesViewModel = require( 'modularapp/messages/MessagesViewModel' );
 
 MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = function() {
   var model = new MessagesViewModel();
@@ -380,7 +378,7 @@ MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = f
 If you run the `brjs test` command the test will now pass:
 
 ```
-› ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+› ./brjs test ../apps/modularapp/blades/messages
 
 Testing tests (UTs):
 Chrome: Reset
@@ -413,7 +411,7 @@ has the correct `userId`, `text` and `timestamp` values.
 Congratulations! The basic functionality for this Blade is complete. It's time to
 commit your changes locally and push them to github.
 
-* `git add chat-bladeset/blades/messages`
+* `git add blades/messages`
 * `git commit -m 'basic input blade functionality'`
 * `git pull origin master`
 * Fix any merge conflicts - *there shouldn't be any*

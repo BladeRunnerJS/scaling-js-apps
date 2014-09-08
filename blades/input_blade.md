@@ -11,18 +11,16 @@ The Input Blade should have the following functionality:
 
 ## Create the Blade
 
-You already have the application within the BladeRunnerJS installation. You'll
-also notice that it has a folder called `chat-bladeset`. Don't worry about
-BladeSets, we won't be using them, but our Blades will be located under this folder.
+You already have the application within the BladeRunnerJS installation. Within the root of the application directory you'll see a `blades` sub-directory. This is where blades are to be created.
 
 From the BladeRunnerJS `sdk` directory run the following command to create a Blade:
 
 ```
-./brjs create-blade modularapp chat input
+./brjs create-blade modularapp default input
 ```
 
 You've just scaffolded your first Blade. You can find the Blade skeleton in
-`apps/modularapp/chat-bladeset/blades/input`.
+`apps/modularapp/blades/input`.
 
 You can find out more about what's just been created in the [Create a Blade docs](http://bladerunnerjs.org/docs/use/create_blade/).
 
@@ -35,7 +33,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to `http://localhost:7070/modularapp/workbench/chat/input/`
+Now navigate to `http://localhost:7070/modularapp/workbench/default/input/`
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -45,10 +43,10 @@ and familiarise yourself with where things are.
 
 Let's update the view to have the elements we need for our required functionality.
 
-Open up the `input/resources/html/view.html` file and make it look as follows:
+Open up the `blades/input/resources/html/view.html` file and make it look as follows:
 
 ```html
-<section class="chat-input" id="modularapp.chat.input.view-template">
+<section class="chat-input" id="modularapp.input.view-template">
 	<textarea class="chat-input-message"
 			  placeholder="type a message"></textarea>
 	<button class="chat-input-send-btn">Send</button>
@@ -57,7 +55,7 @@ Open up the `input/resources/html/view.html` file and make it look as follows:
 
 Reload the Workbench to make sure this looks okay.
 
-Now, let's add some styling. Update `input/themes/black/style.css` as follows:
+Now, let's add some styling. Update `blades/input/themes/black/style.css` as follows:
 
 ```css
 /* Input Blade containing element */
@@ -104,7 +102,7 @@ For this workshop we're using KnockoutJS as our data-binding solution. Knockout 
 should be no business logic in a View Model, but we're building a reasonably simple
 Blade (but feel free to refactor afterwards).
 
-You can find the class definition for the Input View Model in `chat-bladeset/blades/input/src/modularapp/chat/input/InputViewModel.js`;
+You can find the class definition for the Input View Model in `blades/input/src/InputViewModel.js`;
 yeah, sorry about the folder structure!
 
 Update the `InputViewModel` definition to look as follows:
@@ -126,7 +124,7 @@ InputViewModel.prototype.buttonClicked = function() {
 module.exports = InputViewModel;
 ```
 
-**You'll noticed that the tooling supports Node.js-style `require( 'module' )` calls
+**You'll notice that the tooling supports Node.js-style `require( 'module' )` calls
 and the functionality that the file exposes is determined via assignment to `module.exports`.**
 
 Enough hand-holding! Time for some real exercises:
@@ -149,7 +147,7 @@ binding.
 If you've not used KnockoutJS before or you just want to check your solution here it is:
 
 ```html
-<section class="chat-input" id="modularapp.chat.input.view-template">
+<section class="chat-input" id="modularapp.input.view-template">
 	<textarea class="chat-input-message"
 				placeholder="type a message"
 				data-bind="value: message"></textarea>
@@ -168,7 +166,7 @@ the data binding is working as you expect it.
 ##### Solution
 
 ```html
-<section class="chat-input" id="modularapp.chat.input.view-template">
+<section class="chat-input" id="modularapp.input.view-template">
 	<textarea class="chat-input-message"
 				placeholder="type a message"
 				data-bind="value: message"></textarea>
@@ -208,13 +206,13 @@ function messageValid( message ) {
 A key part of building a quality maintainable application is that it's tested. So,
 let's write a test that checks the default message should be blank.
 
-Navigate to `chat-bladeset/blades/input/tests/test-unit/js-test-drive/tests` and open `InputViewModelTest.js`.
+Navigate to `/blades/input/test-unit/tests` and open `InputViewModelTest.js`.
 It should look as follows:
 
 ```js
 var InputViewModelTest = TestCase( 'InputViewModelTest' );
 
-var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
+var InputViewModel = require( 'modularapp/input/InputViewModel' );
 
 InputViewModelTest.prototype.testSomething = function() {
   var model = new InputViewModel();
@@ -241,7 +239,7 @@ Now that the test server is running open another terminal/command prompt and exe
 the following from the `sdk` directory:
 
 ```
-./brjs test ../apps/modularapp/chat-bladeset/blades/input
+./brjs test ../apps/modularapp/blades/input
 ```
 
 This will execute all the tests it finds within that directory. For now, this
@@ -250,7 +248,7 @@ is just the single test that we've written.
 You should see output similar to the following:
 
 ```
-› ./brjs test ../apps/modularapp/chat-bladeset/blades/input
+› ./brjs test ../apps/modularapp/blades/input
 
 Testing tests (UTs):
 Chrome: Reset
@@ -271,7 +269,7 @@ Let's fix that error by updating the test to access the correct property of the 
 ```js
 var InputViewModelTest = TestCase( 'InputViewModelTest' );
 
-var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
+var InputViewModel = require( 'modularapp/input/InputViewModel' );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
 	var model = new InputViewModel();
@@ -282,7 +280,7 @@ InputViewModelTest.prototype.testDefaultMessageIsEmpty = function() {
 If you run the `brjs test` command the test will now pass:
 
 ```
-› ./brjs test ../apps/modularapp/chat-bladeset/blades/input
+› ./brjs test ../apps/modularapp/blades/input
 
 Testing tests (UTs):
 Chrome: Reset
@@ -312,7 +310,7 @@ the functionality the Blade is to provide:
 Congratulations! The basic functionality for this Blade is complete. It's time to
 commit your changes locally and push them to github.
 
-* `git add chat-bladeset/blades/input`
+* `git add blades/input`
 * `git commit -m 'basic input blade functionality'`
 * `git pull origin master`
 * Fix any merge conflicts - *there shouldn't be any*

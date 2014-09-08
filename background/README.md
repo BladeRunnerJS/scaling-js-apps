@@ -3,3 +3,5 @@
 ![Caplin Trader Based Apps](../img/caplin-montage.jpg)
 
 [Caplin Systems](http://www.caplin.com) Builds Large Complex Financial Front-End Web Apps
+
+![](../img/caplin-stack.png)

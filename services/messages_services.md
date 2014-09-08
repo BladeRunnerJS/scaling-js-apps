@@ -20,7 +20,7 @@ our Blade's functionality. In order to configure the services you need to know
 the require path to these implementations.
 
 Open the `aliases.xml` configuration file for the Workbench,
-`chat-bladeset/blades/messages/workbench/resources/aliases.xml`, and set the content as:
+`blades/messages/workbench/resources/aliases.xml`, and set the content as:
 
 ```xml
 <aliases xmlns="http://schema.caplin.com/CaplinTrader/aliases" useScenario="dev">
@@ -122,7 +122,7 @@ this._chatService.on( 'new-message', this.handleNewMessage, this );
 
 As part of developing the Chat Service one of the teams added a Chat Workbench Tool.
 This can be added to the Workbench really easily. Just add the following to the end
-of `chat-bladeset/blades/messages/index.html`:
+of `blades/messages/index.html`:
 
 ```js
 function addChatTool(workbench ) {
@@ -330,7 +330,7 @@ to Services and Services through to the UI; full feature testing.
 
 It's time to commit those changes and push them to github:
 
-* `git add chat-bladeset/blades/messages`
+* `git add blades/messages`
 * `git commit -m 'integrating messages blade with services'`
 * `git pull origin master`
 * Fix any merges - there shouldn't be any

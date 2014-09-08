@@ -21,7 +21,7 @@ our Blade's functionality. In order to configure the services you need to know
 the require path to these implementations.
 
 Open the `aliases.xml` configuration file for the Workbench,
-`chat-bladeset/blades/usercard/workbench/resources/aliases.xml`, and set the content as:
+`blades/usercard/workbench/resources/aliases.xml`, and set the content as:
 
 ```xml
 <aliases xmlns="http://schema.caplin.com/CaplinTrader/aliases" useScenario="dev">
@@ -363,7 +363,7 @@ you've time you can take a look at the other Blades & Services excercises!
 
 For now, it's time to commit those changes and push them to github:
 
-* `git add chat-bladeset/blades/usercard`
+* `git add blades/usercard`
 * `git commit -m 'integrating user card blade with services'`
 * `git pull origin master`
 * Fix any merges - there shouldn't be any
