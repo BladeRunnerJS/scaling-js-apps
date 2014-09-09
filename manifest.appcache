@@ -1,12 +1,12 @@
 CACHE MANIFEST
-# Revision 1406181201240
+# Revision 1410262060200
 
 CACHE:
 extras/README.html
 index.html
 aspects/README.html
-aspects/exercise.html
 aspects/retrospective.html
+aspects/exercise.html
 aspects_services/README.html
 aspects_services/retrospective.html
 background/gmail.html
@@ -99,8 +99,8 @@ gitbook/jsrepl/sandbox.html
 gitbook/jsrepl/sandbox.js
 gitbook/print.css
 gitbook/style.css
-gitbook/plugins/gitbook-plugin-mathjax/plugin.js
 gitbook/plugins/gitbook-plugin-mixpanel/plugin.js
+gitbook/plugins/gitbook-plugin-mathjax/plugin.js
 
 NETWORK:
 *

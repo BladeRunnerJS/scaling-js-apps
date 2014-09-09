@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.14" data-basepath=".." data-revision="1406181201240">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="6.14" data-basepath=".." data-revision="1410262060199">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -804,7 +804,7 @@ other users.</p>
 our Blade&#39;s functionality. In order to configure the services you need to know
 the require path to these implementations.</p>
 <p>Open the <code>aliases.xml</code> configuration file for the Workbench,
-<code>chat-bladeset/blades/input/workbench/resources/aliases.xml</code>, and set the content as:</p>
+<code>blades/input/workbench/resources/aliases.xml</code>, and set the content as:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">aliases</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://schema.caplin.com/CaplinTrader/aliases"</span> <span class="hljs-attribute">useScenario</span>=<span class="hljs-value">"dev"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chat.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chatservice.FakeChatService"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">alias</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user.service"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"userservice.FakeUserService"</span>/&gt;</span>
@@ -1017,7 +1017,7 @@ so you don&#39;t need to worry about creating an asynchronous test.</li>
 to Services and Services through to the UI; full feature testing.</p>
 <p>It&#39;s time to commit those changes and push them to github:</p>
 <ul>
-<li><code>git add chat-bladeset/blades/input</code></li>
+<li><code>git add blades/input</code></li>
 <li><code>git commit -m &#39;integrating input blade with services&#39;</code></li>
 <li><code>git pull origin master</code></li>
 <li>Fix any merges - there shouldn&#39;t be any</li>

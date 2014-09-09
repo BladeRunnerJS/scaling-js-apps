@@ -4,10 +4,10 @@
 
 To create the starting point app from the finished example:
 
-- `cd chat-bladeset/blades`
+- `cd blades`
 - `rm -rf messages usercard input`
 - `cd ../../default-aspect`
-- >> edit 'src/modularapp/App.js'
+- >> edit 'src/App.js'
 	- delete code below "// Add other Blades here"
 	- delete code for deleted blades at "// require Blades"
 - this should be kept in the starting point branch of https://github.com/BladeRunnerJS/modularapp

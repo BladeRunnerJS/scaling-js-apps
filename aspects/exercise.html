@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.1" data-basepath=".." data-revision="1406181201240">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.1" data-basepath=".." data-revision="1410262060199">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -783,9 +783,10 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_4">
+                    <section class="normal" id="section-gitbook_5">
                     
                         <h1 id="composing-blades-into-an-aspect-exercise-15-mins-">Composing Blades into an Aspect Exercise (15 mins)</h1>
+<p><strong>TODO: Review and Update</strong></p>
 <h2 id="decide-who-is-going-to-push">Decide who is going to push</h2>
 <p>All company teams should do this exercise, but only one of those teams is going to
 push their code to github. The other teams can either try to merge that pushed code
@@ -800,10 +801,10 @@ to their local version, or discard their version before pulling.</p>
 <li><code>themes</code> for CSS</li>
 </ul>
 <p>However, because an Aspect is an entry point for our application it also has
-a <code>index.html</code>. Within that file you&#39;ll see that it references an <code>App</code> object.
-The definition for this can be found in <code>default-aspect/src/modularapp</code>.</p>
+an <code>index.html</code>. Within that file you&#39;ll see that it references an <code>App</code> object.
+The definition for this can be found in the root directory of the <code>modularapp</code>.</p>
 <h2 id="a-note-on-css">A note on CSS</h2>
-<p>The default CSS file can be found in <code>default-aspect/themes/black/style.css</code>. It&#39;s important
+<p>The default CSS file can be found in <code>themes/black/style.css</code>. It&#39;s important
 to realise that the styles defined here will also be used by the Blades and will actually <strong>override the Blade styles</strong>.</p>
 <p>If you want to test this out, open the <code>style.css</code> file (which already has some
 contents contributed by another team) and add:</p>
@@ -828,7 +829,7 @@ default aspect URL for ModularApp is <code>http://localhost:7070/modularapp/</co
 <p>Loading that up will show you a &quot;ModularApp&quot; heading and will prompt you for a
 GitHub login.</p>
 <h2 id="adding-a-blade-to-an-aspect">Adding a Blade to an Aspect</h2>
-<p>Open up <code>default-aspect/src/modularapp/App.js</code>. The <code>App</code> class is a class in exactly the same what that all the View Models that we&#39;ve created up until this point are. So, we treat it in exactly the same way.</p>
+<p>Open up <code>default-aspect/src/App.js</code>. The <code>App</code> class is a class in exactly the same what that all the View Models that we&#39;ve created up until this point are. So, we treat it in exactly the same way.</p>
 <p>This <code>App.js</code> has had a little bit of work done to it already. Another team has
 very kindly added <code>Header</code> and <code>Login</code> Blades to the Aspect - isn&#39;t that nice of them!
 So, we&#39;re going to <strong>add the other Blades within the <code>handleUserLogin</code> function</strong>
@@ -842,7 +843,7 @@ So, we&#39;re going to <strong>add the other Blades within the <code>handleUserL
 <li>Create an element (again using the helper class) and add it to the DOM</li>
 </ol>
 <p>Here&#39;s how to do it for the Messages Blade:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span> );
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/messages/MessagesViewModel'</span> );
 
 App.prototype.handleUserLogin = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( user )</span> {</span>
 
@@ -861,7 +862,7 @@ App.prototype.handleUserLogin = <span class="hljs-function"><span class="hljs-ke
   <span class="hljs-comment">// Create and add Messages Blade</span>
   <span class="hljs-keyword">var</span> messagesViewModel = <span class="hljs-keyword">new</span> MessagesViewModel();
   <span class="hljs-keyword">var</span> messagesComponent =
-    <span class="hljs-keyword">new</span> KnockoutComponent( <span class="hljs-string">'modularapp.chat.messages.view-template'</span>, messagesViewModel );
+    <span class="hljs-keyword">new</span> KnockoutComponent( <span class="hljs-string">'modularapp.messages.view-template'</span>, messagesViewModel );
   <span class="hljs-keyword">var</span> messagesEl = messagesComponent.getElement();
   document.body.appendChild( messagesEl );
 

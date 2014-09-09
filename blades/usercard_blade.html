@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.9" data-basepath=".." data-revision="1406181201240">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.9" data-basepath=".." data-revision="1410262060199">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -794,26 +794,24 @@
 <li>Hide when closed</li>
 </ul>
 <h2 id="create-the-blade">Create the Blade</h2>
-<p>You already have the application within the BladeRunnerJS installation. You&#39;ll
-also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
-BladeSets, we won&#39;t be using them, but our Blades will be located under this folder.</p>
+<p>You already have the application within the BladeRunnerJS installation. Within the root of the application directory you&#39;ll see a <code>blades</code> sub-directory. This is where blades are to be created.</p>
 <p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
-<pre><code>./brjs create-blade modularapp chat usercard
+<pre><code>./brjs create-blade modularapp default usercard
 </code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
-<code>apps/modularapp/chat-bladeset/blades/usercard</code>.</p>
+<code>apps/modularapp/blades/usercard</code>.</p>
 <p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
 <h2 id="view-the-blade-a-workbench">View the Blade a Workbench</h2>
 <p>Start the BRJS development server by running the following command from the <code>sdk</code>
 directory:</p>
 <pre><code>./brjs serve
-</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/workbench/chat/usercard/" target="_blank">http://localhost:7070/modularapp/workbench/chat/usercard/</a>
+</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/workbench/usercard/" target="_blank">http://localhost:7070/modularapp/workbench/usercard/</a>
 to see your <em>amazing</em> Blade.</p>
 <p>Feel free to take a look around the Blade assets to see how the code is structured
 and familiarise yourself with where things are.</p>
 <h2 id="build-the-view">Build the View</h2>
 <p>Let&#39;s update the view to have the elements we need for our required functionality.</p>
 <p>Open up the <code>usercard/resources/html/view.html</code> file and make it look as follows:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-usercard"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.usercard.view-template"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-usercard"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.usercard.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-avatar"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-name"</span>&gt;</span>Some Name<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -866,7 +864,7 @@ and familiarise yourself with where things are.</p>
 <p>For this workshop we&#39;re using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we&#39;re building a reasonably simple
 Blade (but feel free to refactor afterwards).</p>
-<p>You can find the class definition for the User Card View Model in <code>chat-bladeset/blades/usercard/src/modularapp/chat/usercard/UsercardViewModel.js</code>; yeah, sorry about the folder structure!</p>
+<p>You can find the class definition for the User Card View Model in <code>blades/usercard/src/UsercardViewModel.js</code>; yeah, sorry about the folder structure!</p>
 <p>Update the <code>UsercardViewModel</code> definition to look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
 
@@ -934,7 +932,7 @@ bind to this property to the element with the class of <code>chat-usercard</code
 <p>If you&#39;ve not used KnockoutJS before or you just want to check your solution here it is:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-usercard"</span>
                  <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"visible: cardShown"</span>
-                 <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.usercard.view-template"</span>&gt;</span>
+                 <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.usercard.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-avatar"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-name"</span>&gt;</span>Some Name<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -954,12 +952,11 @@ bind to this property to the element with the class of <code>chat-usercard</code
 };
 </code></pre>
 <h3 id="bind-the-user-properties-to-the-view">Bind the User Properties to the View</h3>
-<p>Start by binding the obvious user properties to the view (<code>chat-bladeset/blades/usercard/resources/html/view.html</code>). In order to do this
-you&#39;ll need to update the view definition with appropriate usage of
+<p>Start by binding the obvious user properties to the view (<code>blades/usercard/resources/html/view.html</code>). In order to do this you&#39;ll need to update the view definition with appropriate usage of
 <code>data-bind</code>.</p>
 <p>In order to test the binding without editing your application code you can use
 the Workbench.</p>
-<p>The Workbench code can be found in <code>chat-bladeset/blades/usercard/workbench/index.html</code>.</p>
+<p>The Workbench code can be found in <code>blades/usercard/workbench/index.html</code>.</p>
 <p>You can easily add code to manipulate the properties on the View Model e.g.</p>
 <pre><code>var model = new UsercardViewModel();
 model.name( &#39;Jive Bunny&#39; );
@@ -971,7 +968,7 @@ the values of the Blade&#39;s View Model.</li>
 <h5 id="solution-">Solution:</h5>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-usercard"</span>
                 <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"visible: cardShown"</span>
-                <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.usercard.view-template"</span>&gt;</span>
+                <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.usercard.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-avatar"</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"attr: { src: avatarUrl }"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"usercard-name"</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"text: name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -1030,10 +1027,10 @@ as expected.</li>
 <h2 id="test-the-usercardviewmodel">Test the UsercardViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the User Card defaults to not being shown.</p>
-<p>Navigate to <code>chat-bladeset/blades/usercard/tests/test-unit/js-test-drive/tests</code> and update <code>UsercardViewModelTest.js</code> as follows:</p>
+<p>Navigate to <code>blades/usercard/test-unit/tests</code> and update <code>UsercardViewModelTest.js</code> as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> UsercardViewModelTest = TestCase( <span class="hljs-string">'UsercardViewModelTest'</span> );
 
-<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/usercard/UsercardViewModel'</span> );
+<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/usercard/UsercardViewModel'</span> );
 
 UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> UsercardViewModel();
@@ -1051,11 +1048,11 @@ directory run:</p>
 that the test server will instruct to execute your tests.</p>
 <p>Now that the test server is running open another terminal/command prompt and execute
 the following from the <code>sdk</code> directory:</p>
-<pre><code>./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+<pre><code>./brjs test ../apps/modularapp/blades/usercard
 </code></pre><p>This will execute all the tests it finds within that directory. For now, this
 is just the single test that we&#39;ve written.</p>
 <p>You should see output similar to the following:</p>
-<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+<pre><code>› ./brjs test ../apps/modularapp/blades/usercard
 
 Testing tests (UTs):
 Chrome: Reset
@@ -1072,7 +1069,7 @@ Tests Failed.
 </code></pre><p>Let&#39;s fix that error by updating the test to correctly <code>assertFalse</code>:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> UsercardViewModelTest = TestCase( <span class="hljs-string">'UsercardViewModelTest'</span> );
 
-<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/usercard/UsercardViewModel'</span> );
+<span class="hljs-keyword">var</span> UsercardViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/usercard/UsercardViewModel'</span> );
 
 UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> UsercardViewModel();
@@ -1080,7 +1077,7 @@ UsercardViewModelTest.prototype.testCardShownDefaultsToFalse = <span class="hljs
 };
 </code></pre>
 <p>If you run the <code>brjs test</code> command the test will now pass:</p>
-<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/usercard
+<pre><code>› ./brjs test ../apps/modularapp/blades/usercard
 
 Testing tests (UTs):
 Chrome: Reset
@@ -1104,7 +1101,7 @@ data structure that&#39;s passed to its constructor</li>
 <p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
 commit your changes locally and push them to github.</p>
 <ul>
-<li><code>git add chat-bladeset/blades/usercard</code></li>
+<li><code>git add blades/usercard</code></li>
 <li><code>git commit -m &#39;basic user card blade functionality&#39;</code></li>
 <li><code>git pull origin master</code></li>
 <li>Fix any merge conflicts - <em>there shouldn&#39;t be any</em></li>

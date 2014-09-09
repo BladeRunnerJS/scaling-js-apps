@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.8" data-basepath=".." data-revision="1406181201240">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.8" data-basepath=".." data-revision="1410262060199">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -794,26 +794,24 @@
 <li>Display the timestamp of a message</li>
 </ul>
 <h2 id="create-the-blade">Create the Blade</h2>
-<p>You already have the application within the BladeRunnerJS installation. You&#39;ll
-also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
-BladeSets, we won&#39;t be using them, but our Blades will be located under this folder.</p>
+<p>You already have the application within the BladeRunnerJS installation. Within the root of the application directory you&#39;ll see a <code>blades</code> sub-directory. This is where blades are to be created.</p>
 <p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
-<pre><code>./brjs create-blade modularapp chat messages
+<pre><code>./brjs create-blade modularapp default messages
 </code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
-<code>apps/modularapp/chat-bladeset/blades/messages</code>.</p>
+<code>apps/modularapp/blades/messages</code>.</p>
 <p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
 <h2 id="view-the-blade-a-workbench">View the Blade a Workbench</h2>
 <p>Start the BRJS development server by running the following command from the <code>sdk</code>
 directory:</p>
 <pre><code>./brjs serve
-</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/workbench/chat/messages/" target="_blank">http://localhost:7070/modularapp/workbench/chat/messages/</a>
+</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/workbench/default/messages/" target="_blank">http://localhost:7070/modularapp/workbench/default/messages/</a>
 to see your <em>amazing</em> Blade.</p>
 <p>Feel free to take a look around the Blade assets to see how the code is structured
 and familiarise yourself with where things are.</p>
 <h2 id="build-the-view">Build the View</h2>
 <p>Let&#39;s update the view to have the elements we need for our required functionality.</p>
-<p>Open up the <code>chat-bladeset/blades/messages/resources/html/view.html</code> file and make it look as follows:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.messages.view-template"</span>&gt;</span>
+<p>Open up the <code>blades/messages/resources/html/view.html</code> file and make it look as follows:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.messages.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages-container"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message"</span>&gt;</span>
@@ -826,7 +824,7 @@ and familiarise yourself with where things are.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
 <p>Reload the Workbench to make sure this you see the fake data. We&#39;ll add the data bindings later.</p>
-<p>Next, let&#39;s add some styling. Update <code>chat-bladeset/blades/messages/themes/black/style.css</code> as follows:</p>
+<p>Next, let&#39;s add some styling. Update <code>blades/messages/themes/black/style.css</code> as follows:</p>
 <pre><code class="lang-css"><span class="hljs-comment">/* Message Blade container element */</span>
 <span class="hljs-class">.chat-messages</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">min-width</span>:<span class="hljs-value"> <span class="hljs-number">400</span>px</span></span>;
@@ -893,7 +891,7 @@ and familiarise yourself with where things are.</p>
 <p>For this workshop we&#39;re using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we&#39;re building a reasonably simple
 Blade (but feel free to refactor afterwards).</p>
-<p>You can find the class definition for the Messages View Model in <code>chat-bladeset/blades/messages/src/modularapp/chat/messages/MessagesViewModel.js</code>;
+<p>You can find the class definition for the Messages View Model in <code>blades/messages/src/MessagesViewModel.js</code>;
 yeah, sorry about the folder structure!</p>
 <p>Update the <code>MessagesViewModel</code> definition to look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
@@ -917,7 +915,7 @@ module.exports = MessagesViewModel;
 and the functionality that the file exposes is determined via assignment to <code>module.exports</code>.</strong></p>
 <p>You&#39;ll also see that a class called <code>MessageItemViewModel</code> is being required. This
 View Model represents individual messages. So, create a <code>MessageItemViewModel.js</code> file
-in <code>src/modularapp/chat/messages/</code> and set the content as follows:</p>
+in <code>src/</code> and set the content as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MessageItemViewModel</span><span class="hljs-params">( message )</span> {</span>
@@ -941,7 +939,7 @@ binding.</li>
 </ul>
 <h5 id="solution-">Solution:</h5>
 <p>If you&#39;ve not used KnockoutJS before or you just want to check your solution here it is:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.messages.view-template"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.messages.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages-container"</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"foreach: messages"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message"</span>&gt;</span>
@@ -963,7 +961,7 @@ we need to consider <em>what&#39;s shown when there are no messages?</em>.</p>
 when there are no messages.</p>
 <h5 id="solution-">Solution:</h5>
 <p>Here&#39;s the HTML for the solution:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.messages.view-template"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.messages.view-template"</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-messages-container"</span> <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"foreach: messages"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-message"</span>&gt;</span>
@@ -1012,11 +1010,11 @@ within <code>MessageItemViewModel.js</code> to use it:</p>
 <h2 id="test-the-messagesviewmodel">Test the MessagesViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the default message should be blank.</p>
-<p>Navigate to <code>chat-bladeset/blades/messages/tests/test-unit/js-test-drive/tests</code> and update <code>MessagesViewModelTest.js</code>
+<p>Navigate to <code>blades/messages/test-unit/tests</code> and update <code>MessagesViewModelTest.js</code>
 as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
 
-<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span> );
+<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/messages/MessagesViewModel'</span> );
 
 MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> MessagesViewModel();
@@ -1036,11 +1034,11 @@ directory run:</p>
 that the test server will instruct to execute your tests.</p>
 <p>Now that the test server is running open another terminal/command prompt and execute
 the following from the <code>sdk</code> directory:</p>
-<pre><code>./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+<pre><code>./brjs test ../apps/modularapp/blades/messages
 </code></pre><p>This will execute all the tests it finds within that directory. For now, this
 is just the single test that we&#39;ve written.</p>
 <p>You should see output similar to the following:</p>
-<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+<pre><code>› ./brjs test ../apps/modularapp/blades/messages
 
 Testing tests (UTs):
 Chrome: Reset
@@ -1057,7 +1055,7 @@ Tests Failed.
 </code></pre><p>Let&#39;s fix that error by updating the test to correctly check the number of messages:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> MessagesViewModelTest = TestCase( <span class="hljs-string">'MessagesViewModelTest'</span> );
 
-<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/messages/MessagesViewModel'</span> );
+<span class="hljs-keyword">var</span> MessagesViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/messages/MessagesViewModel'</span> );
 
 MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> MessagesViewModel();
@@ -1068,7 +1066,7 @@ MessagesViewModelTest.prototype.testAddingAMessageIncreasesMessageCountByOne = <
 };
 </code></pre>
 <p>If you run the <code>brjs test</code> command the test will now pass:</p>
-<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/messages
+<pre><code>› ./brjs test ../apps/modularapp/blades/messages
 
 Testing tests (UTs):
 Chrome: Reset
@@ -1085,7 +1083,7 @@ the functionality the Blade is to provide:</p>
 <ul>
 <li>Check the <code>MessageItemViewModel</code> properties are initialised as expected from the
 data structure that&#39;s passed to its constructor</li>
-<li>Add a message to the <code>MessagesViewModel</code> using <code>addMessages</code> function and ensure the added message
+<li>Add a message to the <code>MessagesViewModel</code> using <code>addMessage</code> function and ensure the added message
 has the correct <code>userId</code>, <code>text</code> and <code>timestamp</code> values.</li>
 <li>If you&#39;ve time, ensure the <code>timestamp</code> is formatted as expected in the <code>MessageItemViewModel</code></li>
 </ul>
@@ -1094,7 +1092,7 @@ has the correct <code>userId</code>, <code>text</code> and <code>timestamp</code
 <p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
 commit your changes locally and push them to github.</p>
 <ul>
-<li><code>git add chat-bladeset/blades/messages</code></li>
+<li><code>git add blades/messages</code></li>
 <li><code>git commit -m &#39;basic input blade functionality&#39;</code></li>
 <li><code>git pull origin master</code></li>
 <li>Fix any merge conflicts - <em>there shouldn&#39;t be any</em></li>

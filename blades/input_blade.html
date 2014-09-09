@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.7" data-basepath=".." data-revision="1406181201240">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.7" data-basepath=".." data-revision="1410262060199">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -795,33 +795,31 @@ any information into the application.</p>
 <li>It should ensure that blank text isn&#39;t sent</li>
 </ul>
 <h2 id="create-the-blade">Create the Blade</h2>
-<p>You already have the application within the BladeRunnerJS installation. You&#39;ll
-also notice that it has a folder called <code>chat-bladeset</code>. Don&#39;t worry about
-BladeSets, we won&#39;t be using them, but our Blades will be located under this folder.</p>
+<p>You already have the application within the BladeRunnerJS installation. Within the root of the application directory you&#39;ll see a <code>blades</code> sub-directory. This is where blades are to be created.</p>
 <p>From the BladeRunnerJS <code>sdk</code> directory run the following command to create a Blade:</p>
-<pre><code>./brjs create-blade modularapp chat input
+<pre><code>./brjs create-blade modularapp default input
 </code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
-<code>apps/modularapp/chat-bladeset/blades/input</code>.</p>
+<code>apps/modularapp/blades/input</code>.</p>
 <p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
 <h2 id="view-the-blade-a-workbench">View the Blade a Workbench</h2>
 <p>Start the BRJS development server by running the following command from the <code>sdk</code>
 directory:</p>
 <pre><code>./brjs serve
-</code></pre><p>Now navigate to <code>http://localhost:7070/modularapp/workbench/chat/input/</code>
+</code></pre><p>Now navigate to <code>http://localhost:7070/modularapp/workbench/default/input/</code>
 to see your <em>amazing</em> Blade.</p>
 <p>Feel free to take a look around the Blade assets to see how the code is structured
 and familiarise yourself with where things are.</p>
 <h2 id="build-the-view">Build the View</h2>
 <p>Let&#39;s update the view to have the elements we need for our required functionality.</p>
-<p>Open up the <code>input/resources/html/view.html</code> file and make it look as follows:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.input.view-template"</span>&gt;</span>
+<p>Open up the <code>blades/input/resources/html/view.html</code> file and make it look as follows:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.input.view-template"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input-message"</span>
               <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"type a message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input-send-btn"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
 </code></pre>
 <p>Reload the Workbench to make sure this looks okay.</p>
-<p>Now, let&#39;s add some styling. Update <code>input/themes/black/style.css</code> as follows:</p>
+<p>Now, let&#39;s add some styling. Update <code>blades/input/themes/black/style.css</code> as follows:</p>
 <pre><code class="lang-css"><span class="hljs-comment">/* Input Blade containing element */</span>
 <span class="hljs-class">.chat-input</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
@@ -862,7 +860,7 @@ and familiarise yourself with where things are.</p>
 <p>For this workshop we&#39;re using KnockoutJS as our data-binding solution. Knockout uses View Models that are logical representations of the views. A purist opinions of views is that that there
 should be no business logic in a View Model, but we&#39;re building a reasonably simple
 Blade (but feel free to refactor afterwards).</p>
-<p>You can find the class definition for the Input View Model in <code>chat-bladeset/blades/input/src/modularapp/chat/input/InputViewModel.js</code>;
+<p>You can find the class definition for the Input View Model in <code>blades/input/src/InputViewModel.js</code>;
 yeah, sorry about the folder structure!</p>
 <p>Update the <code>InputViewModel</code> definition to look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
@@ -880,7 +878,7 @@ InputViewModel.prototype.buttonClicked = <span class="hljs-function"><span class
 
 module.exports = InputViewModel;
 </code></pre>
-<p><strong>You&#39;ll noticed that the tooling supports Node.js-style <code>require( &#39;module&#39; )</code> calls
+<p><strong>You&#39;ll notice that the tooling supports Node.js-style <code>require( &#39;module&#39; )</code> calls
 and the functionality that the file exposes is determined via assignment to <code>module.exports</code>.</strong></p>
 <p>Enough hand-holding! Time for some real exercises:</p>
 <h3 id="bind-the-message-property">Bind the message property</h3>
@@ -896,7 +894,7 @@ binding.</li>
 </ul>
 <h5 id="solution">Solution</h5>
 <p>If you&#39;ve not used KnockoutJS before or you just want to check your solution here it is:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.input.view-template"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.input.view-template"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input-message"</span>
                 <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"type a message"</span>
                 <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"value: message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
@@ -909,7 +907,7 @@ binding.</li>
 to the console using <code>Log.info( &lt;your-log-message&gt; )</code>. This will let you check that
 the data binding is working as you expect it.</p>
 <h5 id="solution">Solution</h5>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.chat.input.view-template"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"modularapp.input.view-template"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"chat-input-message"</span>
                 <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"type a message"</span>
                 <span class="hljs-attribute">data-bind</span>=<span class="hljs-value">"value: message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
@@ -940,11 +938,11 @@ do this by returning <code>true</code> if the message is valid and <code>false</
 <h2 id="test-the-inputviewmodel">Test the InputViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the default message should be blank.</p>
-<p>Navigate to <code>chat-bladeset/blades/input/tests/test-unit/js-test-drive/tests</code> and open <code>InputViewModelTest.js</code>.
+<p>Navigate to <code>/blades/input/test-unit/tests</code> and open <code>InputViewModelTest.js</code>.
 It should look as follows:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> InputViewModelTest = TestCase( <span class="hljs-string">'InputViewModelTest'</span> );
 
-<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span> );
+<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/input/InputViewModel'</span> );
 
 InputViewModelTest.prototype.testSomething = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> InputViewModel();
@@ -961,11 +959,11 @@ directory run:</p>
 that the test server will instruct to execute your tests.</p>
 <p>Now that the test server is running open another terminal/command prompt and execute
 the following from the <code>sdk</code> directory:</p>
-<pre><code>./brjs test ../apps/modularapp/chat-bladeset/blades/input
+<pre><code>./brjs test ../apps/modularapp/blades/input
 </code></pre><p>This will execute all the tests it finds within that directory. For now, this
 is just the single test that we&#39;ve written.</p>
 <p>You should see output similar to the following:</p>
-<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/input
+<pre><code>› ./brjs test ../apps/modularapp/blades/input
 
 Testing tests (UTs):
 Chrome: Reset
@@ -982,7 +980,7 @@ Tests Failed.
 </code></pre><p>Let&#39;s fix that error by updating the test to access the correct property of the View Model and to check for an empty string:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> InputViewModelTest = TestCase( <span class="hljs-string">'InputViewModelTest'</span> );
 
-<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/chat/input/InputViewModel'</span> );
+<span class="hljs-keyword">var</span> InputViewModel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'modularapp/input/InputViewModel'</span> );
 
 InputViewModelTest.prototype.testDefaultMessageIsEmpty = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
     <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> InputViewModel();
@@ -990,7 +988,7 @@ InputViewModelTest.prototype.testDefaultMessageIsEmpty = <span class="hljs-funct
 };
 </code></pre>
 <p>If you run the <code>brjs test</code> command the test will now pass:</p>
-<pre><code>› ./brjs test ../apps/modularapp/chat-bladeset/blades/input
+<pre><code>› ./brjs test ../apps/modularapp/blades/input
 
 Testing tests (UTs):
 Chrome: Reset
@@ -1013,7 +1011,7 @@ the functionality the Blade is to provide:</p>
 <p>Congratulations! The basic functionality for this Blade is complete. It&#39;s time to
 commit your changes locally and push them to github.</p>
 <ul>
-<li><code>git add chat-bladeset/blades/input</code></li>
+<li><code>git add blades/input</code></li>
 <li><code>git commit -m &#39;basic input blade functionality&#39;</code></li>
 <li><code>git pull origin master</code></li>
 <li>Fix any merge conflicts - <em>there shouldn&#39;t be any</em></li>
