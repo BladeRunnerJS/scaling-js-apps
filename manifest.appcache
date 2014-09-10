@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1410357201383
+# Revision 1410361143736
 
 CACHE:
 extras/README.html
@@ -33,8 +33,8 @@ blades/problems_solved.html
 blades/retrospective.html
 blades/usercard_blade.html
 knockout/README.html
-knockout/exercises.html
 overview/README.html
+knockout/exercises.html
 overview/build.html
 overview/heads_up.html
 overview/learn.html
