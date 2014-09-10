@@ -8,10 +8,10 @@ Within BRJS we have something called [aspects](http://bladerunnerjs.org/docs/con
 
 We're building ModularApp and you'll noticed the following which will look very similar to the structure you see in blade directories:
 
-* index.html - application entry point
-* src - directory for our JavaScript
-* themes - skinning and theming
-* resources - HTML templates and other resources
-* test-* - directories for application tests
+* `index.html` - application entry point
+* `src` - directory for our JavaScript
+* `themes` - skinning and theming
+* `resources` - HTML templates and other resources
+* `test-*` - directories for application tests
 
 So, the next thing we need to do is bring the Blades that we've created into the default entry-point Aspect.
