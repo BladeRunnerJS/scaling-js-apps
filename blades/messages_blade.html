@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.8" data-basepath=".." data-revision="1410342663079">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.8" data-basepath=".." data-revision="1410356794104">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -804,7 +804,7 @@
 <p>Start the BRJS development server by running the following command from the <code>sdk</code>
 directory:</p>
 <pre><code>./brjs serve
-</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/workbench/default/messages/" target="_blank">http://localhost:7070/modularapp/workbench/default/messages/</a>
+</code></pre><p>Now navigate to <code>http://localhost:7070/modularapp/default/messages/workbench/</code>
 to see your <em>amazing</em> Blade.</p>
 <p>Feel free to take a look around the Blade assets to see how the code is structured
 and familiarise yourself with where things are.</p>
@@ -893,7 +893,7 @@ should be no business logic in a View Model, but we&#39;re building a reasonably
 Blade (but feel free to refactor afterwards).</p>
 <p>You can find the class definition for the Messages View Model in <code>blades/messages/src/MessagesViewModel.js</code>;
 yeah, sorry about the folder structure!</p>
-<p>Update the <code>MessagesViewModel</code> definition to look as follows:</p>
+<p>Update the <code>MessagesViewModel</code> definition to look as follows. <strong>Please note that it requires a <code>MessageItemViewModel</code> that we&#39;ve not created yet so refreshing the workbench will show an error</strong>:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
 
 <span class="hljs-keyword">var</span> ko = <span class="hljs-built_in">require</span>( <span class="hljs-string">'ko'</span> );
@@ -913,7 +913,7 @@ module.exports = MessagesViewModel;
 </code></pre>
 <p><strong>You&#39;ll noticed that the tooling supports Node.js-style <code>require( &#39;module&#39; )</code> calls
 and the functionality that the file exposes is determined via assignment to <code>module.exports</code>.</strong></p>
-<p>You&#39;ll also see that a class called <code>MessageItemViewModel</code> is being required. This
+<p>You&#39;ll also see that a class called <code>MessageItemViewModel</code> is being required (and until you create it the Workbench will inform you it doesn&#39;t exist). This
 View Model represents individual messages. So, create a <code>MessageItemViewModel.js</code> file
 in <code>src/</code> and set the content as follows:</p>
 <pre><code class="lang-js"><span class="hljs-pi">'use strict'</span>;
@@ -1007,7 +1007,10 @@ it sets the <code>timestamp</code> property to something that&#39;s nicer.</p>
 within <code>MessageItemViewModel.js</code> to use it:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> moment = <span class="hljs-built_in">require</span>( <span class="hljs-string">'momentjs'</span> );
 </code></pre>
-<h2 id="test-the-messagesviewmodel">Test the MessagesViewModel</h2>
+<h5 id="solution">Solution</h5>
+<pre><code>var formattedDate = moment( message.timestamp ).format(&#39;h:mm:ss a&#39;);
+this.timestamp = ko.observable( formattedDate );
+</code></pre><h2 id="test-the-messagesviewmodel">Test the MessagesViewModel</h2>
 <p>A key part of building a quality maintainable application is that it&#39;s tested. So,
 let&#39;s write a test that checks the default message should be blank.</p>
 <p>Navigate to <code>blades/messages/test-unit/tests</code> and update <code>MessagesViewModelTest.js</code>

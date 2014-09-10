@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.9" data-basepath=".." data-revision="1410342663079">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="4.9" data-basepath=".." data-revision="1410356794104">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -800,11 +800,11 @@
 </code></pre><p>You&#39;ve just scaffolded your first Blade. You can find the Blade skeleton in
 <code>apps/modularapp/blades/usercard</code>.</p>
 <p>You can find out more about what&#39;s just been created in the <a href="http://bladerunnerjs.org/docs/use/create_blade/" target="_blank">Create a Blade docs</a>.</p>
-<h2 id="view-the-blade-a-workbench">View the Blade a Workbench</h2>
+<h2 id="view-the-blade-in-a-workbench">View the Blade in a Workbench</h2>
 <p>Start the BRJS development server by running the following command from the <code>sdk</code>
 directory:</p>
 <pre><code>./brjs serve
-</code></pre><p>Now navigate to <a href="http://localhost:7070/modularapp/workbench/usercard/" target="_blank">http://localhost:7070/modularapp/workbench/usercard/</a>
+</code></pre><p>Now navigate to <code>http://localhost:7070/modularapp/default/usercard/workbench</code>
 to see your <em>amazing</em> Blade.</p>
 <p>Feel free to take a look around the Blade assets to see how the code is structured
 and familiarise yourself with where things are.</p>
@@ -904,6 +904,7 @@ module.exports = UsercardViewModel;
 </code></pre>
 <p><strong>You&#39;ll noticed that the tooling supports Node.js-style <code>require( &#39;module&#39; )</code> calls
 and the functionality that the file exposes is determined via assignment to <code>module.exports</code>.</strong></p>
+<p>This blade uses <a href="http://getbootstrap.com/" target="_blank">bootstrap</a> so we <code>require</code> it in order to use it. The <code>pixelify</code> function will be used later to adjust the position of the user card in the UI.</p>
 <p>The first set of properties are pretty obvious - they hold the user information.</p>
 <p>The <code>cardShown</code> property is used to indicate if the Blade should be shown.
 This is because the User Card should only be shown if the user has requested to
@@ -994,7 +995,7 @@ model.cardShown( <span class="hljs-literal">true</span> );
 the UI. If that&#39;s the case the User Card should be positioned where the UI interaction
 was performed. Because of this it&#39;s necessary to be able to position the User
 Card via the <code>position</code> observable.</p>
-<p>This property should have a value with an <code>x</code> and <code>y</code> that can be set to
+<p>This property should be an object with an <code>x</code> and <code>y</code> that can be set to
 <code>style.left</code> and <code>style.top</code> respectively. The <code>pixelify</code> function that
 we added to the View Model helps make sure any <code>Number</code> values are given
 a <code>px</code> suffix. Any other value types are left unaltered.</p>
@@ -1011,7 +1012,7 @@ should take the following structure:</p>
   }
 }
 </code></pre>
-<p>For now, concentrate on ensuring the function can handle the <code>position</code> property
+<p>For now, concentrate on ensuring the function can handle the <code>userId</code>. The <code>position</code> property
 is optional on the <code>data</code> parameter. We&#39;ll deal with user data later.</p>
 <pre><code class="lang-js">UsercardViewModel.prototype.userSelected = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( data )</span> {</span>
     <span class="hljs-comment">// TODO: set position</span>
