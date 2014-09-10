@@ -63,7 +63,7 @@ Open up the `usercard/resources/html/view.html` file and make it look as follows
 
 Reload the Workbench to make sure this you see the fake data. We'll add the data bindings later.
 
-Next, let's add some styling. Update `usercard/themes/black/style.css` as follows:
+Next, let's add some styling. Update `usercard/themes/standard/style.css` as follows:
 
 ```css
 .chat-usercard {

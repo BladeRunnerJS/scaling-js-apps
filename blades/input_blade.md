@@ -55,7 +55,7 @@ Open up the `blades/input/resources/html/view.html` file and make it look as fol
 
 Reload the Workbench to make sure this looks okay.
 
-Now, let's add some styling. Update `blades/input/themes/black/style.css` as follows:
+Now, let's add some styling. Update `blades/input/themes/standard/style.css` as follows:
 
 ```css
 /* Input Blade containing element */

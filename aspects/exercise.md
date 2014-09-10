@@ -1,7 +1,5 @@
 # Composing Blades into an Aspect Exercise (15 mins)
 
-**TODO: Review and Update**
-
 ## Decide who is going to push
 
 All company teams should do this exercise, but only one of those teams is going to
@@ -27,7 +25,7 @@ The definition for this can be found in the root directory of the `modularapp`.
 
 ## A note on CSS
 
-The default CSS file can be found in `themes/black/style.css`. It's important
+The default CSS file can be found in `themes/standard/style.css`. It's important
 to realise that the styles defined here will also be used by the Blades and will actually **override the Blade styles**.
 
 If you want to test this out, open the `style.css` file (which already has some
@@ -65,7 +63,7 @@ GitHub login.
 
 ## Adding a Blade to an Aspect
 
-Open up `default-aspect/src/App.js`. The `App` class is a class in exactly the same what that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
+Open up `src/App.js`. The `App` class is a class in exactly the same what that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
 
 This `App.js` has had a little bit of work done to it already. Another team has
 very kindly added `Header` and `Login` Blades to the Aspect - isn't that nice of them!
@@ -144,8 +142,8 @@ We'll cover this in the next section of the Workshop.*
 
 The *chosen team* can now push the updates to
 
-* `git add default-aspect`
-* `git commit -m 'updating asepct to contain all Blades'`
+* `git add .`
+* `git commit -m 'updating aspect to contain all Blades'`
 * `git pull origin master`
 * Fix any merge conflicts - *there shouldn't be any*
 * `git push origin master`
