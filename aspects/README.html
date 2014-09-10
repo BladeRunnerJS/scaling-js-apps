@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5" data-basepath=".." data-revision="1410262060199">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5" data-basepath=".." data-revision="1410342663079">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -786,13 +786,18 @@
                     <section class="normal" id="section-gitbook_3">
                     
                         <h1 id="apps-aspects">Apps &amp; Aspects</h1>
-<p><strong>TODO: Review and update</strong></p>
-<p>We&#39;re building ModularApp and you&#39;ll noticed that within the <code>modularapp</code> directory
-there&#39;s a <code>default-aspect</code> directory. This is the default entry point for the
-application. Aspects are a view of an application, composed of Blades.</p>
+<p>How do you take the Blades that you&#39;ve built and add them to an application? What if you have blades that are focused on providing functionality that is only for certain users or targeted at particular devices? Building applications in the way we&#39;ve being doing really helps us solve this problems.</p>
+<p>Within BRJS we have something called <a href="http://bladerunnerjs.org/docs/concepts/aspects/" target="_blank">aspects</a>. Aspects are application entry points that we can compose out of blades. They&#39;re the glue code.</p>
 <p><img src="../img/apps-aspects.png" alt="BladeRunnerJS Aspects example"></p>
-<p>So, the next thing we need to do is bring the Blades that we&#39;ve created into the
-Aspect.</p>
+<p>We&#39;re building ModularApp and you&#39;ll noticed the following which will look very similar to the structure you see in blade directories:</p>
+<ul>
+<li>index.html - application entry point</li>
+<li>src - directory for our JavaScript</li>
+<li>themes - skinning and theming</li>
+<li>resources - HTML templates and other resources</li>
+<li>test-* - directories for application tests</li>
+</ul>
+<p>So, the next thing we need to do is bring the Blades that we&#39;ve created into the default entry-point Aspect.</p>
 
                     
                     </section>

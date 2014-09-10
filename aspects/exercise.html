@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.1" data-basepath=".." data-revision="1410262060199">
+    <div class="book" data-github="BladeRunnerJS/scaling-js-apps" data-level="5.1" data-basepath=".." data-revision="1410342663079">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -783,10 +783,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_5">
+                    <section class="normal" id="section-gitbook_4">
                     
                         <h1 id="composing-blades-into-an-aspect-exercise-15-mins-">Composing Blades into an Aspect Exercise (15 mins)</h1>
-<p><strong>TODO: Review and Update</strong></p>
 <h2 id="decide-who-is-going-to-push">Decide who is going to push</h2>
 <p>All company teams should do this exercise, but only one of those teams is going to
 push their code to github. The other teams can either try to merge that pushed code
@@ -804,7 +803,7 @@ to their local version, or discard their version before pulling.</p>
 an <code>index.html</code>. Within that file you&#39;ll see that it references an <code>App</code> object.
 The definition for this can be found in the root directory of the <code>modularapp</code>.</p>
 <h2 id="a-note-on-css">A note on CSS</h2>
-<p>The default CSS file can be found in <code>themes/black/style.css</code>. It&#39;s important
+<p>The default CSS file can be found in <code>themes/standard/style.css</code>. It&#39;s important
 to realise that the styles defined here will also be used by the Blades and will actually <strong>override the Blade styles</strong>.</p>
 <p>If you want to test this out, open the <code>style.css</code> file (which already has some
 contents contributed by another team) and add:</p>
@@ -829,7 +828,7 @@ default aspect URL for ModularApp is <code>http://localhost:7070/modularapp/</co
 <p>Loading that up will show you a &quot;ModularApp&quot; heading and will prompt you for a
 GitHub login.</p>
 <h2 id="adding-a-blade-to-an-aspect">Adding a Blade to an Aspect</h2>
-<p>Open up <code>default-aspect/src/App.js</code>. The <code>App</code> class is a class in exactly the same what that all the View Models that we&#39;ve created up until this point are. So, we treat it in exactly the same way.</p>
+<p>Open up <code>src/App.js</code>. The <code>App</code> class is a class in exactly the same what that all the View Models that we&#39;ve created up until this point are. So, we treat it in exactly the same way.</p>
 <p>This <code>App.js</code> has had a little bit of work done to it already. Another team has
 very kindly added <code>Header</code> and <code>Login</code> Blades to the Aspect - isn&#39;t that nice of them!
 So, we&#39;re going to <strong>add the other Blades within the <code>handleUserLogin</code> function</strong>
@@ -893,8 +892,8 @@ We&#39;ll cover this in the next section of the Workshop.</em></p>
 <h2 id="aspect-complete-the-chosen-team-should-push-to-github">Aspect Complete - The chosen team should push to github</h2>
 <p>The <em>chosen team</em> can now push the updates to</p>
 <ul>
-<li><code>git add default-aspect</code></li>
-<li><code>git commit -m &#39;updating asepct to contain all Blades&#39;</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m &#39;updating aspect to contain all Blades&#39;</code></li>
 <li><code>git pull origin master</code></li>
 <li>Fix any merge conflicts - <em>there shouldn&#39;t be any</em></li>
 <li><code>git push origin master</code></li>
