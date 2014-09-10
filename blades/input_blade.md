@@ -33,7 +33,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to `http://localhost:7070/modularapp/workbench/default/input/`
+Now navigate to `http://localhost:7070/modularapp/default/input/workbench/`
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured

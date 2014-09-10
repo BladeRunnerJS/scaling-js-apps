@@ -23,7 +23,7 @@ You've just scaffolded your first Blade. You can find the Blade skeleton in
 
 You can find out more about what's just been created in the [Create a Blade docs](http://bladerunnerjs.org/docs/use/create_blade/).
 
-## View the Blade a Workbench
+## View the Blade in a Workbench
 
 Start the BRJS development server by running the following command from the `sdk`
 directory:
@@ -32,7 +32,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/workbench/usercard/
+Now navigate to `http://localhost:7070/modularapp/default/usercard/workbench`
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -152,6 +152,8 @@ module.exports = UsercardViewModel;
 
 **You'll noticed that the tooling supports Node.js-style `require( 'module' )` calls
 and the functionality that the file exposes is determined via assignment to `module.exports`.**
+
+This blade uses [bootstrap](http://getbootstrap.com/) so we `require` it in order to use it. The `pixelify` function will be used later to adjust the position of the user card in the UI.
 
 The first set of properties are pretty obvious - they hold the user information.
 
@@ -276,7 +278,7 @@ the UI. If that's the case the User Card should be positioned where the UI inter
 was performed. Because of this it's necessary to be able to position the User
 Card via the `position` observable.
 
-This property should have a value with an `x` and `y` that can be set to
+This property should be an object with an `x` and `y` that can be set to
 `style.left` and `style.top` respectively. The `pixelify` function that
 we added to the View Model helps make sure any `Number` values are given
 a `px` suffix. Any other value types are left unaltered.
@@ -298,7 +300,7 @@ should take the following structure:
 }
 ```
 
-For now, concentrate on ensuring the function can handle the `position` property
+For now, concentrate on ensuring the function can handle the `userId`. The `position` property
 is optional on the `data` parameter. We'll deal with user data later.
 
 ```js

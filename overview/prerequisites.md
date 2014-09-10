@@ -12,9 +12,7 @@ Before getting started you need the following in place:
 
 ### If the Wifi is behaving
 
- - Clone the App starting point from `https://github.com/BladeRunnerJS/futurejs-modularapp-<Company Name>` into `BladeRunnerJS/apps`
-   - To reduce the load on the wifi the app can be cloned from the USB stick
-   - If you cloned from the USB stick you will need to reconfigure your remote repo; `git remote remove origin` and `git remote add origin https://github.com/BladeRunnerJS/futurejs-modularapp-<Company Name>`
+ - Clone the App starting point from `https://github.com/BladeRunnerJS/<app-name>` (**see Share Google Doc for full URL**) into `BladeRunnerJS/apps`
 
 ### No Wifi :-(
 

@@ -6,6 +6,6 @@ all the required functionality for ModularApp.
 
 Each team should do the exercise for the Blade that they created earlier.
 
-* [Input Blade & Services](/services/input_services.html) - Use the chat and user services
-* [Messages Blade & Services](/services/messages_services.html) - Use the chat and EventHub services
-* [User Card & Services](/services/usercard_services.html) - Use the user and EventHub services
+* [Input Blade & Services](input_services.html) - Use the chat and user services
+* [Messages Blade & Services](messages_services.html) - Use the chat and EventHub services
+* [User Card & Services](usercard_services.html) - Use the user and EventHub services

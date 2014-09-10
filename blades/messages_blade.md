@@ -32,7 +32,7 @@ directory:
 ./brjs serve
 ```
 
-Now navigate to http://localhost:7070/modularapp/workbench/default/messages/
+Now navigate to `http://localhost:7070/modularapp/default/messages/workbench/`
 to see your *amazing* Blade.
 
 Feel free to take a look around the Blade assets to see how the code is structured
@@ -138,7 +138,7 @@ Blade (but feel free to refactor afterwards).
 You can find the class definition for the Messages View Model in `blades/messages/src/MessagesViewModel.js`;
 yeah, sorry about the folder structure!
 
-Update the `MessagesViewModel` definition to look as follows:
+Update the `MessagesViewModel` definition to look as follows. **Please note that it requires a `MessageItemViewModel` that we've not created yet so refreshing the workbench will show an error**:
 
 ```js
 'use strict';
@@ -162,7 +162,7 @@ module.exports = MessagesViewModel;
 **You'll noticed that the tooling supports Node.js-style `require( 'module' )` calls
 and the functionality that the file exposes is determined via assignment to `module.exports`.**
 
-You'll also see that a class called `MessageItemViewModel` is being required. This
+You'll also see that a class called `MessageItemViewModel` is being required (and until you create it the Workbench will inform you it doesn't exist). This
 View Model represents individual messages. So, create a `MessageItemViewModel.js` file
 in `src/` and set the content as follows:
 
@@ -291,6 +291,13 @@ within `MessageItemViewModel.js` to use it:
 
 ```js
 var moment = require( 'momentjs' );
+```
+
+##### Solution
+
+```
+var formattedDate = moment( message.timestamp ).format('h:mm:ss a');
+this.timestamp = ko.observable( formattedDate );
 ```
 
 ## Test the MessagesViewModel
