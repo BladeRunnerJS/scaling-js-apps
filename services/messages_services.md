@@ -195,7 +195,7 @@ No hints here. Any questions, please ask.
 ## Testing Features
 
 *Before we start, you need to copy the contents of `aliases.xml` from the Workbench
-into `messages/tests/test-unit/js-test-driver/resources/aliases.xml`.*
+into `messages/test-unit/resources/aliases.xml`.*
 
 In the services overview we talked about how using MVVM and Services allows us to
 test full features in isolation. In this part of the exercise we're going to do
@@ -208,7 +208,7 @@ it results in the expected service interactions.
 This way we're testing how UI interactions result in service interactions and how
 service events are reflected in UI state.
 
-Let's start by creating a new file called `MessagesFeatureTest.js` in `messages/tests/test-unit/js-test-driver/tests/`
+Let's start by creating a new file called `MessagesFeatureTest.js` in `messages/test-unit/tests/`
 and update it to look as follows to add the Test Suite:
 
 ```js
@@ -216,7 +216,7 @@ and update it to look as follows to add the Test Suite:
 
 require( 'jasmine' );
 
-var MessagesViewModel = require( 'modularapp/chat/messages/MessagesViewModel');
+var MessagesViewModel = require( 'modularapp/messages/MessagesViewModel');
 var ServiceRegistry = require( 'br/ServiceRegistry' );
 
 describe( 'The Messages', function() {

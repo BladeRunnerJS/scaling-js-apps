@@ -154,7 +154,7 @@ interact with the Chat Service at this point. In this exercise you need to:
 ## Testing Features
 
 *Before we start, you need to copy the contents of `aliases.xml` from the Workbench
-into `input/tests/test-unit/js-test-driver/resources/aliases.xml`.*
+into `input/test-unit/resources/aliases.xml`.*
 
 In the services overview we talked about how using MVVM and Services allows us to
 test full features in isolation. In this part of the exercise we're going to do
@@ -167,7 +167,7 @@ it results in the expected service interactions.
 This way we're testing how UI interactions result in service interactions and how
 service events are reflected in UI state.
 
-Let's start by creating a new file called `InputFeatureTest.js` in `input/tests/test-unit/js-test-driver/tests/`
+Let's start by creating a new file called `InputFeatureTest.js` in `input/test-unit/tests/`
 and update it to look as follows to add the Test Suite:
 
 ```js
@@ -175,7 +175,7 @@ and update it to look as follows to add the Test Suite:
 
 require( 'jasmine' );
 
-var InputViewModel = require( 'modularapp/chat/input/InputViewModel' );
+var InputViewModel = require( 'modularapp/input/InputViewModel' );
 var ServiceRegistry = require( 'br/ServiceRegistry' );
 
 describe( 'The Input', function() {
