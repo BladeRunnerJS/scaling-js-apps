@@ -116,7 +116,7 @@ Update the `UsercardViewModel` definition to look as follows:
 'use strict';
 
 var ko = require( 'ko' );
-require( 'bootstrap' );
+require( 'br-bootstrap' );
 
 var POSITION_DEFAULT = { x: '50%', y: 0 };
 
