@@ -7,4 +7,4 @@ Let's call it **ModularApp**!
 
 ![Modular App](../img/modularapp.png)
 
-*Are the any designers in the house?*
+*Are there any designers in the house?*

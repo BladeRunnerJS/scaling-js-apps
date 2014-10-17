@@ -262,7 +262,7 @@ the values of the Blade's View Model.
 
 ### Don't Show the User Card by Default
 
-By default the `cardShown` should be `false` this can make things difficult during
+By default the `cardShown` should be `false` - this can make things difficult during
 development. We can use the Workbench to help here - open `workbench/index.html` and change
 the value to help development after we've completed this task.
 

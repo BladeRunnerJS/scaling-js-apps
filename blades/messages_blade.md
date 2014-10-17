@@ -23,7 +23,7 @@ You've just scaffolded your first Blade. You can find the Blade skeleton in
 
 You can find out more about what's just been created in the [Create a Blade docs](http://bladerunnerjs.org/docs/use/create_blade/).
 
-## View the Blade a Workbench
+## View the Blade in a Workbench
 
 Start the BRJS development server by running the following command from the `sdk`
 directory:
