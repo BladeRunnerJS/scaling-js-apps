@@ -63,7 +63,7 @@ GitHub login.
 
 ## Adding a Blade to an Aspect
 
-Open up `src/App.js`. The `App` class is a class in exactly the same what that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
+Open up `src/App.js`. The `App` class is a class in exactly the same way that all the View Models that we've created up until this point are. So, we treat it in exactly the same way.
 
 This `App.js` has had a little bit of work done to it already. Another team has
 very kindly added `Header` and `Login` Blades to the Aspect - isn't that nice of them!
